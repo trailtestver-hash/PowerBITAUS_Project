@@ -1,0 +1,1438 @@
+table W_DAY_D
+	lineageTag: 101ffa4d-081e-405e-bf60-81ef6ff8eb58
+
+	column ENT_PERIOD_AGO_WID
+		dataType: double
+		lineageTag: bb98d5af-d8c2-4d16-b35c-5e0933e49aa5
+		summarizeBy: count
+		sourceColumn: ENT_PERIOD_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ROW_WID
+		dataType: double
+		lineageTag: 8f24c9a9-70ec-4894-9397-c31184e527d7
+		summarizeBy: count
+		sourceColumn: ROW_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CALENDAR_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2a1ce11e-0507-4b02-8781-e8c397bf7ac4
+		summarizeBy: none
+		sourceColumn: CALENDAR_DATE
+
+		variation Variation
+			isDefault
+			relationship: 4840b5dc-9cfe-456c-8d35-27c239ee216a
+			defaultHierarchy: LocalDateTable_4b7731f6-3fd3-4028-bbc0-aa1421cae16c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAL_HALF
+		dataType: double
+		lineageTag: 81779ffb-afb3-4772-a8b7-675d43ca06cb
+		summarizeBy: sum
+		sourceColumn: CAL_HALF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_MONTH
+		dataType: double
+		lineageTag: 18da3a5a-23ed-48e5-a2d9-912e89a3bd1d
+		summarizeBy: sum
+		sourceColumn: CAL_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_QTR
+		dataType: double
+		lineageTag: ca6138c2-5b0d-4b22-bfb7-cc822146d473
+		summarizeBy: sum
+		sourceColumn: CAL_QTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_TRIMESTER
+		dataType: double
+		lineageTag: a05886ca-2428-493f-8659-f530f627604a
+		summarizeBy: sum
+		sourceColumn: CAL_TRIMESTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_WEEK
+		dataType: double
+		lineageTag: 041b09ca-eae9-4988-8401-3215ba8675a9
+		summarizeBy: sum
+		sourceColumn: CAL_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_YEAR
+		dataType: int64
+		lineageTag: d5f82177-9d22-4352-83fb-a3f008f31444
+		summarizeBy: none
+		sourceColumn: CAL_YEAR
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATASOURCE_NUM_ID
+		dataType: double
+		lineageTag: c895d8ec-05d6-41a4-aaa1-081bf5af275c
+		summarizeBy: count
+		sourceColumn: DATASOURCE_NUM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: 27c524db-2b57-4fcd-a8c2-976bb6740a0c
+		summarizeBy: sum
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2ee83158-df12-432a-9df7-b1ec21cd2eaf
+		summarizeBy: none
+		sourceColumn: DAY_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: 6a1a151a-5b0b-4740-b42f-e24ab13f1f03
+			defaultHierarchy: LocalDateTable_526e28ac-2167-4784-a167-8cb798717e09.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_AGO_KEY
+		dataType: double
+		lineageTag: 30fb5908-325b-4599-af98-b360d354a23e
+		summarizeBy: sum
+		sourceColumn: DAY_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_AGO_WID
+		dataType: double
+		lineageTag: a4edb858-3682-4f46-ba1e-451dd6dad050
+		summarizeBy: count
+		sourceColumn: DAY_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 64fc4317-0c9b-4191-96e8-5b3a39eb3729
+		summarizeBy: none
+		sourceColumn: DAY_DT
+
+		variation Variation
+			isDefault
+			relationship: f4b18b9b-1664-4608-b095-5e47146ad3e3
+			defaultHierarchy: LocalDateTable_3c0a980d-8385-4012-abe7-80569254047e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_DAY_CODE
+		dataType: string
+		lineageTag: 6bbbfae4-2c39-40c7-b356-053033442e74
+		summarizeBy: none
+		sourceColumn: W_DAY_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_OF_MONTH
+		dataType: double
+		lineageTag: 85a6e247-c213-4363-821e-1e20cf4fb9bd
+		summarizeBy: sum
+		sourceColumn: DAY_OF_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_OF_WEEK
+		dataType: double
+		lineageTag: 46029c4a-c288-4a52-8642-ac9b32568021
+		summarizeBy: sum
+		sourceColumn: DAY_OF_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_OF_YEAR
+		dataType: double
+		lineageTag: aeacd2cc-5501-42dc-8a78-11c39110bf15
+		summarizeBy: sum
+		sourceColumn: DAY_OF_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DAY_OF_PERIOD
+		dataType: double
+		lineageTag: 36aeb67f-da38-4426-a85c-3a2f068f545b
+		summarizeBy: sum
+		sourceColumn: ENT_DAY_OF_PERIOD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DAY_OF_WEEK
+		dataType: double
+		lineageTag: d40a8969-08a7-42b5-a92e-82c2333c957e
+		summarizeBy: sum
+		sourceColumn: ENT_DAY_OF_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DAY_OF_YEAR
+		dataType: double
+		lineageTag: f82f5266-e0a7-407f-aba6-bfc0d5e0da5f
+		summarizeBy: sum
+		sourceColumn: ENT_DAY_OF_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_HALF
+		dataType: double
+		lineageTag: 36097fcf-c7d6-42bb-b2d8-7167cdf0c5c7
+		summarizeBy: sum
+		sourceColumn: ENT_HALF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PERIOD
+		dataType: double
+		lineageTag: d223d193-267a-4b71-8495-32adbe0e3fd9
+		summarizeBy: sum
+		sourceColumn: ENT_PERIOD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_QTR
+		dataType: double
+		lineageTag: 61ed2274-682e-4708-ab21-b8fe26ce3974
+		summarizeBy: sum
+		sourceColumn: ENT_QTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_TRIMESTER
+		dataType: double
+		lineageTag: 972fdd70-ad3e-4df2-aa3b-56b39f3a0a63
+		summarizeBy: sum
+		sourceColumn: ENT_TRIMESTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_WEEK
+		dataType: double
+		lineageTag: a3c0a409-65d2-4159-a956-17d0459bbe09
+		summarizeBy: sum
+		sourceColumn: ENT_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_YEAR
+		dataType: double
+		lineageTag: ecb7ffd4-3f45-4035-afd0-184a13aa04e3
+		summarizeBy: sum
+		sourceColumn: ENT_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_FST_DAY_KEY
+		dataType: double
+		lineageTag: e4b2ad51-c27a-4016-8c3f-af392ee40363
+		summarizeBy: sum
+		sourceColumn: ENT_FST_DAY_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HALF_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a566f50c-5b26-4ab0-b4de-98674c47418d
+		summarizeBy: none
+		sourceColumn: HALF_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: 91e3ec82-fce5-4435-a289-9a77521c0ff5
+			defaultHierarchy: LocalDateTable_34e2b706-615a-404d-a370-b98cad520761.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column HALF_AGO_KEY
+		dataType: double
+		lineageTag: bde023cf-a7ed-4831-8ef9-82f3c2b75c17
+		summarizeBy: sum
+		sourceColumn: HALF_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HALF_AGO_WID
+		dataType: double
+		lineageTag: 762dc394-11d8-401c-b54c-44cc21be8d8c
+		summarizeBy: count
+		sourceColumn: HALF_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_DAY_NUM
+		dataType: double
+		lineageTag: ff95725d-d9c7-4777-a74a-40a458a6b512
+		summarizeBy: sum
+		sourceColumn: JULIAN_DAY_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_MONTH_NUM
+		dataType: double
+		lineageTag: 97cc1bf1-390b-4234-873e-1d506cbde773
+		summarizeBy: sum
+		sourceColumn: JULIAN_MONTH_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_QTR_NUM
+		dataType: double
+		lineageTag: ef51b71a-b164-457b-ad52-a62be6dc4258
+		summarizeBy: sum
+		sourceColumn: JULIAN_QTR_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_TER_NUM
+		dataType: double
+		lineageTag: 8a0733fe-518e-41ca-8838-742f5eac5baf
+		summarizeBy: sum
+		sourceColumn: JULIAN_TER_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_WEEK_NUM
+		dataType: double
+		lineageTag: a2ed83be-443c-4522-915a-4141eea52353
+		summarizeBy: sum
+		sourceColumn: JULIAN_WEEK_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JULIAN_YEAR_NUM
+		dataType: double
+		lineageTag: 6ea23208-f48f-408a-b4c8-c6850a9b7ecf
+		summarizeBy: sum
+		sourceColumn: JULIAN_YEAR_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d25c2240-57f8-4904-9060-408eeff3f0ae
+		summarizeBy: none
+		sourceColumn: MONTH_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: b478662c-dc7f-405a-ad09-2a81a726d477
+			defaultHierarchy: LocalDateTable_2f655ad4-6098-4fb8-beda-d0c6594abf88.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTH_AGO_KEY
+		dataType: double
+		lineageTag: 92c06bd2-18da-4823-a8f7-8704348444f0
+		summarizeBy: sum
+		sourceColumn: MONTH_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_AGO_WID
+		dataType: double
+		lineageTag: aae159be-6f9d-44f1-b029-6bb14d39e6c8
+		summarizeBy: count
+		sourceColumn: MONTH_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column W_MONTH_CODE
+		dataType: string
+		lineageTag: ed484359-270d-4f48-b2e7-59a37c57d671
+		summarizeBy: none
+		sourceColumn: W_MONTH_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERIOD_KEY
+		dataType: double
+		lineageTag: c3e59742-d39a-4e99-99fa-9360a2a7e53b
+		summarizeBy: sum
+		sourceColumn: PERIOD_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PER_NAME_ENT_HALF
+		dataType: string
+		lineageTag: 6c3bdcfe-a6b2-41d2-92a6-9f2e0ce1245e
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_HALF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_ENT_PERIOD
+		dataType: string
+		lineageTag: e58464b7-d767-429a-bdf3-51f762eb327f
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_PERIOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_ENT_QTR
+		dataType: string
+		lineageTag: 6e769414-e67a-4429-a164-f7fc612f3523
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_ENT_TER
+		dataType: string
+		lineageTag: c76a29ec-0ff4-4a3f-be96-f669db7d023d
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_TER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_ENT_WEEK
+		dataType: string
+		lineageTag: e784a7fc-4b3c-4939-a01f-187bfddf8bdd
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_ENT_YEAR
+		dataType: string
+		lineageTag: 98e8ab87-07c2-4459-93d7-4eb662f8cbf9
+		summarizeBy: none
+		sourceColumn: PER_NAME_ENT_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_HALF
+		dataType: string
+		lineageTag: 1c6aa354-bc81-4b8b-8a54-273415a1566c
+		summarizeBy: none
+		sourceColumn: PER_NAME_HALF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_MONTH
+		dataType: string
+		lineageTag: c487ffea-d2a5-4587-b1a8-8e097802e2f5
+		summarizeBy: none
+		sourceColumn: PER_NAME_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_QTR
+		dataType: string
+		lineageTag: 6a11b161-ccce-4084-92e6-1de1b7aac410
+		summarizeBy: none
+		sourceColumn: PER_NAME_QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_TER
+		dataType: string
+		lineageTag: 1f121bcc-da15-4e57-b32e-6fa501e50a75
+		summarizeBy: none
+		sourceColumn: PER_NAME_TER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_WEEK
+		dataType: string
+		lineageTag: 2d95efcd-c28d-44a9-90ed-96f6716c7474
+		summarizeBy: none
+		sourceColumn: PER_NAME_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_OFFSET_WK
+		dataType: string
+		lineageTag: 7fd26527-a150-450b-b134-d98dd1c9a7ef
+		summarizeBy: none
+		sourceColumn: PER_NAME_OFFSET_WK
+
+		annotation SummarizationSetBy = Automatic
+
+	column PER_NAME_YEAR
+		dataType: string
+		lineageTag: 63e77214-b019-4790-b5b6-1bb2a12395cc
+		summarizeBy: none
+		sourceColumn: PER_NAME_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUARTER_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ac9e7076-fd1f-4918-bc34-755f9826abac
+		summarizeBy: none
+		sourceColumn: QUARTER_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: 1cc687d9-734f-4e1f-b28e-53440986ad11
+			defaultHierarchy: LocalDateTable_da418515-8c4d-4295-9d59-3fc4462b2f05.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUARTER_AGO_KEY
+		dataType: double
+		lineageTag: c0b3bb5f-8bfa-4c10-b8b5-dde1624d8d8d
+		summarizeBy: sum
+		sourceColumn: QUARTER_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QUARTER_AGO_WID
+		dataType: double
+		lineageTag: 01ed194d-00f1-4ac4-b29e-fdce10703674
+		summarizeBy: count
+		sourceColumn: QUARTER_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRIMESTER_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5cf89713-63ca-42a3-8490-8cfa307ec550
+		summarizeBy: none
+		sourceColumn: TRIMESTER_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: 88234490-f8ee-4aa2-a059-13cfbbdf8f59
+			defaultHierarchy: LocalDateTable_61013c18-dfaa-4aad-934b-e6683b6202ad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRIMESTER_AGO_KEY
+		dataType: double
+		lineageTag: 8490b7ab-35bb-4d99-a616-268aab2d4772
+		summarizeBy: sum
+		sourceColumn: TRIMESTER_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRIMESTER_AGO_WID
+		dataType: double
+		lineageTag: dcc6964d-781e-4957-b86c-be7e445c89d0
+		summarizeBy: count
+		sourceColumn: TRIMESTER_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEEK_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d9f37b75-5472-4b23-8c50-f45f4f72f01b
+		summarizeBy: none
+		sourceColumn: WEEK_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: ec00059c-fcb0-48c6-ad94-c3b779687381
+			defaultHierarchy: LocalDateTable_fcd9c2a0-9649-4319-bebe-ea36620f2763.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK_AGO_KEY
+		dataType: double
+		lineageTag: 0306909b-64d8-40e5-adf3-e98a9fcf6a01
+		summarizeBy: sum
+		sourceColumn: WEEK_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEEK_AGO_WID
+		dataType: double
+		lineageTag: 24c038bb-5ea1-4258-b293-0cddec575135
+		summarizeBy: count
+		sourceColumn: WEEK_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YEAR_AGO_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6cbf9e52-74a7-4544-a754-e6b6e18eb0a5
+		summarizeBy: none
+		sourceColumn: YEAR_AGO_DT
+
+		variation Variation
+			isDefault
+			relationship: 5d67cfcb-c122-4ae0-a9fb-da7a35b9fe14
+			defaultHierarchy: LocalDateTable_b7d3ca82-3c5b-43e5-8806-d59ebbf7ce1b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR_AGO_KEY
+		dataType: double
+		lineageTag: a84184df-1697-4785-85a1-20950f397242
+		summarizeBy: sum
+		sourceColumn: YEAR_AGO_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YEAR_AGO_WID
+		dataType: double
+		lineageTag: 24963570-c5e3-4ffb-91c4-15400f866ee0
+		summarizeBy: count
+		sourceColumn: YEAR_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column M_END_CAL_DT_WID
+		dataType: double
+		lineageTag: 1d5cb460-5b39-492f-bd58-7a73d4d995f1
+		summarizeBy: count
+		sourceColumn: M_END_CAL_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column M_STRT_CAL_DT_WID
+		dataType: double
+		lineageTag: 86d9f219-4964-43bb-8181-dd284eda953c
+		summarizeBy: count
+		sourceColumn: M_STRT_CAL_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_WEEK_END_DT_WID
+		dataType: double
+		lineageTag: 5834e3ba-8dc4-4ab7-9ce6-c4a3de6dad40
+		summarizeBy: count
+		sourceColumn: CAL_WEEK_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_WEEK_START_DT_WID
+		dataType: double
+		lineageTag: 9ab60ef8-6345-4a9a-9b87-9dc7fcabf11c
+		summarizeBy: count
+		sourceColumn: CAL_WEEK_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_QTR_END_DT_WID
+		dataType: double
+		lineageTag: 09a71bdd-b9bb-44ce-9e3e-8a32c5823eab
+		summarizeBy: count
+		sourceColumn: CAL_QTR_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_QTR_START_DT_WID
+		dataType: double
+		lineageTag: af220971-8f39-4e0b-9297-6843a279cf3b
+		summarizeBy: count
+		sourceColumn: CAL_QTR_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_YEAR_END_DT_WID
+		dataType: double
+		lineageTag: f25782db-baf2-4439-818e-10bda3cdcf2f
+		summarizeBy: count
+		sourceColumn: CAL_YEAR_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_YEAR_START_DT_WID
+		dataType: double
+		lineageTag: 83165c22-cc3e-4186-9e22-3c58674873a9
+		summarizeBy: count
+		sourceColumn: CAL_YEAR_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FST_DAY_CAL_WK_FLG
+		dataType: string
+		lineageTag: 0e4bfd2d-e5e0-4be2-aae9-8870b05e6dc7
+		summarizeBy: none
+		sourceColumn: FST_DAY_CAL_WK_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_CAL_WK_FLG
+		dataType: string
+		lineageTag: 6f8b408e-7c86-4f8e-b210-b3796981e838
+		summarizeBy: none
+		sourceColumn: LAST_DAY_CAL_WK_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_CAL_MNTH_FLG
+		dataType: string
+		lineageTag: 5c7cc0d5-227b-495d-b1f1-20657c0aa308
+		summarizeBy: none
+		sourceColumn: FST_DAY_CAL_MNTH_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_CAL_MNTH_FLG
+		dataType: string
+		lineageTag: 22ebc52a-798d-49b8-abb3-024fac71557d
+		summarizeBy: none
+		sourceColumn: LAST_DAY_CAL_MNTH_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_CAL_QTR_FLG
+		dataType: string
+		lineageTag: 61692c66-4571-4b2d-8d3e-e2e1a6c608d6
+		summarizeBy: none
+		sourceColumn: FST_DAY_CAL_QTR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_CAL_QTR_FLG
+		dataType: string
+		lineageTag: cfc38f15-3791-4d31-aa39-8b1dd9ea67c5
+		summarizeBy: none
+		sourceColumn: LAST_DAY_CAL_QTR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_CAL_YEAR_FLG
+		dataType: string
+		lineageTag: 464ee004-cc7c-4966-9754-0f9b310a34a6
+		summarizeBy: none
+		sourceColumn: FST_DAY_CAL_YEAR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_CAL_YEAR_FLG
+		dataType: string
+		lineageTag: 65d9ed84-65ff-4a5f-b86d-00df66e0b0f3
+		summarizeBy: none
+		sourceColumn: LAST_DAY_CAL_YEAR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_WEEK_START_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: afe92ae3-403b-4283-b782-4a74f41d08f3
+		summarizeBy: none
+		sourceColumn: ENT_WEEK_START_DT
+
+		variation Variation
+			isDefault
+			relationship: 8b4cc4c6-86ec-464b-a234-644b5c9cbb05
+			defaultHierarchy: LocalDateTable_9bd90907-312d-43d5-8408-0e046a1ac8ed.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_WEEK_END_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5fe2e5d9-f111-4dfa-8298-bdaa01958a44
+		summarizeBy: none
+		sourceColumn: ENT_WEEK_END_DT
+
+		variation Variation
+			isDefault
+			relationship: 740f784d-c5b1-467d-9861-760504192bf9
+			defaultHierarchy: LocalDateTable_ec44dc72-0295-4923-93e5-ccf4ff6ecf12.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_PERIOD_START_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 226b2c51-5152-412c-ab9c-8b8586dfa09c
+		summarizeBy: none
+		sourceColumn: ENT_PERIOD_START_DT
+
+		variation Variation
+			isDefault
+			relationship: 89120318-6b04-4575-985a-152252d8ffc6
+			defaultHierarchy: LocalDateTable_fb6a8d20-b16c-4582-a104-7b218f378b56.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_PERIOD_END_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d6cc5c6d-3912-4ab2-af01-9dbcb07ab377
+		summarizeBy: none
+		sourceColumn: ENT_PERIOD_END_DT
+
+		variation Variation
+			isDefault
+			relationship: a0aaa9df-ff1d-419c-8cac-de528470bb27
+			defaultHierarchy: LocalDateTable_d90010fe-559c-4377-8fc0-3e15a2181fb4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_QTR_START_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5f7f6809-6741-4a61-98d5-1c86a6cf536c
+		summarizeBy: none
+		sourceColumn: ENT_QTR_START_DT
+
+		variation Variation
+			isDefault
+			relationship: 0a2eb7d2-1060-4666-97a0-3ee69625fa60
+			defaultHierarchy: LocalDateTable_4465c1b8-2ff4-465d-9fe3-03946bdf8238.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_QTR_END_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7349f11e-aa21-4617-b76c-62d59ab19f29
+		summarizeBy: none
+		sourceColumn: ENT_QTR_END_DT
+
+		variation Variation
+			isDefault
+			relationship: 67ed1302-acfe-4364-860c-ec647e0f0b2f
+			defaultHierarchy: LocalDateTable_d0dcaf49-9294-4308-89ae-a68d58751f2f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_YEAR_START_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f57ed3fd-575f-4ca1-91e8-9f7abf5e53cc
+		summarizeBy: none
+		sourceColumn: ENT_YEAR_START_DT
+
+		variation Variation
+			isDefault
+			relationship: 0fb90c41-52fe-49ec-a823-82e3065cecc6
+			defaultHierarchy: LocalDateTable_b401deef-e645-4e75-8854-9d04ac89f983.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_YEAR_END_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 807b4f63-48ef-4f30-a976-d1ab3cb84800
+		summarizeBy: none
+		sourceColumn: ENT_YEAR_END_DT
+
+		variation Variation
+			isDefault
+			relationship: ff6acfab-8be8-4329-813a-7c8338fc0613
+			defaultHierarchy: LocalDateTable_bceebfc7-9d40-40b1-893d-0a5c32fc7056.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_WEEK_START_DT_WID
+		dataType: double
+		lineageTag: 1f52aa3a-fc04-4275-999c-eeee67862abc
+		summarizeBy: count
+		sourceColumn: ENT_WEEK_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_WEEK_END_DT_WID
+		dataType: double
+		lineageTag: e562ab2d-da43-47e5-9a67-9b6317cf99dd
+		summarizeBy: count
+		sourceColumn: ENT_WEEK_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PERIOD_START_DT_WID
+		dataType: double
+		lineageTag: e4321f85-722e-4d8f-9890-5250863342e6
+		summarizeBy: count
+		sourceColumn: ENT_PERIOD_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PERIOD_END_DT_WID
+		dataType: double
+		lineageTag: a1ad7526-2a96-4d05-af75-b17d8362d16a
+		summarizeBy: count
+		sourceColumn: ENT_PERIOD_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_QTR_START_DT_WID
+		dataType: double
+		lineageTag: a9cf3710-fc8d-4d8d-932a-9a50b546eb0c
+		summarizeBy: count
+		sourceColumn: ENT_QTR_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_QTR_END_DT_WID
+		dataType: double
+		lineageTag: 1fbc5fd7-b6d6-406b-b04a-dabfe742ebdb
+		summarizeBy: count
+		sourceColumn: ENT_QTR_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_YEAR_START_DT_WID
+		dataType: double
+		lineageTag: 4bc1c3ac-ef05-49e8-9d78-d52c77eb87fa
+		summarizeBy: count
+		sourceColumn: ENT_YEAR_START_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_YEAR_END_DT_WID
+		dataType: double
+		lineageTag: 3a2d44a2-1685-4d73-894e-aa0d5e9afb75
+		summarizeBy: count
+		sourceColumn: ENT_YEAR_END_DT_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DIM_QTR_NUM
+		dataType: double
+		lineageTag: 7a5265d2-4c8f-4105-876c-83aeddc44923
+		summarizeBy: sum
+		sourceColumn: ENT_DIM_QTR_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DIM_PERIOD_NUM
+		dataType: double
+		lineageTag: a0f5d089-18cc-4a3d-a14d-84af5b795cf5
+		summarizeBy: sum
+		sourceColumn: ENT_DIM_PERIOD_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PERIOD_WEEK_NUM
+		dataType: double
+		lineageTag: 15880a39-c826-4f9c-a0dd-7aafd100b77b
+		summarizeBy: sum
+		sourceColumn: ENT_PERIOD_WEEK_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DIM_WEEK_NUM
+		dataType: double
+		lineageTag: 31558f5a-a1a0-410d-b235-828a3463ddae
+		summarizeBy: sum
+		sourceColumn: ENT_DIM_WEEK_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_DIM_YEAR_NUM
+		dataType: double
+		lineageTag: 665b50ad-21d1-4040-8b75-fad14c0e3384
+		summarizeBy: sum
+		sourceColumn: ENT_DIM_YEAR_NUM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column W_CURRENT_CAL_DAY_CODE
+		dataType: string
+		lineageTag: d34b3cb4-a1aa-4d29-b5b1-837002975848
+		summarizeBy: none
+		sourceColumn: W_CURRENT_CAL_DAY_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_CAL_WEEK_CODE
+		dataType: string
+		lineageTag: 0706e284-c64c-4527-a8f3-e1223f6f2c1c
+		summarizeBy: none
+		sourceColumn: W_CURRENT_CAL_WEEK_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_CAL_MONTH_CODE
+		dataType: string
+		lineageTag: 10b59432-e4da-4f1a-afc3-cfa2752a388a
+		summarizeBy: none
+		sourceColumn: W_CURRENT_CAL_MONTH_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_CAL_QTR_CODE
+		dataType: string
+		lineageTag: b8d091c3-56d9-4f04-a6f7-89a3914c21d3
+		summarizeBy: none
+		sourceColumn: W_CURRENT_CAL_QTR_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_CAL_YEAR_CODE
+		dataType: string
+		lineageTag: 0530a7f2-969b-44be-9c9b-90595d650683
+		summarizeBy: none
+		sourceColumn: W_CURRENT_CAL_YEAR_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_ENT_WEEK_CODE
+		dataType: string
+		lineageTag: 76cd1467-9eac-483e-8d3b-acd2428ed055
+		summarizeBy: none
+		sourceColumn: W_CURRENT_ENT_WEEK_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_ENT_PERIOD_CODE
+		dataType: string
+		lineageTag: d88e0f8c-664d-4aff-9576-f6a704270dd7
+		summarizeBy: none
+		sourceColumn: W_CURRENT_ENT_PERIOD_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_ENT_QTR_CODE
+		dataType: string
+		lineageTag: f42e9f87-3f3e-474a-9bf1-21f4123265ec
+		summarizeBy: none
+		sourceColumn: W_CURRENT_ENT_QTR_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_CURRENT_ENT_YEAR_CODE
+		dataType: string
+		lineageTag: 34f72511-8330-40de-81da-17c620f4f316
+		summarizeBy: none
+		sourceColumn: W_CURRENT_ENT_YEAR_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_ENT_WEEK_FLG
+		dataType: string
+		lineageTag: 31f2deb7-b788-42b8-a1c5-03b292eb4a1c
+		summarizeBy: none
+		sourceColumn: FST_DAY_ENT_WEEK_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_ENT_WEEK_FLG
+		dataType: string
+		lineageTag: 26ce9af9-de75-445c-a94a-333e60cf1648
+		summarizeBy: none
+		sourceColumn: LAST_DAY_ENT_WEEK_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_ENT_PERIOD_FLG
+		dataType: string
+		lineageTag: cae43c6e-ddde-4517-9da9-3fec0e9c00b2
+		summarizeBy: none
+		sourceColumn: FST_DAY_ENT_PERIOD_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_ENT_PERIOD_FLG
+		dataType: string
+		lineageTag: 5e17c27c-f91c-4389-9d0d-023c9e6e2803
+		summarizeBy: none
+		sourceColumn: LAST_DAY_ENT_PERIOD_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_ENT_QTR_FLG
+		dataType: string
+		lineageTag: 3ccfca06-5219-43b2-a651-f903e5425bf2
+		summarizeBy: none
+		sourceColumn: FST_DAY_ENT_QTR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_ENT_QTR_FLG
+		dataType: string
+		lineageTag: 9bdf31ed-2d65-46e9-9053-4a326af49c4c
+		summarizeBy: none
+		sourceColumn: LAST_DAY_ENT_QTR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FST_DAY_ENT_YEAR_FLG
+		dataType: string
+		lineageTag: 16223107-5ea2-4227-a6a9-756babde492f
+		summarizeBy: none
+		sourceColumn: FST_DAY_ENT_YEAR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_DAY_ENT_YEAR_FLG
+		dataType: string
+		lineageTag: cff4d7a8-c3c1-42fb-8683-f679723acb82
+		summarizeBy: none
+		sourceColumn: LAST_DAY_ENT_YEAR_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_INSERT_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dd5c7705-8345-4a7c-b8fc-dbbd882b1a08
+		summarizeBy: none
+		sourceColumn: W_INSERT_DT
+
+		variation Variation
+			isDefault
+			relationship: dff10168-9839-4051-930f-7ca843f15519
+			defaultHierarchy: LocalDateTable_66456bfd-f562-40ab-9472-947913b1d6a9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTEGRATION_ID
+		dataType: string
+		lineageTag: 2c3f5a45-b5a0-437c-9c8c-f9a78b8add8d
+		summarizeBy: none
+		sourceColumn: INTEGRATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_UPDATE_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 38d598a9-bc95-4908-9cdf-3c90e3d5dba4
+		summarizeBy: none
+		sourceColumn: W_UPDATE_DT
+
+		variation Variation
+			isDefault
+			relationship: bcd7b15c-296d-4bdd-9c74-96dd8790922a
+			defaultHierarchy: LocalDateTable_701e9513-6233-45bc-8656-887c3e671220.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TENANT_ID
+		dataType: string
+		lineageTag: 2e2dcfed-c166-4ed8-a1ec-e0ead7eb169e
+		summarizeBy: none
+		sourceColumn: TENANT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column X_CUSTOM
+		dataType: string
+		lineageTag: d3d0fbba-cb48-4b97-ae2f-5c4ebbcdf4cb
+		summarizeBy: none
+		sourceColumn: X_CUSTOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENT_PRIOR_YEAR_WID
+		dataType: double
+		lineageTag: 05b59fa5-84f7-4444-b60f-7b2f861b02a3
+		summarizeBy: count
+		sourceColumn: ENT_PRIOR_YEAR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PRIOR_WEEK_WID
+		dataType: double
+		lineageTag: 505c0f45-dad8-4e40-8233-f4486e4f9a15
+		summarizeBy: count
+		sourceColumn: ENT_PRIOR_WEEK_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PRIOR_PERIOD_WID
+		dataType: double
+		lineageTag: e73def1e-731b-430c-93f3-004bc011c174
+		summarizeBy: count
+		sourceColumn: ENT_PRIOR_PERIOD_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PRIOR_QTR_WID
+		dataType: double
+		lineageTag: 2035dfcb-6a80-40d8-a968-022a83370465
+		summarizeBy: count
+		sourceColumn: ENT_PRIOR_QTR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_QTR_AGO_WID
+		dataType: double
+		lineageTag: d1c987ca-0105-4a66-ab16-3dec19faacd6
+		summarizeBy: count
+		sourceColumn: ENT_QTR_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_WEEK_AGO_WID
+		dataType: double
+		lineageTag: 6a9d4173-2791-444e-975b-25db308589a6
+		summarizeBy: count
+		sourceColumn: ENT_WEEK_AGO_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_YEAR_START_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd629eef-acd0-4875-945f-1652ee98aaf4
+		summarizeBy: none
+		sourceColumn: CAL_YEAR_START_DT
+
+		variation Variation
+			isDefault
+			relationship: 307dd0d0-f5d4-4e29-977c-8d22a943c120
+			defaultHierarchy: LocalDateTable_6adf715b-63fd-4ff4-acce-79feb2406c67.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAL_YEAR_END_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2a819ff5-69b7-4ef5-bdbc-d417dd8a5741
+		summarizeBy: none
+		sourceColumn: CAL_YEAR_END_DT
+
+		variation Variation
+			isDefault
+			relationship: 9f3920ab-b3e8-45a2-adeb-446fc28640a0
+			defaultHierarchy: LocalDateTable_511da2da-5a6b-44ea-85b1-434ce8494a60.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAL_MONTH_WID
+		dataType: double
+		lineageTag: b846ba6c-3d15-488b-b5b7-10ec9add35e3
+		summarizeBy: count
+		sourceColumn: CAL_MONTH_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_QTR_WID
+		dataType: double
+		lineageTag: 9e87cbaa-d868-40c3-96de-9984566485d1
+		summarizeBy: count
+		sourceColumn: CAL_QTR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CAL_YEAR_WID
+		dataType: double
+		lineageTag: 4c22e82b-a702-44d6-958d-6120a8e69c85
+		summarizeBy: count
+		sourceColumn: CAL_YEAR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_YEAR_WID
+		dataType: double
+		lineageTag: 2461a1ca-a7fc-4d03-8627-ec73e8f32356
+		summarizeBy: count
+		sourceColumn: ENT_YEAR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_PERIOD_WID
+		dataType: double
+		lineageTag: 6eba3a28-98b0-4e58-bdc2-4f54320037cf
+		summarizeBy: count
+		sourceColumn: ENT_PERIOD_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_QTR_WID
+		dataType: double
+		lineageTag: 2660a694-bd6d-4410-8ada-6838ec65c2f0
+		summarizeBy: count
+		sourceColumn: ENT_QTR_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ENT_WEEK_WID
+		dataType: double
+		lineageTag: 4d43d6e3-229a-448e-8d56-3cc590ee8095
+		summarizeBy: count
+		sourceColumn: ENT_WEEK_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition W_DAY_D = m
+		mode: import
+		source =
+				let
+				    Source = Oracle.Database("192.168.200.141:1521/biprod2", [HierarchicalNavigation=true]),
+				    DEV_DW = Source{[Schema="DEV_DW"]}[Data],
+				    W_DAY_D1 = DEV_DW{[Name="W_DAY_D"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(W_DAY_D1, each ([DAY_DT] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

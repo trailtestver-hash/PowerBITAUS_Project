@@ -1,0 +1,859 @@
+relationship 2d1975eb-b286-4f5b-9aff-a3898209abcc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b.Date
+
+relationship 36a699b1-70c7-4a82-9d45-388c1f154843
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Start of Month'
+	toColumn: LocalDateTable_ec1b183b-9cf3-4eb4-ba9f-29c636f923fc.Date
+
+relationship 1b152082-8b09-4ba1-8e23-72d5185e6c6a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'End of Month'
+	toColumn: LocalDateTable_e8b7e43c-3bd3-4a06-b92a-5693747217e1.Date
+
+relationship 0436b814-c63b-4834-8766-18a5580d415e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Start of Week'
+	toColumn: LocalDateTable_738f2e83-4988-4960-8944-c4a11f4a9769.Date
+
+relationship 0d59294d-80b3-46f8-911e-8dcd3a2b59ea
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.LAST_UPDATED_DATE
+	toColumn: LocalDateTable_389d798d-5637-478d-8f7b-e4e09fdc513c.Date
+
+relationship f5686700-6217-4459-89d5-bc6c9e1a112b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.CREATED_ON_DT
+	toColumn: LocalDateTable_a8a88d6e-3e33-420e-9e93-f2a62722f57e.Date
+
+relationship 58b5b91c-59e5-420c-b973-0b187c3aa6a8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.CHANGED_ON_DT
+	toColumn: LocalDateTable_a9907b3f-55a2-49c3-ad94-cd98b25dd5c1.Date
+
+relationship 724663af-ddeb-4227-9013-0b0844d2c9af
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.AUX1_CHANGED_ON_DT
+	toColumn: LocalDateTable_6437691a-e800-434e-894d-2733348a7f31.Date
+
+relationship 26c556f3-240c-459b-aa3c-33cea5d48441
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.AUX2_CHANGED_ON_DT
+	toColumn: LocalDateTable_4a7781e9-d626-40df-a768-fd7deb0b37ec.Date
+
+relationship ec075760-f967-4a80-bdba-7d73603f8769
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.AUX3_CHANGED_ON_DT
+	toColumn: LocalDateTable_0de56c94-0a2e-42f9-a0b2-5dc06ed2df83.Date
+
+relationship d9953e55-a794-4d1f-acf8-245438876372
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.AUX4_CHANGED_ON_DT
+	toColumn: LocalDateTable_8409b21f-bb23-4ffa-a7fe-d9a9874435ba.Date
+
+relationship e1aa927d-7d3a-473a-b015-d6e44b664812
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.W_INSERT_DATE
+	toColumn: LocalDateTable_8046ad68-6947-4fc3-9fbc-fcc61552273e.Date
+
+relationship a6d33d3a-667a-4828-882a-950341d4b88c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_COLOR_WASH_D.W_UPDATE_DATE
+	toColumn: LocalDateTable_12196786-06fd-49f2-8368-4949bd3ac2aa.Date
+
+relationship db093fd9-f2a4-4005-9d55-6aa19b418564
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderDetails.ENDDATE
+	toColumn: LocalDateTable_0765e466-dacf-4c4a-9ea8-a83e9b02daa5.Date
+
+relationship fb068a7a-f28b-402b-9f9d-894300c6876c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderDetails.BPO_UPDATE_DATE
+	toColumn: LocalDateTable_c9b44356-5aa8-4f47-aeeb-c6fd93b3c2ca.Date
+
+relationship 8cb1af3a-2e26-45b1-a5d6-2203692c2db9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderDetails.W_INSERT_DATE
+	toColumn: LocalDateTable_c985bb02-1918-4527-8a3f-9f6468ce037a.Date
+
+relationship 948be453-49d5-4a48-8825-1b595062dfe0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderDetails.W_UPDATE_DATE
+	toColumn: LocalDateTable_536cad4e-e041-4f04-abc1-da8427a76e05.Date
+
+relationship 55f9869f-89b1-46ab-9445-8e8dbc261fb2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderDetails.SHIPDATE
+	toColumn: LocalDateTable_de46a517-f674-435b-9fd7-c074515f37ca.Date
+
+relationship fd7ba576-1104-7342-238b-102279481fe0
+	fromColumn: FactOrderDetails.ACTUAL_SHIP_DATE
+	toColumn: Calendar.Date
+
+relationship 39794d8f-02fc-47a0-9326-7beff8c81320
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.WINDOW_START_DATE
+	toColumn: LocalDateTable_8b02ae15-639f-4963-a062-a9dc6a1f1ce3.Date
+
+relationship 7e0531aa-1898-4ff1-bd83-63c2fac7ba4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.WINDOW_END_DATE
+	toColumn: LocalDateTable_fff8302c-a29e-4974-a49d-3450dee8ce2b.Date
+
+relationship 8b48398f-a4f5-4791-b06e-71cf8b6a01d1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.LAST_UPDATE_DATE
+	toColumn: LocalDateTable_48635c36-48c6-44aa-bb1e-c52a132a0c01.Date
+
+relationship a5d43a6e-d530-448d-a2d8-86c88c594a04
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.CUT_PROD_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_29e82c89-3204-4704-a007-c67160059f2d.Date
+
+relationship 2b8fdf72-ea5f-4860-83d1-ec1de11893da
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.STITCH_PROD_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_77eab484-7700-40a4-b554-20cd8bc0fe5d.Date
+
+relationship 18352da0-b71e-4d70-a5b6-6e21362a6096
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.FINISH_PROD_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_d258c65c-5024-4622-be63-db30e1248602.Date
+
+relationship c8d96e24-4ffd-4754-952f-357bb8163df5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.SHIPMENT_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_93bad289-fcfc-49c6-a12a-05e9e5305ec9.Date
+
+relationship 8753736b-9a4f-44a4-9f12-a3c13bef5eec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.ENDDATE
+	toColumn: LocalDateTable_8dfe7b68-d7d4-4c94-8c2c-2dcf2e9bc06a.Date
+
+relationship 496baaa4-0615-4a5a-a82b-2fdf1c5ef653
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.CREATED_ON_DT
+	toColumn: LocalDateTable_715457db-c250-49d7-8401-7cd8cfbe135d.Date
+
+relationship a5aea7ce-51bf-415d-a150-d441e38b90df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.CHANGED_ON_DT
+	toColumn: LocalDateTable_c76ada50-cb8c-4f32-8f02-60398350cc8e.Date
+
+relationship 398bc75e-9e21-4921-81b8-b0705732820c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.AUX1_CHANGED_ON_DT
+	toColumn: LocalDateTable_ff13e028-9667-45e6-bf27-e568ccc84cea.Date
+
+relationship f068bc6c-9475-4bf8-acb7-dafb21d5c37b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.AUX2_CHANGED_ON_DT
+	toColumn: LocalDateTable_cbfa5aeb-d717-49bf-bc1c-40fea68d707e.Date
+
+relationship d8f75498-c7ef-4d34-9446-6893db3becea
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.AUX3_CHANGED_ON_DT
+	toColumn: LocalDateTable_61b95b69-6d6b-49ad-93fb-a8e8232edc2f.Date
+
+relationship cb39aa13-9ad5-4030-8843-a49248082b2f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.AUX4_CHANGED_ON_DT
+	toColumn: LocalDateTable_a600c003-8b74-445f-83fb-54590c70b612.Date
+
+relationship 23b012dc-8f6d-4c97-bf94-aef3f1b4a83e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.W_INSERT_DT
+	toColumn: LocalDateTable_204ebb29-5251-4749-89a5-6e01516d01ea.Date
+
+relationship 875f154b-4efe-4865-963f-9374042b1625
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_OPERATING_UNIT_D.W_UPDATE_DT
+	toColumn: LocalDateTable_92df9fba-014f-4f57-8eb8-eea1d6a85ce2.Date
+
+relationship b5bdf6d3-daf5-49a3-8925-b81f6aa59c2c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.CREATED_ON_DT
+	toColumn: LocalDateTable_1a2b66b9-45d9-4582-a3d0-4e4806f9f5f8.Date
+
+relationship d9865b1d-65b4-4ca9-a173-d87c9038f97f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.CHANGED_ON_DT
+	toColumn: LocalDateTable_31e42ad4-aa78-4244-9dd3-22882a40524f.Date
+
+relationship 0d471fc6-2b3b-4590-b794-7363275f8603
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.AUX1_CHANGED_ON_DT
+	toColumn: LocalDateTable_4f8f1098-6dc8-4834-ab39-18c366ab4f69.Date
+
+relationship 501eecdd-5c4a-4e1a-a62f-b1283bf3a17a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.AUX2_CHANGED_ON_DT
+	toColumn: LocalDateTable_34608ffd-cfaf-4ddb-9c12-7a9778fa75d9.Date
+
+relationship f7630e91-f149-4d20-a689-bfc4b47f78b7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.AUX3_CHANGED_ON_DT
+	toColumn: LocalDateTable_db471c3a-d2ce-418b-b2a2-6ac4dcde150d.Date
+
+relationship 311252df-f54a-4a93-bf7a-529773962c70
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.AUX4_CHANGED_ON_DT
+	toColumn: LocalDateTable_7261a160-d442-45f8-b70a-7000f16e6566.Date
+
+relationship c258a92a-bf55-40cc-af9f-967167478a6c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.W_INSERT_DATE
+	toColumn: LocalDateTable_d74f011a-e2ce-4f5b-8255-e434f7b56cf4.Date
+
+relationship 09b2f8f1-3c62-4690-b721-60bb29566557
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_H_D.W_UPDATE_DATE
+	toColumn: LocalDateTable_e7b2dca5-3125-4f61-91ab-06fde27fd0fc.Date
+
+relationship 8e3cb8c2-a77f-481b-a2fe-5a0de5c1127f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.CREATED_ON_DT
+	toColumn: LocalDateTable_ddd46af0-f95f-441e-8b53-f29dd06dd36f.Date
+
+relationship 432417c1-a3f9-4c49-bcf0-bfe03c689f5b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.CHANGED_ON_DT
+	toColumn: LocalDateTable_3d40d1f6-1c44-4dd9-ac6a-0c1360217021.Date
+
+relationship 439804ee-7813-4fc1-a1e7-042cc1154517
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.AUX1_CHANGED_ON_DT
+	toColumn: LocalDateTable_fd4dc16e-f94c-47de-bfed-66a75a40e20a.Date
+
+relationship 526c704c-d00b-44f0-980c-f74f9dcce780
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.AUX2_CHANGED_ON_DT
+	toColumn: LocalDateTable_d5e121fc-cb70-4cd1-b088-4c8059d8b9bb.Date
+
+relationship 49e5bbec-8d39-467e-963c-eb4448629b32
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.AUX3_CHANGED_ON_DT
+	toColumn: LocalDateTable_80e93e79-fc33-43f5-ab48-93ba3d428dca.Date
+
+relationship 9d6aa063-15ff-4336-b6f4-858429075b07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.AUX4_CHANGED_ON_DT
+	toColumn: LocalDateTable_b93ba70d-d746-49ac-8759-0fae7f961270.Date
+
+relationship 2751953a-2ab0-4971-9b29-8af0ff4a98ce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.W_INSERT_DT
+	toColumn: LocalDateTable_4d32e0da-0f60-491e-9e94-08148eb23bef.Date
+
+relationship a1c7f11f-da97-40e2-b9d9-b4bf7e48b1f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUSTOMER_D.W_UPDATE_DT
+	toColumn: LocalDateTable_71d68f38-7e39-43b4-9a0c-332e43f141cd.Date
+
+relationship 9e11c81e-39bf-ba0e-23d3-972bdd58bb6f
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.LC_UNIT
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship a7d04281-46ad-100d-0434-995de17f336b
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship 305816f9-83da-4bab-81c9-cae734758a4b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.LAST_UPDATE_DATE
+	toColumn: LocalDateTable_0d358055-b09c-4a8f-8be8-91620ed01123.Date
+
+relationship 94bfc260-ee15-48fb-af7b-b33cae50244f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.CREATION_DATE
+	toColumn: LocalDateTable_09b76131-ce98-42a7-80ae-b5cc73dc996c.Date
+
+relationship 9555971e-446b-4e6b-a812-18601bfba580
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.AUX1_CHANGED_ON_DT
+	toColumn: LocalDateTable_83681326-3bb2-44ae-8680-d2a94a60c2e5.Date
+
+relationship 2b730792-d885-4a7e-82a3-b4fb10eb5f6a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.AUX2_CHANGED_ON_DT
+	toColumn: LocalDateTable_9c3b6031-fcdd-4609-991f-1b0853e183f9.Date
+
+relationship bab1a033-7504-4e79-8842-a496d12904be
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.AUX3_CHANGED_ON_DT
+	toColumn: LocalDateTable_17e593dc-3b20-4d90-a6a7-9f808ac88810.Date
+
+relationship 6f812e94-2a75-4b62-8509-d098f07a06a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.AUX4_CHANGED_ON_DT
+	toColumn: LocalDateTable_f1bb815d-9af1-4698-b55b-9333840da03e.Date
+
+relationship 3056bbd7-ec51-4dbf-9675-88363e1ad80c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.W_INSERT_DATE
+	toColumn: LocalDateTable_b89d90d2-2094-430d-bb72-cf18c3479dff.Date
+
+relationship fb68dd8c-6225-4c3a-b92b-1c57d01b761b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.W_UPDATE_DATE
+	toColumn: LocalDateTable_8fb683a6-fdb8-46c9-a7f7-a687729c3c35.Date
+
+relationship d352668b-d16c-91c5-d1b3-647f9b52e0ba
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship 045c680b-647d-6518-d20a-e56f004a4ee4
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.ORG_ID
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship 4e3cc478-834c-6dcb-6af1-6c347463e9b3
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 08203e48-1ee9-0b0f-9ca0-486f863c7a94
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship 5400198b-3637-f4c4-1abf-f99fd02d92cb
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.SHIPMENT_DATE
+	toColumn: Calendar.Date
+
+relationship 58b8faf5-ca88-496a-bc55-5fa3f09807b1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.SHIPMENT_DATE
+	toColumn: LocalDateTable_3b54898e-3aec-45ea-8740-4d8a9abb4a1a.Date
+
+relationship e89e0847-0e7e-4be6-93ec-a78ebb05a5ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.END_DATE
+	toColumn: LocalDateTable_a6ed2def-341a-4f95-a2cc-b4aa82ed3c42.Date
+
+relationship dae1fd5c-0715-416a-9b94-4f800eed7b93
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.WINDOW_START_DATE
+	toColumn: LocalDateTable_9912c522-a87a-4edf-bd31-54f047c14380.Date
+
+relationship d3a6178c-1be7-4c0d-a5a6-8e06c753e3a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.WINDOW_END_DATE
+	toColumn: LocalDateTable_1303ce3a-6892-4fd4-bcad-b14f17afc962.Date
+
+relationship 937af15f-7b0b-45d7-a1df-cecb1dbac7e2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.CREATION_DATE
+	toColumn: LocalDateTable_c1806ad0-3586-4fdf-b144-d8010ac7bf4f.Date
+
+relationship c89bd20e-39bd-4723-8d7b-c05324bbb614
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.LAST_UPDATION_DATE
+	toColumn: LocalDateTable_373779d2-fa61-4236-8fa4-faa8a2681b48.Date
+
+relationship b16984fe-f4e1-4703-a2d1-630fed6685c8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.REQUIRED_EX_FACTORY_DATE
+	toColumn: LocalDateTable_7d08dbca-ccba-44fb-9bb7-3e98831ba2bd.Date
+
+relationship 57e3f3c4-3c02-6045-bde9-5dc685657db0
+	fromColumn: F_COST_SUMM.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship ea31736e-348f-fa46-06df-3a5172af4222
+	fromColumn: F_COST_SUMM.LC_UNIT
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship f7e9e645-8537-1f33-52c8-39827d69df42
+	fromColumn: F_COST_SUMM.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship 3a33b680-423b-8c09-d8c0-8df8c8dc04ea
+	fromColumn: F_COST_SUMM.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 1337661f-f051-4874-9329-00fd204497a4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.CREATION_DATE
+	toColumn: LocalDateTable_1d199113-7564-4cf7-9673-71f6cf5cd24e.Date
+
+relationship 608774a4-dcbc-434f-8f60-7617fd85c0e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.LAST_UPDATION_DATE
+	toColumn: LocalDateTable_14fe21a2-293d-49a9-b955-b8f7eca48feb.Date
+
+relationship 141d73a7-5e98-48ce-a638-fed08c0b4f25
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.W_INSERT_DATE
+	toColumn: LocalDateTable_6237ee0f-3037-48ab-92ec-2b5c03d18211.Date
+
+relationship eaaf0a0f-c2e3-435d-b317-f416f66d4f5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.W_UPDATE_DATE
+	toColumn: LocalDateTable_93a1f207-dc48-4299-b571-90138525c8cd.Date
+
+relationship d654351c-d1ba-407b-9eab-b4a7f712e461
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.CREATION_DATE
+	toColumn: LocalDateTable_2f452067-b409-405f-9353-f4dfe5cd7775.Date
+
+relationship 7880e3e7-18b6-be16-a104-f5b1ce70a8a8
+	fromColumn: F_COST_SUMM.SHIP_DATE
+	toColumn: Calendar.Date
+
+relationship f07c216e-e8ab-5b7b-0487-8e7424bf008f
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship e066a352-e254-db59-80c1-bb2fabb2a93a
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.LC_UNIT
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship 4de865c7-79de-7a52-1d0f-ebf322a4dca0
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 66577128-b163-ce24-d151-2bbbfe84615b
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship 7cf7a3e8-9125-a0b4-14e8-00895a6b8827
+	fromColumn: W_MNJ_ONTIME_SHIPMENT_F.ACTUAL_SHIP_DATE
+	toColumn: Calendar.Date
+
+relationship 56b791ba-28ce-4a7d-8332-cdebb4a725e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.YearF
+	toColumn: LocalDateTable_d66c8f1b-eccb-439a-b6ed-54f1ca0fb4c9.Date
+
+relationship 28baff21-a997-4dbb-a42d-e57964b659ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.YearF
+	toColumn: LocalDateTable_d9d9fc0e-3a8c-4867-9aa9-aae8f7ed6417.Date
+
+relationship b665c21a-9c7e-4479-89a2-ebe2107d063a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.ACTUAL_SHIP_DATE
+	toColumn: LocalDateTable_809990f5-c30d-401e-838a-193b064a95b2.Date
+
+relationship b1a3beb4-e5af-eac9-4d5b-a97835c03298
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 4840b5dc-9cfe-456c-8d35-27c239ee216a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.CALENDAR_DATE
+	toColumn: LocalDateTable_4b7731f6-3fd3-4028-bbc0-aa1421cae16c.Date
+
+relationship 6a1a151a-5b0b-4740-b42f-e24ab13f1f03
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.DAY_AGO_DT
+	toColumn: LocalDateTable_526e28ac-2167-4784-a167-8cb798717e09.Date
+
+relationship f4b18b9b-1664-4608-b095-5e47146ad3e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.DAY_DT
+	toColumn: LocalDateTable_3c0a980d-8385-4012-abe7-80569254047e.Date
+
+relationship 91e3ec82-fce5-4435-a289-9a77521c0ff5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.HALF_AGO_DT
+	toColumn: LocalDateTable_34e2b706-615a-404d-a370-b98cad520761.Date
+
+relationship b478662c-dc7f-405a-ad09-2a81a726d477
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.MONTH_AGO_DT
+	toColumn: LocalDateTable_2f655ad4-6098-4fb8-beda-d0c6594abf88.Date
+
+relationship 1cc687d9-734f-4e1f-b28e-53440986ad11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.QUARTER_AGO_DT
+	toColumn: LocalDateTable_da418515-8c4d-4295-9d59-3fc4462b2f05.Date
+
+relationship 88234490-f8ee-4aa2-a059-13cfbbdf8f59
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.TRIMESTER_AGO_DT
+	toColumn: LocalDateTable_61013c18-dfaa-4aad-934b-e6683b6202ad.Date
+
+relationship ec00059c-fcb0-48c6-ad94-c3b779687381
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.WEEK_AGO_DT
+	toColumn: LocalDateTable_fcd9c2a0-9649-4319-bebe-ea36620f2763.Date
+
+relationship 5d67cfcb-c122-4ae0-a9fb-da7a35b9fe14
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.YEAR_AGO_DT
+	toColumn: LocalDateTable_b7d3ca82-3c5b-43e5-8806-d59ebbf7ce1b.Date
+
+relationship 8b4cc4c6-86ec-464b-a234-644b5c9cbb05
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_WEEK_START_DT
+	toColumn: LocalDateTable_9bd90907-312d-43d5-8408-0e046a1ac8ed.Date
+
+relationship 740f784d-c5b1-467d-9861-760504192bf9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_WEEK_END_DT
+	toColumn: LocalDateTable_ec44dc72-0295-4923-93e5-ccf4ff6ecf12.Date
+
+relationship 89120318-6b04-4575-985a-152252d8ffc6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_PERIOD_START_DT
+	toColumn: LocalDateTable_fb6a8d20-b16c-4582-a104-7b218f378b56.Date
+
+relationship a0aaa9df-ff1d-419c-8cac-de528470bb27
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_PERIOD_END_DT
+	toColumn: LocalDateTable_d90010fe-559c-4377-8fc0-3e15a2181fb4.Date
+
+relationship 0a2eb7d2-1060-4666-97a0-3ee69625fa60
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_QTR_START_DT
+	toColumn: LocalDateTable_4465c1b8-2ff4-465d-9fe3-03946bdf8238.Date
+
+relationship 67ed1302-acfe-4364-860c-ec647e0f0b2f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_QTR_END_DT
+	toColumn: LocalDateTable_d0dcaf49-9294-4308-89ae-a68d58751f2f.Date
+
+relationship 0fb90c41-52fe-49ec-a823-82e3065cecc6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_YEAR_START_DT
+	toColumn: LocalDateTable_b401deef-e645-4e75-8854-9d04ac89f983.Date
+
+relationship ff6acfab-8be8-4329-813a-7c8338fc0613
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.ENT_YEAR_END_DT
+	toColumn: LocalDateTable_bceebfc7-9d40-40b1-893d-0a5c32fc7056.Date
+
+relationship dff10168-9839-4051-930f-7ca843f15519
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.W_INSERT_DT
+	toColumn: LocalDateTable_66456bfd-f562-40ab-9472-947913b1d6a9.Date
+
+relationship bcd7b15c-296d-4bdd-9c74-96dd8790922a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.W_UPDATE_DT
+	toColumn: LocalDateTable_701e9513-6233-45bc-8656-887c3e671220.Date
+
+relationship 307dd0d0-f5d4-4e29-977c-8d22a943c120
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.CAL_YEAR_START_DT
+	toColumn: LocalDateTable_6adf715b-63fd-4ff4-acce-79feb2406c67.Date
+
+relationship 9f3920ab-b3e8-45a2-adeb-446fc28640a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_DAY_D.CAL_YEAR_END_DT
+	toColumn: LocalDateTable_511da2da-5a6b-44ea-85b1-434ce8494a60.Date
+
+relationship 070fcd3b-4b1a-4a35-a291-4bb84e916048
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.ENDDATE
+	toColumn: LocalDateTable_a798eef1-cae6-4c19-9126-f289fb3b0830.Date
+
+relationship c6a44807-f7ad-e2b1-523f-cf339bf71a97
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship 4cf969e7-e3ce-9659-9790-cf31589b87ac
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.LC_UNIT
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship 750d54c4-adbd-f00c-78e0-a3c11cfc6fb5
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship eb93ccb9-931e-4e4d-b5ef-d44ea5300987
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.ShipmentDateFilteredNext10Days
+	toColumn: LocalDateTable_b30fcbdc-6e5d-47de-b446-20fe6a923c6c.Date
+
+relationship 973156d9-8cd3-da52-d4e5-51770167b95c
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 97e043d5-7b86-8fb4-00a5-bf8b301d96e0
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship b6ea3f33-1b52-978c-3cae-f81484452dbd
+	fromColumn: FactOrderDetails.SYSTEM_WID
+	toColumn: W_MNJ_POC_COLOR_WASH_D.ROW_WID
+
+relationship 64e3a7fd-2796-6b43-20f4-0b9a72933d2d
+	fromColumn: FactOrderDetails.BUYER_ID
+	toColumn: W_MNJ_CUSTOMER_D.CUSTOMER_ID
+
+relationship c775c62d-733c-4833-80c4-17126734bc68
+	fromColumn: FactOrderDetails.LC_UNIT
+	toColumn: W_MNJ_OPERATING_UNIT_D.ORG_ID
+
+relationship 957c65ba-1d50-d29f-ab4b-f1cd2ee91700
+	fromColumn: FactOrderDetails.POC_ID
+	toColumn: W_MNJ_POC_H_D.POC_ID
+
+relationship 12b0943a-ec6f-49e6-bc5d-d96dc4ccd2fc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.ACTUAL_SHIP_DATE_lookup
+	toColumn: LocalDateTable_8ff1bff6-3fff-4246-b547-c1bd77c89849.Date
+
+relationship 4142638f-a464-4cf1-b4e0-d78c62334928
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.TRX_DATE
+	toColumn: LocalDateTable_7cecdd7c-fd7c-49d1-9ab7-7556881899cc.Date
+
+relationship 34d3bec6-5ac4-419e-a80a-c72d85545b63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.EXPORT_DATE
+	toColumn: LocalDateTable_2440a59d-a245-4020-aad4-66d59d36a455.Date
+
+relationship e5dce16a-974c-4a6e-959f-73ac558cf422
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.TRX_DATE_lookup
+	toColumn: LocalDateTable_36290189-b65a-4610-9d61-825969c21d72.Date
+
+relationship 4c0ad130-1892-4420-b6cd-4df3bcd17cbe
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.SHIPMENT_DATE
+	toColumn: LocalDateTable_0273a9e5-8510-41e1-995d-22662acf8bf3.Date
+
+relationship 76a6ae39-1b59-e9a5-abf4-fb5fddfe3704
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.USHIPMENT_DATE
+	toColumn: Calendar.Date
+
+relationship 336d799c-b4a3-4e52-84ec-5cf23b30cdc1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.SHIPDATE
+	toColumn: LocalDateTable_f7e4a7ec-5073-4e5e-9ad9-373dfdfaadb8.Date
+
+relationship 170ca33c-2193-772d-af18-495b7e4aca36
+	fromColumn: W_MNJ_CUT_TO_SHIPMENT_F.UShipDate
+	toColumn: Calendar.Date
+
+relationship aaede4a0-035f-450e-99ca-fb8f2ccefd07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.ACTUAL_SHIP_DATE
+	toColumn: LocalDateTable_becdc8b7-20ba-423a-a5f5-0df320644dc3.Date
+
+relationship a11d5954-2047-4203-bb4f-aa743ea69fa1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.EX_FACTORY_DATE
+	toColumn: LocalDateTable_2078f516-2017-4d51-b9e1-455723c388fd.Date
+
+relationship 8d45a438-35ed-a9d4-50ac-493016b9fee4
+	crossFilteringBehavior: bothDirections
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.SEASONS_Lookup
+	toColumn: TGA_Table.SEASONS_Lookup
+
+relationship 7710d80e-e50d-45ce-b1c1-a33cde19043f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.H_CREATION_DATE
+	toColumn: LocalDateTable_24cd4ee2-0b5e-47ed-b7b0-983c619e0b85.Date
+
+relationship e189e114-ff3a-4bbf-b074-00d958de0235
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.H_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_10fcc250-7594-46d2-a702-cf2d7d9a9d97.Date
+
+relationship e641e089-8c68-42ff-9296-3edb3c679b9a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.L_H_CREATION_DATE
+	toColumn: LocalDateTable_51af4770-6661-4292-a844-bfcc9137e1d8.Date
+
+relationship b74d666b-97c3-43dd-b960-36a278e6cbc0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_COST_SUMM.L_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_c2f71a7e-657c-4306-a66d-ab54db96cdcb.Date
+
+relationship 2f836269-4dd1-49c5-a031-ca5045725c3b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.BPO_CREATION_DATE
+	toColumn: LocalDateTable_ad814a36-4948-4424-9413-9c87dc0ceac7.Date
+
+relationship 723c4e95-692c-4ae8-9e2c-d328ef21f4ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.BPO_LAST_UPDATION_DATE
+	toColumn: LocalDateTable_853fb8de-4105-42e9-9b1e-feb589ca8661.Date
+
+relationship 26ea8861-d3c5-404f-b4b1-f85e75a95d09
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.PH_CREATION_DATE
+	toColumn: LocalDateTable_44b8da0f-7a6c-45f4-b203-1c0f2acf347e.Date
+
+relationship 300c97ee-9e89-45e9-a1c0-9f85648e52d0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.PH_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_413a0540-e60f-49c1-8588-96451d5ef9d5.Date
+
+relationship b70903c5-86bf-4873-a1f1-23da8668902c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.PL_CREATION_DATE
+	toColumn: LocalDateTable_7497e900-dfb5-4350-be01-839e6d53cb74.Date
+
+relationship 28df8440-a30c-4527-990c-e3974b2d9f5f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.PL_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_74c9c35b-a76e-4a66-8efd-c6519ed1c8d4.Date
+
+relationship 4e744f92-b0df-4c1c-8644-34738f6a7cea
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.WS_CREATION_DATE
+	toColumn: LocalDateTable_e6c0998e-6e7f-4c64-bbd2-fd23298dc0a0.Date
+
+relationship 3e3a3e9a-2122-408c-9e4c-2069f8bef98a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.WS_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_ebcc9109-a7ca-4065-b374-497ab1ac1054.Date
+
+relationship 23fd58bf-c19c-4e49-8a1c-8a045ba63c7e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.END_DATE
+	toColumn: LocalDateTable_9a6a3ee5-e710-492c-8c61-b2ffcd99ce50.Date
+
+relationship 888b9ee4-0dd1-4f62-b7dc-1004e29e1b0a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.PL_CREATION_DATE
+	toColumn: LocalDateTable_1cd7f130-3778-4e6c-81ef-d426c143ded0.Date
+
+relationship f240c9fd-c03b-4044-9b5f-0c012da14f5b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.PL_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_f4d0799a-9933-40e8-9a1c-bebc0ceecaa3.Date
+
+relationship 41977d10-d54b-4283-a103-79b169d4256e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.BPO_CREATION_DATE
+	toColumn: LocalDateTable_0a74cfa9-cc89-4ae3-9b51-e0bd7c4784ab.Date
+
+relationship fc6dd962-87f2-4ded-84d8-632d7739bcf8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.BPO_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_775ddf41-badd-44ba-ba03-5308a66eaca7.Date
+
+relationship 42ebf7ad-a3c7-41fc-9977-331e10629a5e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.RAC_CREATION_DATE
+	toColumn: LocalDateTable_1630e887-c325-4400-8620-407c56783879.Date
+
+relationship 9880ff30-412a-4067-8e48-9219e2797a47
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.RAC_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_8d646ef0-be73-4916-a17e-35ba6d2c4a71.Date
+
+relationship a381738e-bb0a-4d3b-94de-559ea852f2d5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.EXP_CREATION_DATE
+	toColumn: LocalDateTable_23b749b9-672f-42a3-aa2d-99f19f87680c.Date
+
+relationship b9cbdbcb-0a27-43ce-a995-3610572b900f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.EXP_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_7eda5129-4267-4103-95ca-3b9e192097e8.Date
+
+relationship 07751ba5-11d6-435a-8319-7cf5ddcd81ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.EXP_LINE_CREATION_DATE
+	toColumn: LocalDateTable_44724c6a-a889-4a1c-a8cb-36a3fac6a9bb.Date
+
+relationship 9a0f5027-de7e-4d70-b1cf-2b3e1c42987a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.EXP_LINE_LAST_UPDATE_DATE
+	toColumn: LocalDateTable_86646daf-c784-4773-b830-ed6ab94c8ce0.Date
+
+relationship 41d385a1-42e5-4c5a-9461-393bb0543542
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_CREATION_DATE
+	toColumn: LocalDateTable_5e3eed7b-9db8-4333-aa24-9410e3dcf9cf.Date
+
+relationship cc7c27f6-43b3-42af-a602-7ec94b6a9698
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_LAST_UPDATION_DATE
+	toColumn: LocalDateTable_d04d2a51-3201-4003-95b8-7802ffa07301.Date
+
+relationship a0c8b620-0643-4038-b0fe-8453f5078069
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.POCL_CREATION_DATE
+	toColumn: LocalDateTable_e9cbe8b3-3e11-4f94-9bb6-0dca4e333005.Date
+
+relationship 45795e34-7868-42f3-b714-e44956465242
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.POCL_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_0868c0ba-7a1a-4593-bac4-1bf113f6d5ea.Date
+
+relationship b0f57655-cd9e-4875-862f-7c5ee7e8ce13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.POCH_CREATION_DATE
+	toColumn: LocalDateTable_cffb0869-55e5-4e1e-ace4-d7b2f60f9fa9.Date
+
+relationship 4e73227c-fd40-4cef-99bb-34b92a06391c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.POCH_LAST_UPDATED_DATE
+	toColumn: LocalDateTable_14339054-b75f-4d31-ad7a-57659cbcb6a6.Date
+
+relationship AutoDetected_6ca84cb7-26f6-4159-b3d6-c02d47613f65
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_ID
+	toColumn: W_MNJ_BPO_ORDER_DETAILS_F.BPO_ID
+
+relationship AutoDetected_ba6379c5-c6e5-4fa5-947c-73cb2716f717
+	isActive: false
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_ID
+	toColumn: FactOrderDetails.BPO_ID
+
+relationship AutoDetected_40313585-9738-4dd3-b938-14da755d7045
+	isActive: false
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_ID
+	toColumn: W_MNJ_POC_FOB_CM_WASH_COST_F.BPO_ID
+
+relationship AutoDetected_d92fcc30-2e2c-4981-be23-0ec78b04f70e
+	isActive: false
+	fromColumn: W_MNJ_EXP_SALES_REGISTER_F.BPO_ID
+	toColumn: W_MNJ_CUT_TO_SHIPMENT_F.BPO_ID
+
+relationship 2333d98b-dcd6-470e-afc6-21f627afc552
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.CUT_START_DATE
+	toColumn: LocalDateTable_aa40b5ce-bd3e-4538-b70a-ef4bd7f0dd68.Date
+
+relationship ff2d2225-2649-4ac6-ade0-17aeb3a72638
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.CUT_END_DATE
+	toColumn: LocalDateTable_a49c2c9e-fb0a-4928-bc53-069878501e25.Date
+
+relationship 231bcf2f-3606-4ad1-9d6d-8e821e49eb9c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.STITCH_START_DATE
+	toColumn: LocalDateTable_ae873807-5b59-46f4-946a-c64d26d4f28c.Date
+
+relationship 1fc5fdb5-9396-409e-8451-671936353567
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.STITCH_END_DATE
+	toColumn: LocalDateTable_fd6273b6-3d46-4141-a3db-a0fef7871c29.Date
+
+relationship 5a8ca9e2-eb53-4564-8b1c-77ae021cfd40
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.DELIVERY_START_DATE
+	toColumn: LocalDateTable_482bd610-08b8-4d87-ab38-907d01e5cf26.Date
+
+relationship 5d9e2d67-8647-400c-a1cd-7d035f61f111
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.DELIVERY_END_DATE
+	toColumn: LocalDateTable_0b739796-aab4-4da8-8bb5-e4c618ec245c.Date
+
+relationship 1e7a68ff-98a8-469a-b795-bf4d568abb03
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.RECEIVE_START_DATE
+	toColumn: LocalDateTable_fab7aa67-6b2a-4c54-8d4f-53980c84ef94.Date
+
+relationship 67acdfd6-7034-498c-a64d-1c3bd2e7e4be
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.RECEIVE_END_DATE
+	toColumn: LocalDateTable_bc774c26-3967-4a85-97ce-8a822ac70897.Date
+
+relationship 951d8025-9d8c-4424-baf6-c5cd2299dcd1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.FINISH_START_DATE
+	toColumn: LocalDateTable_bd71f212-d535-4a19-b90f-f5e788d18a31.Date
+
+relationship e68413e6-e668-43b7-b19b-58e118c9bc8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: W_MNJ_BPO_ORDER_DETAILS_F.FINISH_END_DATE
+	toColumn: LocalDateTable_5b6ee998-6158-4147-b985-04c7f71775f4.Date
+

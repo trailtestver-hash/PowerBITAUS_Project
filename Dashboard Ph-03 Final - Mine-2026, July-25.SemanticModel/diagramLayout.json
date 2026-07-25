@@ -1,0 +1,293 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 485.69902832838284,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 699.93132187683068
+          },
+          "nodeIndex": "MeasureTable",
+          "nodeLineageTag": "a7bad4b9-b096-4770-a4a0-b13da4369c01",
+          "size": {
+            "height": 168.46723843808462,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 932.987678096501,
+            "y": 0
+          },
+          "nodeIndex": "W_MNJ_POC_COLOR_WASH_D",
+          "nodeLineageTag": "6c35ca1d-644a-47b1-9c73-6c0a1c6f4f0a",
+          "size": {
+            "height": 300,
+            "width": 217.17862297711849
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1731.8977492526064,
+            "y": 401.20071260801666
+          },
+          "nodeIndex": "F_COST_SUMM",
+          "nodeLineageTag": "e7d63792-d691-4f1b-a832-48058659467e",
+          "size": {
+            "height": 415.41597225337347,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 39.920468916220571,
+            "y": 0
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "a347ca1f-fe82-4cf1-8822-4f91fa450b20",
+          "size": {
+            "height": 205.7234442684418,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 389.9678271383201
+          },
+          "nodeIndex": "FactOrderDetails",
+          "nodeLineageTag": "a3f4b829-6b97-4377-ac8c-1a925c9cc994",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 294.34319472772017,
+            "y": 478.453029315327
+          },
+          "nodeIndex": "W_MNJ_BPO_ORDER_DETAILS_F",
+          "nodeLineageTag": "ac623a9b-a17d-414e-a5a3-1082aad9c41c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 640.498663411872,
+            "y": 0
+          },
+          "nodeIndex": "W_MNJ_OPERATING_UNIT_D",
+          "nodeLineageTag": "ec3d5353-cf07-4d9d-b8c9-6ef12cfce4c9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1173.8737111457244,
+            "y": 0
+          },
+          "nodeIndex": "W_MNJ_POC_H_D",
+          "nodeLineageTag": "fba82af3-5e4d-4573-9693-6c72873804ed",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 340.54562423771023,
+            "y": 0
+          },
+          "nodeIndex": "W_MNJ_CUSTOMER_D",
+          "nodeLineageTag": "82f475c5-7582-45ba-aa73-76e74e95df6b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 1335.1518279812205,
+            "y": 464.99926329896243
+          },
+          "nodeIndex": "W_MNJ_POC_FOB_CM_WASH_COST_F",
+          "nodeLineageTag": "6c73318b-459c-413f-94bd-bf7568f17cc5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 928.44401553040768,
+            "y": 502.27655348808935
+          },
+          "nodeIndex": "W_MNJ_ONTIME_SHIPMENT_F",
+          "nodeLineageTag": "1b871936-965b-4f05-8760-1a922e528b3a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 587.90252562222008,
+            "y": 476.8415654888247
+          },
+          "nodeIndex": "W_MNJ_CUT_TO_SHIPMENT_F",
+          "nodeLineageTag": "bebb6bb5-25b8-47aa-8ba1-845e9a287ed4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1662.6015993440542,
+            "y": 4.8554115986379323
+          },
+          "nodeIndex": "CustomerMapping",
+          "nodeLineageTag": "8c8efd4a-6cb2-4caf-b060-fc95986fd265",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2379.1740163902136,
+            "y": 0
+          },
+          "nodeIndex": "GrowthFinancialYearWiseTGA",
+          "nodeLineageTag": "8a6df0c2-e419-44f1-8612-ea861d4ef455",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1979.1026451718647,
+            "y": 0
+          },
+          "nodeIndex": "W_DAY_D",
+          "nodeLineageTag": "101ffa4d-081e-405e-bf60-81ef6ff8eb58",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2073.3911747480443,
+            "y": 476.12563242428985
+          },
+          "nodeIndex": "ColorMapping",
+          "nodeLineageTag": "c2d92315-2feb-4fff-a958-4ebb98ce5405",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2663.1740163902136,
+            "y": 0
+          },
+          "nodeIndex": "TGASeasonSort",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2795.4762345085755,
+            "y": 236.46570928811894
+          },
+          "nodeIndex": "TGADept",
+          "nodeLineageTag": "8350b5da-2f97-4c87-ab14-80c505470633",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 293.67073550751064,
+            "y": 864.73017573506093
+          },
+          "nodeIndex": "TGA_Table",
+          "nodeLineageTag": "ab6bfa13-c58d-4169-a7e3-1171f0fb734d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 3231.1740163902136,
+            "y": 418.1226477177961
+          },
+          "nodeIndex": "SummarizedTable",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3515.1740163902136,
+            "y": 382.36508786753052
+          },
+          "nodeIndex": "W_MNJ_EXP_SALES_REGISTER_F",
+          "nodeLineageTag": "b99232e7-a43a-45b7-98af-cce550fc4b13",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 50.099611910804931,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

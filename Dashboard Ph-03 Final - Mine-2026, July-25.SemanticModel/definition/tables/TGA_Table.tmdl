@@ -1,0 +1,156 @@
+table TGA_Table
+	lineageTag: ab6bfa13-c58d-4169-a7e3-1171f0fb734d
+
+	column SEASONS_Lookup
+		lineageTag: 61dae656-483c-4705-9e8d-dfd4a4d948ef
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: W_MNJ_BPO_ORDER_DETAILS_F[SEASONS_Lookup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YeargrTGA_Column = ```
+			
+			LOOKUPVALUE(
+			    W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA], 
+			    W_MNJ_BPO_ORDER_DETAILS_F[SEASONS_Lookup], 
+			    TGA_Table[SEASONS_Lookup]
+			)
+			```
+		formatString: 0
+		lineageTag: f69c5459-6c0a-483b-a455-f66c20ea7eb6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sum_QTY
+		formatString: 0
+		lineageTag: 9f672984-11ce-4e2d-a96d-886768c819d3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sum_QTY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Growthrate_Quan_TGA =
+			
+			VAR CurrentQty = TGA_Table[Sum_QTY]
+			
+			VAR PreviousQty =
+			    CALCULATE(
+			        MAX(TGA_Table[Sum_QTY]),
+			        FILTER(
+			            TGA_Table,
+			            TGA_Table[YeargrTGA_Column] = EARLIER(TGA_Table[YeargrTGA_Column]) - 1
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(PreviousQty)) && PreviousQty <> 0,
+			    DIVIDE(CurrentQty - PreviousQty, PreviousQty, 0),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7628ad7d-8c5a-47e8-af79-a113808d2f03
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+	column SHIP_QTY_Column =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[SEASONS_Lookup] = TGA_Table[SEASONS_Lookup]
+			    )
+			)
+		formatString: 0
+		lineageTag: 93fba1b9-1180-4016-8858-32c2ad542845
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrowthRate_Ship =
+			
+			VAR CurrentQty = TGA_Table[SHIP_QTY_Column]
+			
+			VAR PreviousQty =
+			    CALCULATE(
+			        MAX(TGA_Table[SHIP_QTY_Column]),
+			        FILTER(
+			            TGA_Table,
+			            TGA_Table[YeargrTGA_Column] = EARLIER(TGA_Table[YeargrTGA_Column]) - 1
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(PreviousQty)) && PreviousQty <> 0,
+			    DIVIDE(CurrentQty - PreviousQty, PreviousQty, 0),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8e5b9106-60dc-46ff-8afa-65ea6d6d8a37
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column STYLE_Count_Column =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(W_MNJ_BPO_ORDER_DETAILS_F[STYLE_Lookup]),
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[SEASONS_Lookup] = TGA_Table[SEASONS_Lookup]
+			    )
+			)
+		formatString: 0
+		lineageTag: 48badc41-b6b3-4921-a8bd-33affb2e89da
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrowthRate_STYLE =
+			
+			VAR CurrentQty = TGA_Table[STYLE_Count_Column]
+			
+			VAR PreviousQty =
+			    CALCULATE(
+			        MAX(TGA_Table[STYLE_Count_Column]),
+			        FILTER(
+			            TGA_Table,
+			            TGA_Table[YeargrTGA_Column] = EARLIER(TGA_Table[YeargrTGA_Column]) - 1
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(PreviousQty)) && PreviousQty <> 0,
+			    DIVIDE(CurrentQty - PreviousQty, PreviousQty, 0),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 445ab501-1a82-4c1a-9a82-ac71839d3f7a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TGA_Table = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				    FILTER(
+				        W_MNJ_BPO_ORDER_DETAILS_F,
+				        W_MNJ_BPO_ORDER_DETAILS_F[BUYER_ID] = 1051 &&
+				        W_MNJ_BPO_ORDER_DETAILS_F[STATUS] = 1 &&
+				        W_MNJ_BPO_ORDER_DETAILS_F[GM_APPROVAL] = "Y"
+				    ),
+				    W_MNJ_BPO_ORDER_DETAILS_F[SEASONS_Lookup],
+				    "Sum_QTY", SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+				)
+
+	annotation PBI_Id = 1c3f593b42794e89a90f2557188dad04
+

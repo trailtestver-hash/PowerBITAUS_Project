@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "39cfed870e834cff62f1",
+  "position": {
+    "x": 979.69057873237091,
+    "y": 46.940352304023953,
+    "z": 4000,
+    "height": 83.2812702168167,
+    "width": 299.81257278054011,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "First_Shipment_Date"
+                }
+              },
+              "queryRef": "MeasureTable.First_Shipment_Date",
+              "nativeQueryRef": "First_Shipment_Date",
+              "format": "d MMMM, yyyy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Last_Shipment_Date"
+                }
+              },
+              "queryRef": "MeasureTable.Last_Shipment_Date",
+              "nativeQueryRef": "Last_Shipment_Date",
+              "format": "d MMMM, yyyy"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MeasureTable"
+                  }
+                },
+                "Property": "First_Shipment_Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FlashyRows'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

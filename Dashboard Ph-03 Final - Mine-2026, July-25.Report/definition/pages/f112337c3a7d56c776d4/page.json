@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "f112337c3a7d56c776d4",
+  "displayName": "Finan Yearly Value%",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "23170b6703dd32d1ec0a",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "visibility": "HiddenInViewMode"
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "b0772e07bfb7e2f4021d",
+  "position": {
+    "x": 283.38551492022958,
+    "y": 74.858922177250335,
+    "z": 15500,
+    "height": 220.22027605474608,
+    "width": 610.11376496515572,
+    "tabOrder": 2000
+  },
+  "visualGroup": {
+    "displayName": "Ship & Value",
+    "groupMode": "ScaleMode",
+    "objects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0096C7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

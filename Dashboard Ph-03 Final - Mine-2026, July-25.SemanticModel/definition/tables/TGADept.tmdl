@@ -1,0 +1,47 @@
+table TGADept
+	lineageTag: 8350b5da-2f97-4c87-ab14-80c505470633
+
+	column STYLE_Lookup
+		dataType: string
+		lineageTag: a8ab3518-5965-4f47-8a57-e9de6a8e6863
+		summarizeBy: none
+		sourceColumn: STYLE_Lookup
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dept.'
+		dataType: string
+		lineageTag: 52df19e2-264d-4dcd-9cfe-dc53ef33fb35
+		summarizeBy: none
+		sourceColumn: Dept.
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TGADept = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(
+				        {
+				            {"250", "LADIES"},
+				            {"290", "PETITES"},
+				            {"240", "PETITES"},
+				            {"220", "LADIES"},
+				            {"465", "MENS"},
+				            {"415", "MENS"},
+				            {"405", "MENS"},
+				            {"340", "KIDS"},
+				            {"320", "KIDS"},
+				            {"276", "LILY LOVES"},
+				            {"Ex", "LADIES"},
+				            {"Sli", "MENS"}
+				        },
+				        {"STYLE_Lookup", "Dept."}
+				    )
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

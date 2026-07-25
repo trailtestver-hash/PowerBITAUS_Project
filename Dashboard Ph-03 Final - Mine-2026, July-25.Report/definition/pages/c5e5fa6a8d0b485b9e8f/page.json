@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "c5e5fa6a8d0b485b9e8f",
+  "displayName": "Duplicate of TGA",
+  "displayOption": "FitToPage",
+  "height": 3508,
+  "width": 2480,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3366af2d0442024358d0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_CUSTOMER_D"
+              }
+            },
+            "Property": "Buyer Name short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_CUSTOMER_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Buyer Name short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TAUS'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "34fca3a605044d1bce38",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "SEASONS_Lookup"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_BPO_ORDER_DETAILS_F",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "w"
+                              }
+                            },
+                            "Property": "SEASONS_Lookup"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Unknown'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "visibility": "HiddenInViewMode"
+}

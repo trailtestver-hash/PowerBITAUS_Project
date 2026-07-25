@@ -1,0 +1,28 @@
+{
+  "name": "Tooltip Format Theme",
+  "visualStyles": {
+    "*": {
+      "tooltip": {
+        "background": [
+          {
+            "color": {
+              "solid": "#FFFFFF"
+            }
+          }
+        ],
+        "labelColor": [
+          {
+            "color": {
+              "solid": "#000000"
+            }
+          }
+        ],
+        "fontSize": [
+          {
+            "fontSize": 20
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6b03de9e24a8d5d84123",
+  "position": {
+    "x": 372.5,
+    "y": 70,
+    "z": 2000,
+    "height": 1030,
+    "width": 1130,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_CUSTOMER_D"
+                    }
+                  },
+                  "Property": "Buyer Name short"
+                }
+              },
+              "queryRef": "W_MNJ_CUSTOMER_D.Buyer Name short",
+              "nativeQueryRef": "Buyer Name short"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "STYLE_Lookup"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup",
+              "nativeQueryRef": "STYLE_Lookup"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "QUANTITY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)",
+              "nativeQueryRef": "Sum of QUANTITY"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "SHIP_QTY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)",
+              "nativeQueryRef": "Sum of SHIP_QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Short/Excess_Qty"
+                }
+              },
+              "queryRef": "MeasureTable.ShortshipmentQty",
+              "nativeQueryRef": "ShortshipmentQty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShortQtyonly"
+                }
+              },
+              "queryRef": "MeasureTable.ShortQtyonly",
+              "nativeQueryRef": "ShortQtyonly"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShortShip%"
+                }
+              },
+              "queryRef": "MeasureTable.ShortShip%",
+              "nativeQueryRef": "ShortShip%"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendar"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Year"
+                }
+              },
+              "queryRef": "Calendar.Date.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "Date Year"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendar"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "Calendar.Date.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "Date Month"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendar"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Day"
+                }
+              },
+              "queryRef": "Calendar.Date.Variation.Date Hierarchy.Day",
+              "nativeQueryRef": "Date Day"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MeasureTable"
+                  }
+                },
+                "Property": "ShortQtyonly"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "19D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70.90397677642112D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendar.Date.Variation.Date Hierarchy.Year"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "56.353619216809875D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendar.Date.Variation.Date Hierarchy.Day"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130.49999770544315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendar.Date.Variation.Date Hierarchy.Month"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FlashyRows'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3eb1d2511ee3d686b99c",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "l",
+              "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "l"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2024L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              },
+              "Annotations": {
+                "filterExpressionMetadata": {
+                  "expressions": [
+                    {
+                      "HierarchyLevel": {
+                        "Expression": {
+                          "Hierarchy": {
+                            "Expression": {
+                              "PropertyVariationSource": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendar"
+                                  }
+                                },
+                                "Name": "Variation",
+                                "Property": "Date"
+                              }
+                            },
+                            "Hierarchy": "Date Hierarchy"
+                          }
+                        },
+                        "Level": "Year"
+                      }
+                    }
+                  ],
+                  "decomposedIdentities": {
+                    "values": [
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2024L"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    ],
+                    "columns": [
+                      {
+                        "value": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "valueMap": [
+                    {
+                      "0": "2024"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

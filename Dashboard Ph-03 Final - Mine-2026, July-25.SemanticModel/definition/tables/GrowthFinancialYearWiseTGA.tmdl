@@ -1,0 +1,83 @@
+table GrowthFinancialYearWiseTGA
+	lineageTag: 8a6df0c2-e419-44f1-8612-ea861d4ef455
+
+	column Financial_Year
+		lineageTag: c1c62fa9-d4b6-49fd-a67b-e85ae2b79ec4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendar[Financial_Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalQTY
+		formatString: 0
+		lineageTag: 15d01e04-b221-478b-9ab8-4fedc4ac26d0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [TotalQTY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevTotalQTY
+		formatString: 0
+		lineageTag: edf10f3b-fe58-48d5-a667-154134b16644
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [PrevTotalQTY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrowthPercentage
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 235f0bfb-1cc5-4040-9ebe-de93b33a2463
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [GrowthPercentage]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GrowthFinancialYearWiseTGA = calculated
+		mode: import
+		source = ```
+				
+				VAR YearSummary = 
+				    SUMMARIZE(
+				        'W_MNJ_BPO_ORDER_DETAILS_F',
+				        'Calendar'[Financial_Year],
+				        "TotalQTY", SUM('W_MNJ_BPO_ORDER_DETAILS_F'[SHIP_QTY])
+				    )
+				
+				VAR AddPrevTotalQTY = 
+				    ADDCOLUMNS(
+				        YearSummary,
+				        "PrevTotalQTY",
+				        VAR CurrentYear = VALUE(LEFT('Calendar'[Financial_Year], 4))
+				        RETURN 
+				        CALCULATE(
+				            SUM('W_MNJ_BPO_ORDER_DETAILS_F'[SHIP_QTY]),
+				            FILTER(
+				                ALL('Calendar'),
+				                VALUE(LEFT('Calendar'[Financial_Year], 4)) = CurrentYear - 1
+				            )
+				        )
+				    )
+				
+				VAR AddGrowthPercentage = 
+				    ADDCOLUMNS(
+				        AddPrevTotalQTY,
+				        "GrowthPercentage",
+				        IF(
+				            ISBLANK([PrevTotalQTY]),
+				            BLANK(),
+				            DIVIDE([TotalQTY] - [PrevTotalQTY], [PrevTotalQTY], 0)
+				        )
+				    )
+				
+				RETURN
+				AddGrowthPercentage
+				
+				```
+
+	annotation PBI_Id = 6e83f39fea7a43048b709808aa07b69f
+

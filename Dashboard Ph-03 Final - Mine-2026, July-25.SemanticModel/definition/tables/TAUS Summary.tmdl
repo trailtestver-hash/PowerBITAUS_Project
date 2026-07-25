@@ -1,0 +1,84 @@
+table 'TAUS Summary'
+	lineageTag: 5205912b-4b76-4a44-888f-d8d50c3bf29a
+
+	column Buyer_Name_Short
+		lineageTag: bd03022f-bc92-49d9-9b7a-6cc631b8f432
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Buyer_Name_Short]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEASONS_Lookup
+		lineageTag: dcdc89c9-7a59-4c6c-b07d-833f9cd9796a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [SEASONS_Lookup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUANTITY
+		formatString: #,0
+		lineageTag: 1202958c-e8ec-4a81-b15f-6300da91fef3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [QUANTITY]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SHIP_QTY
+		formatString: #,0
+		lineageTag: aed7386c-3b71-43c4-99cb-7cd930cc7ad6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SHIP_QTY]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'TAUS Summary' = calculated
+		mode: import
+		source = ```
+
+			VAR _TAUSOrders =
+			    CALCULATETABLE(
+			        'W_MNJ_BPO_ORDER_DETAILS_F',
+			        KEEPFILTERS(
+			            'W_MNJ_CUSTOMER_D'[CUSTOMER_NAME] = "Target Australia PTY Ltd."
+			        ),
+			        KEEPFILTERS(
+			            'W_MNJ_CUSTOMER_D'[Buyer Name short] = "TAUS"
+			        )
+			    )
+
+			VAR _BySeason =
+			    GROUPBY(
+			        _TAUSOrders,
+			        'W_MNJ_BPO_ORDER_DETAILS_F'[SEASONS_Lookup],
+			        "QUANTITY",
+			            SUMX(
+			                CURRENTGROUP(),
+			                'W_MNJ_BPO_ORDER_DETAILS_F'[QUANTITY]
+			            ),
+			        "SHIP_QTY",
+			            SUMX(
+			                CURRENTGROUP(),
+			                'W_MNJ_BPO_ORDER_DETAILS_F'[SHIP_QTY]
+			            )
+			    )
+
+			RETURN
+			    SELECTCOLUMNS(
+			        _BySeason,
+			        "Buyer_Name_Short", "TAUS",
+			        "SEASONS_Lookup", 'W_MNJ_BPO_ORDER_DETAILS_F'[SEASONS_Lookup],
+			        "QUANTITY", [QUANTITY],
+			        "SHIP_QTY", [SHIP_QTY]
+			    )
+
+			```
+
+	annotation PBI_Id = 5ae9018179a54f1cae43ee5ee3a198bf

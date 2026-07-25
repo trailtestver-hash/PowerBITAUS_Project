@@ -1,0 +1,118 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "13d0c0c191bddbb44d5b",
+  "position": {
+    "x": 50.31866102805408,
+    "y": 0,
+    "z": 3000,
+    "height": 182.40514622669605,
+    "width": 285.13907915897312,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "STYLE_Lookup"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup",
+              "nativeQueryRef": "STYLE_Lookup",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "BPO_NO"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.BPO_NO",
+              "nativeQueryRef": "BPO_NO",
+              "active": false
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Values"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "STYLE_Lookup"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "W_MNJ_BPO_ORDER_DETAILS_F.BPO_NO"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "81872e40c807a6b4006e",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 770,
+    "width": 1280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "ribbonChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendar"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "Calendar.Date.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "Date Month",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_POC_H_D"
+                    }
+                  },
+                  "Property": "AltBuyer Name Short"
+                }
+              },
+              "queryRef": "W_MNJ_POC_H_D.AltBuyer Name Short",
+              "nativeQueryRef": "First AltBuyer Name Short"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Arithmetic": {
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                            }
+                          },
+                          "Property": "SHIP_QTY"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "Right": {
+                    "ScopedEval": {
+                      "Expression": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                                }
+                              },
+                              "Property": "SHIP_QTY"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Scope": []
+                    }
+                  },
+                  "Operator": 3
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)",
+              "nativeQueryRef": "%GT Sum of SHIP_QTY"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a521e710e1b18e806d75",
+        "ordinal": 0,
+        "field": {
+          "Arithmetic": {
+            "Left": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                      }
+                    },
+                    "Property": "SHIP_QTY"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "Right": {
+              "ScopedEval": {
+                "Expression": {
+                  "Aggregation": {
+                    "Expression": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                          }
+                        },
+                        "Property": "SHIP_QTY"
+                      }
+                    },
+                    "Function": 0
+                  }
+                },
+                "Scope": []
+              }
+            },
+            "Operator": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f8a4b710662e0759758e",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "AltBuyer Name Short"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "79b72d67b770dc87b4b8",
+        "ordinal": 2,
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "43425dd288ccd0302515",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "LC_UNIT"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_BPO_ORDER_DETAILS_F",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "w"
+                              }
+                            },
+                            "Property": "LC_UNIT"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "341D"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "342D"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "443D"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "18fddc4873768c2a2800",
+        "ordinal": 4,
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "l",
+              "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "l"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2024L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              },
+              "Annotations": {
+                "filterExpressionMetadata": {
+                  "expressions": [
+                    {
+                      "HierarchyLevel": {
+                        "Expression": {
+                          "Hierarchy": {
+                            "Expression": {
+                              "PropertyVariationSource": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendar"
+                                  }
+                                },
+                                "Name": "Variation",
+                                "Property": "Date"
+                              }
+                            },
+                            "Hierarchy": "Date Hierarchy"
+                          }
+                        },
+                        "Level": "Year"
+                      }
+                    }
+                  ],
+                  "decomposedIdentities": {
+                    "values": [
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2024L"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    ],
+                    "columns": [
+                      {
+                        "value": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "valueMap": [
+                    {
+                      "0": "2024"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

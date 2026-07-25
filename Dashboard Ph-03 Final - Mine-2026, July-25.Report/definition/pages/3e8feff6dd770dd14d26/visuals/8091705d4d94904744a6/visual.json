@@ -1,0 +1,897 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "8091705d4d94904744a6",
+  "position": {
+    "x": 0,
+    "y": 102.84552845528455,
+    "z": 5000,
+    "height": 359.95934959349592,
+    "width": 952.439024390244,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_POC_H_D"
+                    }
+                  },
+                  "Property": "AltBuyer Name Short"
+                }
+              },
+              "queryRef": "W_MNJ_POC_H_D.AltBuyer Name Short",
+              "nativeQueryRef": "AltBuyer Name Short"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_POC_H_D"
+                    }
+                  },
+                  "Property": "SEASONs"
+                }
+              },
+              "queryRef": "W_MNJ_POC_H_D.SEASONs",
+              "nativeQueryRef": "SEASONs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "OrderQtyCuttoship"
+                }
+              },
+              "queryRef": "MeasureTable.TotalOrderQtyCuttoship",
+              "nativeQueryRef": "Order",
+              "displayName": "Order"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_CUT_TO_SHIPMENT_F"
+                        }
+                      },
+                      "Property": "CUT_QTY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_CUT_TO_SHIPMENT_F.CUT_QTY)",
+              "nativeQueryRef": "CUT_QTY",
+              "displayName": "CUT_QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Cut_Excess_Cuttoshipment"
+                }
+              },
+              "queryRef": "MeasureTable.Cut_Excess_Cuttoshipment",
+              "nativeQueryRef": "Cut_Excess",
+              "displayName": "Cut_Excess"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_CUT_TO_SHIPMENT_F"
+                        }
+                      },
+                      "Property": "SHIP_QTY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_CUT_TO_SHIPMENT_F.SHIP_QTY)",
+              "nativeQueryRef": "SHIP_QTY",
+              "displayName": "SHIP_QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Cut_loss_Cuttoshipment"
+                }
+              },
+              "queryRef": "MeasureTable.Cut_loss_Cuttoshipment",
+              "nativeQueryRef": "Cut_Loss",
+              "displayName": "Cut_Loss"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Short/Excess_Qty"
+                }
+              },
+              "queryRef": "MeasureTable.ShortshipQty",
+              "nativeQueryRef": "ShortshipQty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Balance_Shipment_CuttoShip"
+                }
+              },
+              "queryRef": "MeasureTable.Balance_Shipment_CuttoShip",
+              "nativeQueryRef": "Balance_Shipment_CuttoShip"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MeasureTable"
+                  }
+                },
+                "Property": "Cut_loss_Cuttoshipment"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.06965086950672D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_CUT_TO_SHIPMENT_F.CUT_QTY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "346.873419590253D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.BENEFICIARY_NAME"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.SHIPMENT_MODE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158.17734510223664D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.PORT_OF_LOADING"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "140D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.PORT_OF_DISCHARGE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.COUNTRY_OF_ORIGION"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.37614672335238D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Buyer Short Name.Buyer S/Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "213.36044132863154D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.IN_HOUSE_DATE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "201.84533164889902D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.ATD_ORIGION"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "216.41450663667965D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BBLC_REG.ETA_DESTINATION"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.73336744301048D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_CUSTOMER_D.CUSTOMER_NAME_Short"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "150.55681857017547D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_CUT_TO_SHIPMENT_F.ORDER_QTY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107.88437516576258D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_POC_H_D.SEASONs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "125.26762607600594D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.TotalOrderQtyCuttoship"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.1387798085806D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_CUT_TO_SHIPMENT_F.SHIP_QTY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.87677020989183D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.Cut_Excess_Cuttoshipment"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.73726445166048D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.Cut_loss_Cuttoshipment"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.07888663947305D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.Balance_Shipment_CuttoShip"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.58202375544181D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortshipQty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97.1745005939363D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_POC_H_D.AltBuyer Name Short"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "19D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Buyer Short Name.Buyer S/Name"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E6E6E6'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C499CA'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8337D'"
+                    }
+                  }
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "actionFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0077B6'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#121111'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FBF4F4'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedValueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#121111'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#171616'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#121111'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FBF4F4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

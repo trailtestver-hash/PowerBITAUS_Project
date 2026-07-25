@@ -1,0 +1,294 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a91e218c3ce055bc7430",
+  "displayName": "TGAShortshipQty",
+  "displayOption": "FitToPage",
+  "height": 1100,
+  "width": 2000,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bb8c128317096aefa71a",
+        "ordinal": 0,
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendar"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "l",
+              "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "l"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2023L"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2024L"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2025L"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2022L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              },
+              "Annotations": {
+                "filterExpressionMetadata": {
+                  "expressions": [
+                    {
+                      "HierarchyLevel": {
+                        "Expression": {
+                          "Hierarchy": {
+                            "Expression": {
+                              "PropertyVariationSource": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendar"
+                                  }
+                                },
+                                "Name": "Variation",
+                                "Property": "Date"
+                              }
+                            },
+                            "Hierarchy": "Date Hierarchy"
+                          }
+                        },
+                        "Level": "Year"
+                      }
+                    }
+                  ],
+                  "decomposedIdentities": {
+                    "values": [
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2022L"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2023L"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2024L"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2025L"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    ],
+                    "columns": [
+                      {
+                        "value": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_571a1d84-56e6-4f78-bcd8-43e7cf78b15b"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "valueMap": [
+                    {
+                      "0": "2022"
+                    },
+                    {
+                      "0": "2023"
+                    },
+                    {
+                      "0": "2024"
+                    },
+                    {
+                      "0": "2025"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "98383706a3b3a5a1d02d",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_OPERATING_UNIT_D"
+              }
+            },
+            "Property": "ORG_SHORT_NAME"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_OPERATING_UNIT_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "ORG_SHORT_NAME"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL Unit1'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL Unit1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "74406be64b2901d23856",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "filterCard": [
+      {
+        "properties": {
+          "borderColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "id": "Available"
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

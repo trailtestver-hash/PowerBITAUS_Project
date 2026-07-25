@@ -1,0 +1,239 @@
+table W_MNJ_OPERATING_UNIT_D
+	lineageTag: ec3d5353-cf07-4d9d-b8c9-6ef12cfce4c9
+
+	column ROW_WID
+		dataType: double
+		lineageTag: cc65f2c9-76c1-43be-baa4-c83c5dbbab6b
+		summarizeBy: count
+		sourceColumn: ROW_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INTEGRATION_ID
+		dataType: string
+		lineageTag: bd314839-16a0-4a9a-904a-9bc034626536
+		summarizeBy: none
+		sourceColumn: INTEGRATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATASOURCE_NUM_ID
+		dataType: double
+		lineageTag: b9f3a0dd-396b-4a2e-9627-9d95548cebf5
+		summarizeBy: count
+		sourceColumn: DATASOURCE_NUM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ETL_PROC_WID
+		dataType: double
+		lineageTag: 1615d638-075b-44e8-9684-2ba0d6a82685
+		summarizeBy: count
+		sourceColumn: ETL_PROC_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BUSINESS_GROUP_ID
+		dataType: double
+		lineageTag: 91a732c0-0d16-4cb8-8e8b-e1621babaeda
+		summarizeBy: count
+		sourceColumn: BUSINESS_GROUP_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BUSINESS_GROUP
+		dataType: string
+		lineageTag: fdf98be0-906f-445f-993c-051eb04d4f85
+		summarizeBy: none
+		sourceColumn: BUSINESS_GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG_ID
+		dataType: double
+		lineageTag: 2808f255-9ff2-4e28-9541-83737d20d616
+		summarizeBy: none
+		sourceColumn: ORG_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORG_NAME
+		dataType: string
+		lineageTag: 181aa855-bfa9-403d-be1a-68b2462ded9f
+		summarizeBy: none
+		sourceColumn: ORG_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG_SHORT_NAME
+		dataType: string
+		lineageTag: 748210bb-7107-427e-875e-89fd364e95b2
+		summarizeBy: none
+		sourceColumn: ORG_SHORT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_BY_WID
+		dataType: string
+		lineageTag: bbc60823-646f-4e9a-b566-56de65d28f2e
+		summarizeBy: none
+		sourceColumn: CREATED_BY_WID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANGED_BY_WID
+		dataType: string
+		lineageTag: 90145531-09a8-4899-891c-a1ea4c34a655
+		summarizeBy: none
+		sourceColumn: CHANGED_BY_WID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 49861ec8-a019-4d44-9bca-6f28b2a642b2
+		summarizeBy: none
+		sourceColumn: CREATED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 496baaa4-0615-4a5a-a82b-2fdf1c5ef653
+			defaultHierarchy: LocalDateTable_715457db-c250-49d7-8401-7cd8cfbe135d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 93dddc9b-f64f-40c4-a9e8-191030d6d6ba
+		summarizeBy: none
+		sourceColumn: CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: a5aea7ce-51bf-415d-a150-d441e38b90df
+			defaultHierarchy: LocalDateTable_c76ada50-cb8c-4f32-8f02-60398350cc8e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX1_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f55fe1de-c344-4201-9229-2292afec7344
+		summarizeBy: none
+		sourceColumn: AUX1_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 398bc75e-9e21-4921-81b8-b0705732820c
+			defaultHierarchy: LocalDateTable_ff13e028-9667-45e6-bf27-e568ccc84cea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX2_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b478549-ec30-4f03-b358-f61e09673259
+		summarizeBy: none
+		sourceColumn: AUX2_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: f068bc6c-9475-4bf8-acb7-dafb21d5c37b
+			defaultHierarchy: LocalDateTable_cbfa5aeb-d717-49bf-bc1c-40fea68d707e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX3_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a3eeef12-54fe-4ab4-b67c-070283696c87
+		summarizeBy: none
+		sourceColumn: AUX3_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: d8f75498-c7ef-4d34-9446-6893db3becea
+			defaultHierarchy: LocalDateTable_61b95b69-6d6b-49ad-93fb-a8e8232edc2f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX4_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 951371a1-c315-40db-b6c2-65c5e31a185f
+		summarizeBy: none
+		sourceColumn: AUX4_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: cb39aa13-9ad5-4030-8843-a49248082b2f
+			defaultHierarchy: LocalDateTable_a600c003-8b74-445f-83fb-54590c70b612.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_INSERT_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6047f377-5367-4d99-b335-a0ffdd3f855d
+		summarizeBy: none
+		sourceColumn: W_INSERT_DT
+
+		variation Variation
+			isDefault
+			relationship: 23b012dc-8f6d-4c97-bf94-aef3f1b4a83e
+			defaultHierarchy: LocalDateTable_204ebb29-5251-4749-89a5-6e01516d01ea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_UPDATE_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 94deff2a-dde1-45cc-bbdc-7486adbdc9c9
+		summarizeBy: none
+		sourceColumn: W_UPDATE_DT
+
+		variation Variation
+			isDefault
+			relationship: 875f154b-4efe-4865-963f-9374042b1625
+			defaultHierarchy: LocalDateTable_92df9fba-014f-4f57-8eb8-eea1d6a85ce2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELETE_FLG
+		dataType: string
+		lineageTag: ef3d0ede-0783-40df-9c0f-5c65393b9082
+		summarizeBy: none
+		sourceColumn: DELETE_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column TENANT_ID
+		dataType: string
+		lineageTag: 6094e865-8a22-4946-b964-00d429494e9b
+		summarizeBy: none
+		sourceColumn: TENANT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition W_MNJ_OPERATING_UNIT_D = m
+		mode: import
+		source =
+				let
+				    Source = Oracle.Database("192.168.200.141:1521/biprod2", [HierarchicalNavigation=true]),
+				    DEV_DW = Source{[Schema="DEV_DW"]}[Data],
+				    W_MNJ_OPERATING_UNIT_D1 = DEV_DW{[Name="W_MNJ_OPERATING_UNIT_D"]}[Data]
+				in
+				    W_MNJ_OPERATING_UNIT_D1
+

@@ -1,0 +1,530 @@
+table W_MNJ_POC_FOB_CM_WASH_COST_F
+	lineageTag: 6c73318b-459c-413f-94bd-bf7568f17cc5
+
+	column INTEGRATION_ID
+		dataType: string
+		lineageTag: 794a8a85-009a-4372-9316-2eeb8030ab0c
+		summarizeBy: none
+		sourceColumn: INTEGRATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATASOURCE_NUM_ID
+		dataType: double
+		lineageTag: 6c0c3ac8-2b55-4b12-91f5-f0d37d290159
+		summarizeBy: count
+		sourceColumn: DATASOURCE_NUM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ETL_PROC_WID
+		dataType: double
+		lineageTag: 4b466a8b-064a-49ff-b57a-42bc6d1836b7
+		summarizeBy: count
+		sourceColumn: ETL_PROC_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BUYER_ID
+		dataType: double
+		lineageTag: 5395a788-0bed-406e-b934-a3f39605e351
+		summarizeBy: none
+		sourceColumn: BUYER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BUYER_WID
+		dataType: double
+		lineageTag: d39790af-7d1d-497d-8257-b2add57d8b10
+		summarizeBy: count
+		sourceColumn: BUYER_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column POC_ID
+		dataType: double
+		lineageTag: 69df9c30-04eb-477a-b3c8-dfbd76873f68
+		summarizeBy: none
+		sourceColumn: POC_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column POC_WID
+		dataType: double
+		lineageTag: 7ac0117d-ebd8-49cc-88e2-84296a41d568
+		summarizeBy: count
+		sourceColumn: POC_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BPO_ID
+		dataType: double
+		lineageTag: 07e5f228-7c6a-420e-8704-e369c0da3f17
+		summarizeBy: count
+		sourceColumn: BPO_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FOB_ID
+		dataType: double
+		lineageTag: b0e8d8d5-5e2e-471e-95bb-782d2e2c345c
+		summarizeBy: count
+		sourceColumn: FOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SYSTEM_ID
+		dataType: double
+		lineageTag: ff73d12e-ecee-467a-b95c-eba2d839925b
+		summarizeBy: count
+		sourceColumn: SYSTEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SYSTEM_WID
+		dataType: double
+		lineageTag: 54ad84a3-8c77-480c-b0d2-43a1c812038b
+		summarizeBy: none
+		sourceColumn: SYSTEM_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BPO_NO
+		dataType: string
+		lineageTag: add4380e-eaff-40ad-8caf-5da637201755
+		summarizeBy: none
+		sourceColumn: BPO_NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOB
+		dataType: double
+		lineageTag: 16511da4-cad0-466e-972c-1ba6822eb6f9
+		summarizeBy: sum
+		sourceColumn: FOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CM
+		dataType: double
+		lineageTag: 6054bff5-d8b6-453c-8e83-a240658e9393
+		summarizeBy: sum
+		sourceColumn: CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WASH_COST
+		dataType: double
+		lineageTag: 86c78a7c-2408-4807-a341-b454607ccf82
+		summarizeBy: sum
+		sourceColumn: WASH_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTY
+		dataType: double
+		lineageTag: 510359f9-401b-47d8-9e85-5f20d8f7d056
+		summarizeBy: sum
+		sourceColumn: QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SHIPMENT_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 49777905-293e-48ed-806e-9ef978d90029
+		summarizeBy: none
+		sourceColumn: SHIPMENT_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPMENT_DATE_WID
+		dataType: double
+		lineageTag: 532cb81c-bbe0-4522-86dd-89fb22301678
+		summarizeBy: count
+		sourceColumn: SHIPMENT_DATE_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAST_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e176caea-b71e-4290-852d-1f42c698d49d
+		summarizeBy: none
+		sourceColumn: LAST_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 305816f9-83da-4bab-81c9-cae734758a4b
+			defaultHierarchy: LocalDateTable_0d358055-b09c-4a8f-8be8-91620ed01123.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_UPDATED_BY
+		dataType: double
+		lineageTag: 69b4450e-4e97-4c75-af44-d0f2bb325e13
+		summarizeBy: sum
+		sourceColumn: LAST_UPDATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CREATION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 95cd177f-408f-4451-b4ae-e3b03fdc7339
+		summarizeBy: none
+		sourceColumn: CREATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 94bfc260-ee15-48fb-af7b-b33cae50244f
+			defaultHierarchy: LocalDateTable_09b76131-ce98-42a7-80ae-b5cc73dc996c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_BY
+		dataType: double
+		lineageTag: 2564956c-e349-4b91-91ed-72a39170e4d1
+		summarizeBy: sum
+		sourceColumn: CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AUX1_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5ca09f42-25dc-4e13-9909-7d0f41069d2a
+		summarizeBy: none
+		sourceColumn: AUX1_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 9555971e-446b-4e6b-a812-18601bfba580
+			defaultHierarchy: LocalDateTable_83681326-3bb2-44ae-8680-d2a94a60c2e5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX2_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ea2facff-3c85-40bb-858f-5a437013b054
+		summarizeBy: none
+		sourceColumn: AUX2_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 2b730792-d885-4a7e-82a3-b4fb10eb5f6a
+			defaultHierarchy: LocalDateTable_9c3b6031-fcdd-4609-991f-1b0853e183f9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX3_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e63f0426-1d08-4b5b-888c-61729459efa1
+		summarizeBy: none
+		sourceColumn: AUX3_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: bab1a033-7504-4e79-8842-a496d12904be
+			defaultHierarchy: LocalDateTable_17e593dc-3b20-4d90-a6a7-9f808ac88810.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX4_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 88b02386-f334-4991-95a1-24b4ffd02121
+		summarizeBy: none
+		sourceColumn: AUX4_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 6f812e94-2a75-4b62-8509-d098f07a06a7
+			defaultHierarchy: LocalDateTable_f1bb815d-9af1-4698-b55b-9333840da03e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TENANT_ID
+		dataType: string
+		lineageTag: 48d95263-982e-495f-8be7-01f5083579d0
+		summarizeBy: none
+		sourceColumn: TENANT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_INSERT_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 77811db3-df5a-46ee-adb7-e8ebe8aebd60
+		summarizeBy: none
+		sourceColumn: W_INSERT_DATE
+
+		variation Variation
+			isDefault
+			relationship: 3056bbd7-ec51-4dbf-9675-88363e1ad80c
+			defaultHierarchy: LocalDateTable_b89d90d2-2094-430d-bb72-cf18c3479dff.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b4682388-5f1c-417c-81c3-74531332d325
+		summarizeBy: none
+		sourceColumn: W_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: fb68dd8c-6225-4c3a-b92b-1c57d01b761b
+			defaultHierarchy: LocalDateTable_8fb683a6-fdb8-46c9-a7f7-a687729c3c35.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column REMARKS
+		dataType: string
+		lineageTag: 87f3c174-6fd9-4367-a752-9e6dbc66b0c2
+		summarizeBy: none
+		sourceColumn: REMARKS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPMENT_CALENDAR_DATE_WID
+		dataType: double
+		lineageTag: 57b786e5-796f-4304-8ca0-07c6746d1eab
+		summarizeBy: count
+		sourceColumn: SHIPMENT_CALENDAR_DATE_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORG_ID
+		dataType: double
+		lineageTag: 7671624b-e4bb-459c-9e63-66d130e69973
+		summarizeBy: none
+		sourceColumn: ORG_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORG_WID
+		dataType: double
+		lineageTag: 2af811ba-d441-47c8-8e07-28ab614a9540
+		summarizeBy: count
+		sourceColumn: ORG_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SAM
+		dataType: double
+		lineageTag: 9d72f8c7-064d-4ffa-90ff-0dc67079fe95
+		summarizeBy: sum
+		sourceColumn: SAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STYLE_EFFICIENCY
+		dataType: double
+		lineageTag: 945cd39b-c622-4fbc-817a-61bdb26bff2c
+		summarizeBy: sum
+		sourceColumn: STYLE_EFFICIENCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VALUE
+		dataType: double
+		lineageTag: 38d0189e-eb6c-4361-93f2-bbd6c7e2231e
+		summarizeBy: sum
+		sourceColumn: VALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_CM
+		dataType: double
+		lineageTag: e6cf0f6b-5d56-4969-a023-74644df9fb6b
+		summarizeBy: sum
+		sourceColumn: TOTAL_CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_WASH_COST
+		dataType: double
+		lineageTag: 06024822-ceea-473f-9d64-5a133f837199
+		summarizeBy: sum
+		sourceColumn: TOTAL_WASH_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLASSIFICATION
+		dataType: string
+		lineageTag: 48ab2b4d-6a18-456e-9038-cc4c40dde0ca
+		summarizeBy: none
+		sourceColumn: CLASSIFICATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCE_MIN
+		dataType: double
+		lineageTag: eec5a95c-b342-453e-b21e-d6bf33c6a6e0
+		summarizeBy: sum
+		sourceColumn: PRODUCE_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column END_USER
+		dataType: string
+		lineageTag: fe0d32d7-7e4d-4e12-8338-86c164223043
+		summarizeBy: none
+		sourceColumn: END_USER
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5efb1f9f-10b4-42c9-bd81-510f779f672c
+		summarizeBy: none
+		sourceColumn: END_DATE
+
+		variation Variation
+			isDefault
+			relationship: 23fd58bf-c19c-4e49-8a1c-8a045ba63c7e
+			defaultHierarchy: LocalDateTable_9a6a3ee5-e710-492c-8c61-b2ffcd99ce50.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column GM_APPROVAL
+		dataType: string
+		lineageTag: fb5677fc-eded-493b-b9c6-c85932bb8ec2
+		summarizeBy: none
+		sourceColumn: GM_APPROVAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: double
+		lineageTag: 9ed3b54d-452b-454d-a377-9df261b92a5d
+		summarizeBy: sum
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PL_CREATION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 00d7dd3e-86d7-467f-9ca8-bfaa0b7bf1f5
+		summarizeBy: none
+		sourceColumn: PL_CREATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 888b9ee4-0dd1-4f62-b7dc-1004e29e1b0a
+			defaultHierarchy: LocalDateTable_1cd7f130-3778-4e6c-81ef-d426c143ded0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column PL_LAST_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 78daf2a5-b09e-4a33-a26f-244258f695d3
+		summarizeBy: none
+		sourceColumn: PL_LAST_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: f240c9fd-c03b-4044-9b5f-0c012da14f5b
+			defaultHierarchy: LocalDateTable_f4d0799a-9933-40e8-9a1c-bebc0ceecaa3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPO_CREATION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ccfde087-b7c9-4904-9a70-bc9859c350c5
+		summarizeBy: none
+		sourceColumn: BPO_CREATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 41977d10-d54b-4283-a103-79b169d4256e
+			defaultHierarchy: LocalDateTable_0a74cfa9-cc89-4ae3-9b51-e0bd7c4784ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPO_LAST_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4eb7ad32-350a-423c-8620-d0a4b52f385b
+		summarizeBy: none
+		sourceColumn: BPO_LAST_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: fc6dd962-87f2-4ded-84d8-632d7739bcf8
+			defaultHierarchy: LocalDateTable_775ddf41-badd-44ba-ba03-5308a66eaca7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition W_MNJ_POC_FOB_CM_WASH_COST_F = m
+		mode: import
+		source =
+				let
+				    Source = Oracle.Database("192.168.200.141:1521/biprod2", [HierarchicalNavigation=true]),
+				    DEV_DW = Source{[Schema="DEV_DW"]}[Data],
+				    W_MNJ_POC_FOB_CM_WASH_COST_F1 = DEV_DW{[Name="W_MNJ_POC_FOB_CM_WASH_COST_F"]}[Data]
+				in
+				    W_MNJ_POC_FOB_CM_WASH_COST_F1
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Dashboard Ph-03 Final - Mine-2026, July-25"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9de66084-66bc-482c-b580-b572cf622035"
+  }
+}

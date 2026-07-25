@@ -1,0 +1,1443 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "5f4f83370e1b202ad049",
+  "position": {
+    "x": 0,
+    "y": 130.2439024390244,
+    "z": 0,
+    "height": 276.58536585365852,
+    "width": 1280.4878048780488,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "SEASONS_Lookup"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.SEASONS_Lookup",
+              "nativeQueryRef": "SEASONS_Lookup",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "Dept_TGA"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.Dept_TGA",
+              "nativeQueryRef": "Dept_TGA",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "StyleNewRepeatTGA"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.StyleNewRepeatTGA",
+              "nativeQueryRef": "StyleNewRepeatTGA",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "STYLE_Lookup"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Count(W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup)",
+              "nativeQueryRef": "Count of STYLE_Lookup"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "QUANTITY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)",
+              "nativeQueryRef": "Sum of QUANTITY"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "FOB_QuantiyVALUE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.FOB_QuantiyVALUE)",
+              "nativeQueryRef": "Sum of FOB_QuantiyVALUE"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "SHIP_QTY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)",
+              "nativeQueryRef": "Sum of SHIP_QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Balance_Shipment"
+                }
+              },
+              "queryRef": "MeasureTable.Balance_Shipment",
+              "nativeQueryRef": "Balance_Shipment"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Short/Excess_Qty"
+                }
+              },
+              "queryRef": "MeasureTable.Short/Excess_Qty",
+              "nativeQueryRef": "Short/Excess_Qty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShortShipValue"
+                }
+              },
+              "queryRef": "MeasureTable.ShortShipValue",
+              "nativeQueryRef": "ShortShipValue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Short/Excess%"
+                }
+              },
+              "queryRef": "MeasureTable.Short/Excess%",
+              "nativeQueryRef": "Short/Excess%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Balance Qty%"
+                }
+              },
+              "queryRef": "MeasureTable.Balance Qty%",
+              "nativeQueryRef": "Balance Qty%"
+            },
+            {
+              "field": {
+                "Arithmetic": {
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                            }
+                          },
+                          "Property": "QUANTITY"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "Right": {
+                    "ScopedEval": {
+                      "Expression": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                                }
+                              },
+                              "Property": "QUANTITY"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Scope": []
+                    }
+                  },
+                  "Operator": 3
+                }
+              },
+              "queryRef": "Divide(Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY), ScopedEval(Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY), []))",
+              "nativeQueryRef": "%GT Sum of QUANTITY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Arithmetic": {
+                "Left": {
+                  "Aggregation": {
+                    "Expression": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                          }
+                        },
+                        "Property": "QUANTITY"
+                      }
+                    },
+                    "Function": 0
+                  }
+                },
+                "Right": {
+                  "ScopedEval": {
+                    "Expression": {
+                      "Aggregation": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                              }
+                            },
+                            "Property": "QUANTITY"
+                          }
+                        },
+                        "Function": 0
+                      }
+                    },
+                    "Scope": []
+                  }
+                },
+                "Operator": 3
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "W_MNJ_BPO_ORDER_DETAILS_F.SEASONS_Lookup"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "SEASONS_Lookup"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "W_MNJ_BPO_ORDER_DETAILS_F.Dept_TGA"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "Dept_TGA"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "W_MNJ_BPO_ORDER_DETAILS_F.StyleNewRepeatTGA"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'20.Summer 26'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'22.Summer 27'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17D"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                                }
+                              },
+                              "Property": "QUANTITY"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#DE6A73'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "-0.01D"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#FFFFFF'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#0AFD42'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "MeasureTable"
+                            }
+                          },
+                          "Property": "Short/Excess_Qty"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#70bbff'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#de6a73'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "MeasureTable.ShortshipmentQty"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "MeasureTable"
+                            }
+                          },
+                          "Property": "Balance_Shipment"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#e6e6e6'"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#3CD2A3'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "1000D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#0FEEA8'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "MeasureTable.Balance_Shipment"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "MeasureTable"
+                            }
+                          },
+                          "Property": "Short/Excess%"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#DE6A73'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "-0.01D"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#FFFFFF'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#45EA6E'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "MeasureTable"
+                                  }
+                                },
+                                "Property": "Short/Excess%"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0.001D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'ColoredArrowUp'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 3,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "MeasureTable"
+                                  }
+                                },
+                                "Property": "Short/Excess%"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'ColoredArrowDown'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "MeasureTable.ShortshipPercentage"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "MeasureTable"
+                            }
+                          },
+                          "Property": "Short/Excess_Qty"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#D64550'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#FFFFFF'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'noColor'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "MeasureTable.Short/Excess_Qty"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "144.21350735540517D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.45683027665252D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "169.328218384443D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_POC_H_D.SEASONs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.61370278895161D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.Balance_Shipment"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98.60635033337644D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortshipmentQty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105.46499206811538D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.10655032585123D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortshipPercentage"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "62.84981521640434D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Calendar.Date.Variation.Date Hierarchy.Year"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "65.25479218047215D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_CUSTOMER_D.Buyer Name short"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.86634695312804D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.BPO_NO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.51274348571256D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.FOB_shipVALUE)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83.99535569520715D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortshipQty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "210.6403722632529D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.USHIPMENT_DATE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "209.078887265668D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.ACTUAL_SHIP_DATE_lookup"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.72924546884538D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortShipValue"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.31191674206624D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Count(W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "165.155967646284D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.FOB_QuantiyVALUE)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.36696747588405D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.Short/Excess_Qty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.9266220297148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Divide(Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY), ScopedEval(Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY), []))"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119.64220139354526D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.SEASONS_Lookup"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0537AD'"
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E6E6E6'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C499CA'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A8337D'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fae8968104da0ca863a5'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8350ffaa37ad5bbb754a",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "SEASONs"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

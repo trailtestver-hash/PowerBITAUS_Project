@@ -1,0 +1,174 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "0c0966f1951322b40780",
+  "displayName": "TGA",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3366af2d0442024358d0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_CUSTOMER_D"
+              }
+            },
+            "Property": "Buyer Name short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_CUSTOMER_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Buyer Name short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TAUS'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "34fca3a605044d1bce38",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "SEASONS_Lookup"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_BPO_ORDER_DETAILS_F",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "w"
+                              }
+                            },
+                            "Property": "SEASONS_Lookup"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Unknown'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "visualInteractions": [
+    {
+      "source": "0e7aab4352e8085c9c07",
+      "target": "10f6f88b4ba53920aec7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0e7aab4352e8085c9c07",
+      "target": "c61251f4e592a4434ebb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0e7aab4352e8085c9c07",
+      "target": "5cc805b3bc6e8010200e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0e7aab4352e8085c9c07",
+      "target": "4425d30222a01053bc4e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c61251f4e592a4434ebb",
+      "target": "0e7aab4352e8085c9c07",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c61251f4e592a4434ebb",
+      "target": "5f4f83370e1b202ad049",
+      "type": "DataFilter"
+    }
+  ]
+}

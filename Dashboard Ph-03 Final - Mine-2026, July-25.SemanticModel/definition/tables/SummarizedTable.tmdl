@@ -1,0 +1,53 @@
+table SummarizedTable
+	lineageTag: c4d7669d-58ed-439b-bfeb-f012b65f2079
+
+	column BUYER_ID
+		lineageTag: 0712820d-0a77-4462-b83b-838a707e9303
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [BUYER_ID]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CUSTOMER_NAME
+		lineageTag: dc045f55-62bf-44c3-a289-ffaef6513a80
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CUSTOMER_NAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LC_UNIT
+		lineageTag: e163ffdf-6e25-4f40-879f-64c68c0cff3e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [LC_UNIT]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORG_SHORT_NAME
+		lineageTag: cac39adf-c541-42f3-80f0-ba5961232ace
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ORG_SHORT_NAME]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SummarizedTable = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    W_MNJ_CUSTOMER_D,
+				    "LC_UNIT", LOOKUPVALUE(W_MNJ_OPERATING_UNIT_D[ORG_ID], W_MNJ_OPERATING_UNIT_D[ORG_ID], W_MNJ_CUSTOMER_D[CUSTOMER_ID]),
+				    "ORG_SHORT_NAME", LOOKUPVALUE(W_MNJ_OPERATING_UNIT_D[ORG_SHORT_NAME], W_MNJ_OPERATING_UNIT_D[ORG_ID], W_MNJ_CUSTOMER_D[CUSTOMER_ID]),
+				    "BUYER_ID", W_MNJ_CUSTOMER_D[CUSTOMER_ID],
+				    "CUSTOMER_NAME", W_MNJ_CUSTOMER_D[CUSTOMER_NAME]
+				)
+
+	annotation PBI_Id = 8d968b0566e1433faf54653328942867
+

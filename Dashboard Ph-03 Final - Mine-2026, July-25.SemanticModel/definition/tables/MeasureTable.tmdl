@@ -1,0 +1,1324 @@
+table MeasureTable
+	lineageTag: a7bad4b9-b096-4770-a4a0-b13da4369c01
+
+	measure Mes_ship_FOB_Value = ```
+			
+			    SUMX(
+			        FactOrderDetails,
+			        FactOrderDetails[SALES_QTY] * FactOrderDetails[FOB]
+			    )
+			
+			
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c6c0c12f-d773-4f75-a332-72b10af885a4
+
+	measure Growth_Yearly_SHIP_QTY = ```
+			
+			VAR CurrentYearShipQty = 
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])
+			VAR PreviousYearShipQty = 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			        SAMEPERIODLASTYEAR(Calendar[Date])
+			    )
+			RETURN 
+			IF(
+			    ISBLANK(PreviousYearShipQty), 
+			    BLANK(),
+			    DIVIDE(CurrentYearShipQty - PreviousYearShipQty, PreviousYearShipQty, 0)
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 84e0858e-175d-4800-831b-84a7875f305e
+
+	measure 'AverageW.FOBPOorder' = ```
+			
+			DIVIDE(
+			    SUMX(  
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[FOB])
+			    ),
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			)
+			```
+		formatString: 0.00
+		lineageTag: ff2ef6c8-75ed-4a8f-a9a1-d8d844a49877
+
+	measure 'AverageW.Wash_BPOorder' =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST])
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    )
+			)
+		formatString: 0.00
+		lineageTag: 3271b447-a62f-4866-9546-3d389de85ebb
+
+	measure 'AverageW.CMBPOorder' = ```
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[CM]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[CM]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[CM])
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[CM]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[CM]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Avoids division errors if denominator is 0
+			)
+			```
+		formatString: 0.00
+		lineageTag: bda1ff60-1e59-49c5-8054-2acd0ce1667e
+
+	measure Cut_Excess_Cuttoshipment =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            'W_MNJ_CUT_TO_SHIPMENT_F',
+			            (
+			                (NOT ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]) && 'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] <> 0)
+			                || (NOT ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY]) && 'W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY] <> 0)
+			            )
+			        ),
+			        VAR OrderQtyAdj =
+			            IF(
+			                'W_MNJ_CUT_TO_SHIPMENT_F'[STATUS] = 1
+			                && (ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY]) || 'W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY] = 0),
+			                0,   -- override ORDER_QTY to 0
+			                'W_MNJ_CUT_TO_SHIPMENT_F'[ORDER_QTY]
+			            )
+			        RETURN
+			            'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] - OrderQtyAdj
+			    ),
+			    [OrderQtyCuttoship],   -- denominator stays as your existing measure
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f50e774f-efa2-45ee-ba1a-3ccc1b9d342d
+
+	measure Cut_loss_Cuttoshipment = ```
+			
+			IF(
+			    SUM('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]) = 0 && SUM('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY]) > 0, 
+			    -1,  -- Returns -100% for full shipment excess
+			    IF(
+			        SUM('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]) > 0 && SUM('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY]) = 0, 
+			        1,  -- Returns +100% for full cut loss
+			        DIVIDE(
+			            SUM('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]) - SUM('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY]),  
+			            SUM('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]),  
+			            0  -- Avoids division errors
+			        )
+			    )
+			)  -- Converts to percentage format
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 73e1c018-f0ac-4c6a-9fe2-97fe5294e394
+
+	measure BPO_Count = ```
+			COUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO])
+			
+			```
+		formatString: 0
+		lineageTag: c9851148-ee8c-4b30-9721-1a597f356a8b
+
+	measure Late% = ```
+			
+			VAR LateCount = CALCULATE( DISTINCTCOUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]), W_MNJ_ONTIME_SHIPMENT_F[OTS Status] = "Late" ) 
+			VAR TotalCount = DISTINCTCOUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]) 
+			RETURN DIVIDE(LateCount, TotalCount, 0)
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: cf28028c-f420-4984-9aad-43b080c1b01e
+
+	measure Late_Count = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]),
+			    W_MNJ_ONTIME_SHIPMENT_F[OTS Status] = "Late"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: d78dd1b0-f20b-49db-98e4-e271a931ed4f
+
+	measure Total_Count = DISTINCTCOUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO])
+		formatString: 0
+		lineageTag: 9b462ebf-aacb-4f92-a188-8ab31da0f58d
+
+	measure Growth_Yearly_SHIP_Value = ```
+			
+			VAR CurrentYearShipQty = 
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE])
+			VAR PreviousYearShipQty = 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			        SAMEPERIODLASTYEAR(Calendar[Date])
+			    )
+			RETURN 
+			IF(
+			    ISBLANK(PreviousYearShipQty), 
+			    BLANK(),
+			    DIVIDE(CurrentYearShipQty - PreviousYearShipQty, PreviousYearShipQty, 0)
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 32df4fd9-9770-43f8-b8c9-d00799ec96a7
+
+	measure Growth_FinYearly_SHIP_QTY_ = ```
+			
+			VAR CurrentYearShipQty = 
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])
+			VAR PreviousYearShipQty = 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			        SAMEPERIODLASTYEAR(Calendar[Date])
+			    )
+			RETURN 
+			IF(
+			    ISBLANK(PreviousYearShipQty), 
+			    BLANK(),
+			    DIVIDE(CurrentYearShipQty - PreviousYearShipQty, PreviousYearShipQty, 0)
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 484343ce-5531-4ca0-8df3-3adfc46be35e
+
+	measure Growth_FinYearly_SHIP_Value = ```
+			
+			VAR CurrentYearShipQty = 
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE])
+			VAR PreviousYearShipQty = 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			        SAMEPERIODLASTYEAR(Calendar[Date])
+			    )
+			RETURN 
+			IF(
+			    ISBLANK(PreviousYearShipQty), 
+			    BLANK(),
+			    DIVIDE(CurrentYearShipQty - PreviousYearShipQty, PreviousYearShipQty, 0)
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9cbbcc1f-bcc2-43b3-b45a-b74cea6cb8f8
+
+	measure Short/Excess_Qty = ```
+			
+			SUMX(
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F, 
+			        DATEDIFF(W_MNJ_BPO_ORDER_DETAILS_F[USHIPMENT_DATE], TODAY(), DAY) > 5
+			    ), 
+			    -(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])
+			)
+			```
+		formatString: 0
+		lineageTag: 18c47523-044b-4673-a9e7-d6019b41d63b
+
+	measure GrothYearSir =
+			
+			VAR CurrentPeriodQty=SUM('W_MNJ_BPO_ORDER_DETAILS_F'[QUANTITY])
+			VAR LastPreriodQty=CALCULATE(SUM('W_MNJ_BPO_ORDER_DETAILS_F'[QUANTITY]),SAMEPERIODLASTYEAR(Calendar[Date]))
+			
+			 RETURN
+			 DIVIDE(CurrentPeriodQty-LastPreriodQty,LastPreriodQty)
+		lineageTag: 20264467-aea9-4d98-95d4-be8995c1773c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShipSparkline = ```
+			
+			VAR LineColour = "%2320E2D7"
+			VAR PointColour = "%23333333"
+			VAR Defs = "<defs>
+			    <linearGradient id='grad' x1='0' y1='25' x2='0' y2='50' gradientUnits='userSpaceOnUse'>
+			        <stop stop-color='#20E2D7' offset='0' />
+			        <stop stop-color='#20E2D7' offset='0.3' />
+			        <stop stop-color='#333333' offset='1' />
+			    </linearGradient>
+			</defs>"
+			
+			VAR XMinDate = MIN('Calendar'[Date])
+			VAR XMaxDate = MAX('Calendar'[Date])
+			
+			VAR CumulativeSalesQtyTable = 
+			    ADDCOLUMNS(
+			        SUMMARIZE('Calendar', 'Calendar'[Date]),
+			        "CumulativeSALES_QTY", 
+			        CALCULATE(
+			            SUM('FactOrderDetails'[SALES_QTY]),
+			            FILTER(
+			                ALLSELECTED('Calendar'[Date]),
+			                'Calendar'[Date] <= EARLIER('Calendar'[Date])
+			            )
+			        )
+			    )
+			
+			VAR YMinValue = MINX(CumulativeSalesQtyTable, [CumulativeSALES_QTY])
+			VAR YMaxValue = MAXX(CumulativeSalesQtyTable, [CumulativeSALES_QTY])
+			
+			VAR SparklineTable = 
+			    ADDCOLUMNS(
+			        CumulativeSalesQtyTable,
+			        "X", INT(150 * DIVIDE('Calendar'[Date] - XMinDate, XMaxDate - XMinDate)),
+			        "Y", 50 - INT(50 * DIVIDE([CumulativeSALES_QTY] - YMinValue, YMaxValue - YMinValue))
+			    )
+			
+			VAR Lines = 
+			    CONCATENATEX(SparklineTable, [X] & "," & [Y], " ", 'Calendar'[Date])
+			
+			VAR LastSparkYValue = 
+			    MAXX(FILTER(SparklineTable, 'Calendar'[Date] = XMaxDate), [Y])
+			
+			VAR LastSparkXValue = 
+			    MAXX(FILTER(SparklineTable, 'Calendar'[Date] = XMaxDate), [X])
+			
+			VAR LastCumulativeSalesQty = 
+			    MAXX(SparklineTable, [CumulativeSALES_QTY])
+			
+			VAR SVGImageURL = 
+			    "data:image/svg+xml;utf8," & 
+			    "<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='-7 -7 164 64'>" & Defs & 
+			    "<polyline fill='url(#grad)' fill-opacity='0.3' stroke='transparent' stroke-width='2' points='0 50 " & Lines & " 150 50' />" &
+			    "<polyline fill='transparent' stroke='" & LineColour & "' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' points='" & Lines & "' />" &
+			    "<circle cx='" & LastSparkXValue & "' cy='" & 50 - INT(50 * DIVIDE(LastCumulativeSalesQty - YMinValue, YMaxValue - YMinValue)) & "' r='4' stroke='" & LineColour & "' stroke-width='2' fill='" & PointColour & "' />" &
+			    "</svg>"
+			
+			RETURN SVGImageURL
+			
+			```
+		lineageTag: 187b97a7-8a0c-443d-a394-449d36bba394
+
+	measure TotalQtyInHand = ```
+			
+			CALCULATE(
+			    SUM('FactOrderDetails'[QTY]),
+			    FILTER(
+			        'FactOrderDetails',
+			        'FactOrderDetails'[SHIPDATE] >= DATE(2024, 7, 1) && 'FactOrderDetails'[SHIPDATE] <= DATE(2026, 12, 31)
+			    ),
+			    ALLSELECTED('FactOrderDetails'[UNIT])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 6aef9160-9a0f-42fd-a24e-20a1760fe89d
+
+	measure ShipQtyLastYear =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    SAMEPERIODLASTYEAR(Calendar[Date])
+			)
+		formatString: 0.00
+		lineageTag: 632ad45e-674f-4fcc-9fd2-809dbe33ed60
+
+	measure ShipGapInteractive = ```
+			
+			SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]) - 
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    SAMEPERIODLASTYEAR(Calendar[Date])
+			)
+			```
+		formatString: 0
+		lineageTag: 95b4b918-e5bc-4cc3-a75f-17d1eb68904f
+
+	measure ShipGapInteractiveArrow =
+			
+			IF(
+			    [ShipGapInteractive] > 0,
+			    UNICHAR(9650) & " " & FORMAT([ShipGapInteractive] / 1000000, "0.000") & "M ", -- Up arrow with "M"
+			    IF(
+			        [ShipGapInteractive] < 0,
+			        UNICHAR(9660) & " " & FORMAT([ShipGapInteractive] / 1000000, "0.000") & "M ", -- Down arrow with "M"
+			        FORMAT([ShipGapInteractive] / 1000000, "0.000") & "M" -- No change, with "M"
+			    )
+			)
+		lineageTag: f7b1add2-ff3f-4aa8-8a51-68446671ef0b
+
+	measure OntimeShipmentPercentage =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]),
+			        W_MNJ_ONTIME_SHIPMENT_F[OTS Status] = "Ontime"
+			    ),
+			    CALCULATE(COUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3df8b420-8541-40dc-812e-ea20a609eddc
+
+	measure LateShipmentPercentage =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]),
+			        W_MNJ_ONTIME_SHIPMENT_F[OTS Status] = "Late"
+			    ),
+			    CALCULATE(COUNT(W_MNJ_ONTIME_SHIPMENT_F[BPO_NO]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c38199b7-6ed3-43ba-952f-ede2f639f246
+
+	measure ShipValueLastYear =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    SAMEPERIODLASTYEAR(Calendar[Date])
+			)
+		lineageTag: d67eab3f-b733-40b9-9ab1-0bc58eb30f64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShipValueInteractive = ```
+			
+			SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]) - 
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    SAMEPERIODLASTYEAR(Calendar[Date])
+			)
+			```
+		lineageTag: d85d2f2d-f427-473d-8bbb-afc8f99b185d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShipValueInteractiveArrow =
+			
+			IF(
+			    [ShipValueInteractive] > 0,
+			    UNICHAR(9650) & " " & FORMAT([ShipValueInteractive] / 1000000, "0.000") & "M ", -- Up arrow with "M"
+			    IF(
+			        [ShipValueInteractive] < 0,
+			        UNICHAR(9660) & " " & FORMAT([ShipValueInteractive] / 1000000, "0.000") & "M ", -- Down arrow with "M"
+			        FORMAT([ShipValueInteractive] / 1000000, "0.000") & "M" -- No change, with "M"
+			    )
+			)
+		lineageTag: 2438c5ca-74e9-4e6d-a3ef-467504b88a91
+
+	measure CurrentYearOrder =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    FILTER(
+			        'Calendar',
+			        'Calendar'[Date] >= TODAY() - 1 &&
+			        'Calendar'[Date] <= TODAY() + 21
+			    )
+			)
+		formatString: 0
+		lineageTag: d8590951-8c17-408f-bbb9-9f2a9679e522
+
+	measure PreviousYearOrder = ```
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    FILTER(
+			        'Calendar',
+			        'Calendar'[Date] IN 
+			        SAMEPERIODLASTYEAR(
+			            DATESBETWEEN(
+			                'Calendar'[Date],
+			                TODAY() - 1,
+			                TODAY() + 21
+			            )
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: ac5dc4df-2cdc-437a-956b-3aeb68268801
+
+	measure PrevtoCur%Order =
+			
+			IF(
+			    [PreviousYearOrder] <> 0,
+			    DIVIDE([CurrentYearOrder] - [PreviousYearOrder], [PreviousYearOrder]),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2abf4c74-213a-43cf-ae6d-67a01c2e2b5b
+
+	measure ShortQtyonly =
+			
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F,
+			    IF(
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY] > 0,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY],
+			        0
+			    )
+			)
+		formatString: 0
+		lineageTag: 9cf4a665-ffc7-4dcb-b7e7-8136b6ae7f53
+
+	measure ShortShip% =
+			
+			IF(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]) <> 0,
+			    DIVIDE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]) - SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			    ),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9aad2d4e-e894-4f98-b930-4ff0f340d1de
+
+	measure ShortQtyGrowthRate = ```
+			
+			VAR PreviousYearShortQty = 
+			    CALCULATE(
+			        [ShortQtyonly],
+			        SAMEPERIODLASTYEAR('Calendar'[Date])
+			    )
+			
+			VAR CurrentYearShortQty = 
+			    [ShortQtyonly]
+			
+			VAR GrowthRate = 
+			    IF(
+			        PreviousYearShortQty > 0,
+			        DIVIDE(CurrentYearShortQty - PreviousYearShortQty, PreviousYearShortQty),
+			        BLANK()
+			    )
+			
+			RETURN 
+			IF(
+			    NOT ISBLANK(GrowthRate),
+			    MAX(-0.5, MIN(GrowthRate, 0.5)),
+			    BLANK()
+			)
+			```
+		lineageTag: 9024294d-9053-4400-a1a8-89020aadf5a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AverageW.CostSAM' = ```
+			
+			DIVIDE(
+			    SUMX(  
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * W_MNJ_BPO_ORDER_DETAILS_F[COSTING_SAM]
+			    ),
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			)
+			```
+		lineageTag: ce5a9ee4-dd7e-4340-8770-eaf688653cee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AverageW.CostEFFICIENCY' = ```
+			
+			DIVIDE(
+			    SUMX(  
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * W_MNJ_BPO_ORDER_DETAILS_F[COSTING_EFFICIENCY]
+			    ),
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			)
+			```
+		lineageTag: 320e1f22-8a57-4145-aae1-9996d44cba81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AverageW.ActualSAM' = ```
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_SAM])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_SAM] <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_SAM]
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_SAM])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_SAM] <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Ensures safe division if denominator is zero
+			)
+			```
+		lineageTag: 1ecfc943-93c7-40c7-8dd4-9362f8066aef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AverageW.ActualEFFICIENCY' = ```
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_EFFICIENCY])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_EFFICIENCY] <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_EFFICIENCY]
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F, 
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_EFFICIENCY])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[ACTUAL_EFFICIENCY] <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Avoids division errors when denominator is zero
+			)
+			```
+		lineageTag: c1f76103-e530-412b-8213-9abe57779f54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShipmentBalance =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]) - SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    W_MNJ_BPO_ORDER_DETAILS_F[SHIPMENT_DATE] > TODAY()
+			)
+		formatString: 0
+		lineageTag: c4f20cb2-5d10-428c-bc78-fd340104de63
+
+	measure ShortShipbeforeToday =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]) - SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    W_MNJ_BPO_ORDER_DETAILS_F[SHIPMENT_DATE] < TODAY()
+			)
+		formatString: 0
+		lineageTag: f2a41b9c-5a5d-4cdb-9160-3e7a1295dab7
+
+	measure Conditional_FOB_By_BPO = ```
+			
+			IF(
+			    [ShortShipbeforeToday] > 0, 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB]), 
+			        VALUES(W_MNJ_BPO_ORDER_DETAILS_F[BPO_NO])
+			    ), 
+			    BLANK()
+			)
+			```
+		lineageTag: cd6ea233-5f98-43b3-92ca-09e5ebf75650
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShorshipValueToday =
+			
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F,
+			    [ShortShipbeforeToday] * [Conditional_FOB_By_BPO]
+			)
+		lineageTag: 38f4459e-8dfa-4533-999a-b9a1a2e61510
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure First_Shipment_Date =
+			
+			CALCULATE(
+			    MIN(W_MNJ_BPO_ORDER_DETAILS_F[SHIPMENT_DATE]),
+			    ALLSELECTED(W_MNJ_BPO_ORDER_DETAILS_F)
+			)
+		formatString: General Date
+		lineageTag: 834d4519-4cf5-4ee7-9e4f-be4f8264ffea
+
+	measure Last_Shipment_Date =
+			
+			CALCULATE(
+			    MAX(W_MNJ_BPO_ORDER_DETAILS_F[SHIPMENT_DATE]),
+			    ALLSELECTED(W_MNJ_BPO_ORDER_DETAILS_F)
+			)
+		formatString: General Date
+		lineageTag: 23b9694a-49d5-4c40-a758-6d818c44bd8c
+
+	measure GrowthRate_Ship_QTY_TGA = ```
+			
+			VAR CurrentQty = SUM(Summarized_Table[Sum_Ship_QTY])
+			
+			VAR PreviousQty = 
+			    CALCULATE(
+			        SUM(Summarized_Table[Sum_Ship_QTY]),
+			        FILTER(
+			            Summarized_Table,
+			            VALUE(LEFT(Summarized_Table[SEASONS_Lookup], 2)) = 
+			            VALUE(LEFT(SELECTEDVALUE(Summarized_Table[SEASONS_Lookup]), 2)) - 1
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(PreviousQty)) && PreviousQty <> 0,
+			    DIVIDE(CurrentQty - PreviousQty, PreviousQty, 0),
+			    BLANK()
+			)
+			```
+		isHidden
+		lineageTag: 5cab55da-55e4-47ec-ab13-13417380d92e
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Ship_Qty_Buyer_1051 =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    W_MNJ_BPO_ORDER_DETAILS_F[BUYER_ID] = 1051
+			)
+		formatString: 0
+		lineageTag: 7331b361-783c-4e95-919e-0823d3ae2ff2
+
+	measure CurrentQty_Debug =
+			
+			SUMX(
+			    VALUES(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA]),
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA] = EARLIER(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 31a97526-89ae-4672-82a1-231f32eb98d1
+
+	measure PreviousQty_Debug = ```
+			
+			IF(
+			    ISINSCOPE(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA]), 
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			        FILTER(
+			            ALL(W_MNJ_BPO_ORDER_DETAILS_F),
+			            NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])) &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA] = MAX(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA]) - 1
+			        )
+			    ),
+			    SUMX(
+			        VALUES(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA]), // Iterate over each YeargrTGA value
+			        CALCULATE(
+			            SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			            FILTER(
+			                ALL(W_MNJ_BPO_ORDER_DETAILS_F),
+			                NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])) &&
+			                W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA] = EARLIER(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA]) - 1
+			            )
+			        )
+			    ) 
+			)
+			```
+		formatString: 0
+		lineageTag: 0a8e751f-6b9a-4f87-9bcc-a202d24bbca8
+
+	measure Growth_Rat_Debug =
+			
+			IF(
+			    NOT(ISBLANK([PreviousQty_Debug])) && [PreviousQty_Debug] <> 0,
+			    DIVIDE([CurrentQty_Debug] - [PreviousQty_Debug], [PreviousQty_Debug], 0),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4a0a9b1a-682b-4083-92c6-ddd4b3ce7151
+
+	measure Capped_Growth_Rate_Debug =
+			
+			IF(
+			    [Growth_Rat_Debug] > 1.5, // 1.5 = 150%
+			    1.5, // Display capped value
+			    [Growth_Rat_Debug] // Display actual value if below 150%
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6b009dc0-1302-4626-ac54-22deaa84c753
+
+	measure ShortShipmentPct = ```
+			
+			DIVIDE(
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY] - W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    0
+			) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: af21685f-3322-4066-8173-a78b49e7c6a2
+
+	measure TotalQuantity = SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+		formatString: 0
+		lineageTag: 3ab0bc79-5053-4270-949e-2ddd7cb4eb95
+
+	measure Balance_Shipment = ```
+			
+			VAR FilteredData =
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] > 0 &&
+			        NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])) &&
+			        W_MNJ_BPO_ORDER_DETAILS_F[USHIPMENT_DATE] >= TODAY() - 5 &&
+			        W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY] = 0  -- Exclude rows with SHIP_QTY > 0
+			    )
+			
+			RETURN 
+			SUMX(FilteredData, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			```
+		formatString: 0
+		lineageTag: 69b4dc7e-e7c8-4db4-8538-3f004ccb979e
+
+	measure EstimatedRestQtyShip% =
+			
+			DIVIDE(
+			    SUMX(
+			        'W_MNJ_CUT_TO_SHIPMENT_F',
+			        ('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] - W_MNJ_CUT_TO_SHIPMENT_F[SHIP_QTY]) + [Balance_Shipment]  -- Added Balance_Shipment
+			    ),
+			    SUM('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY]),
+			    0  -- Default value to avoid division errors
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 13aecbc6-956b-457d-af5c-37cbe431df5c
+
+	measure OrderQtyCuttoship =
+			
+			CALCULATE(
+			    SUM(W_MNJ_CUT_TO_SHIPMENT_F[ORDER_QTY]),
+			    FILTER(
+			        W_MNJ_CUT_TO_SHIPMENT_F,
+			        W_MNJ_CUT_TO_SHIPMENT_F[STATUS] = 1 &&
+			        NOT (
+			            W_MNJ_CUT_TO_SHIPMENT_F[SHIPDATE] < TODAY() &&
+			            (ISBLANK(W_MNJ_CUT_TO_SHIPMENT_F[CUT_QTY]) || W_MNJ_CUT_TO_SHIPMENT_F[CUT_QTY] = 0) &&
+			            (ISBLANK(W_MNJ_CUT_TO_SHIPMENT_F[SHIP_QTY]) || W_MNJ_CUT_TO_SHIPMENT_F[SHIP_QTY] = 0)
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 5efc729b-9528-40cf-8751-0328aeb03652
+
+	measure ShortShipGrowth2 =
+			
+			VAR PreviousYearShortShipmentQty =
+			    CALCULATE(
+			        [Short/Excess_Qty],
+			        SAMEPERIODLASTYEAR('Calendar'[Date])
+			    )
+			
+			VAR CurrentYearShortShipmentQty =
+			    [Short/Excess_Qty]
+			
+			VAR GrowthRate =
+			    IF(
+			        PreviousYearShortShipmentQty <> 0,
+			        DIVIDE(CurrentYearShortShipmentQty - PreviousYearShortShipmentQty, ABS(PreviousYearShortShipmentQty)),
+			        BLANK()
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(GrowthRate),
+			    MAX(-0.5, MIN(GrowthRate, 0.5)),  // Bound growth rate between -0.5 and 0.5
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: edfd99f0-e9a6-426a-843f-94c9dd2dcbaa
+
+	measure Cut_Loss_Limited =
+			
+			VAR ActualValue = [Cut_loss_Cuttoshipment]
+			RETURN IF( ActualValue > 30, 30, ActualValue )
+		lineageTag: 1dbe22b2-d77d-4acd-8a08-278659d53eda
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cut_Excess_CuttoshipmentTEST = ```
+			
+			IF(
+			    [OrderQtyCuttoship] = 0, 
+			    SUMX(
+			        FILTER(
+			            'W_MNJ_CUT_TO_SHIPMENT_F',
+			            (NOT(ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY])) && 'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] <> 0) ||
+			            (NOT(ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY])) && 'W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY] <> 0) 
+			        ), 
+			        'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] - 'W_MNJ_CUT_TO_SHIPMENT_F'[ORDER_QTY]
+			    ),
+			    DIVIDE(
+			        SUMX(
+			            FILTER(
+			                'W_MNJ_CUT_TO_SHIPMENT_F',
+			                (NOT(ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY])) && 'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] <> 0) ||
+			                (NOT(ISBLANK('W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY])) && 'W_MNJ_CUT_TO_SHIPMENT_F'[SHIP_QTY] <> 0)  
+			            ), 
+			            'W_MNJ_CUT_TO_SHIPMENT_F'[CUT_QTY] - 'W_MNJ_CUT_TO_SHIPMENT_F'[ORDER_QTY]
+			        ),
+			        [OrderQtyCuttoship],  
+			        BLANK()  -- Returns BLANK instead of 0 if denominator is 0
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5c69451a-d301-4165-bbad-bd9b8fa38470
+
+	measure 'AverageW.Wash_Test' =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST])
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    )
+			)
+		lineageTag: 8898eab4-631c-43c7-98eb-26f28a7baadb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Balance_Shipment_CuttoShip = ```
+			
+			VAR FilteredData =
+			    FILTER(
+			        W_MNJ_CUT_TO_SHIPMENT_F,
+			        W_MNJ_CUT_TO_SHIPMENT_F[ORDER_QTY] > 0 &&
+			        NOT(ISBLANK(W_MNJ_CUT_TO_SHIPMENT_F[ORDER_QTY])) &&
+			        W_MNJ_CUT_TO_SHIPMENT_F[SHIPDATE] >= TODAY() - 5 &&
+			        W_MNJ_CUT_TO_SHIPMENT_F[SHIP_QTY] = 0  -- Exclude rows where SHIP_QTY > 0
+			    )
+			
+			RETURN 
+			SUMX(FilteredData, W_MNJ_CUT_TO_SHIPMENT_F[ORDER_QTY])
+			```
+		formatString: 0
+		lineageTag: 2d329c63-af16-4f69-ace2-db06fd6b69ca
+
+	measure Short/Excess% = ```
+			
+			DIVIDE(  
+			    SUMX(  
+			        FILTER(  
+			            W_MNJ_BPO_ORDER_DETAILS_F,  
+			            DATEDIFF(W_MNJ_BPO_ORDER_DETAILS_F[USHIPMENT_DATE], TODAY(), DAY) > 5  
+			        ),  
+			        -(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])  
+			    ),  
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),  
+			    0  
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cf64c15f-1c13-4224-be0e-70a251c1f13a
+
+	measure 'AverageW.Wash_Old' = ```
+			
+			DIVIDE(
+			    SUMX(  
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST])
+			    ),
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			)
+			```
+		lineageTag: 5126168d-8f76-4a48-9408-180cb4a5dc82
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CountOfStyle = DISTINCTCOUNT(W_MNJ_BPO_ORDER_DETAILS_F[STYLE_Lookup])
+		formatString: 0
+		lineageTag: 7576006d-aa2b-4627-8781-72c6c72f6f2c
+
+	measure Avg_Syle_Qty =
+			
+			DIVIDE(
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    [CountOfStyle],
+			    0  -- Avoids errors if CountOfStyle is zero
+			)
+		formatString: 0
+		lineageTag: 6e1ff8e0-52b8-4e99-8d7e-df158749e6f2
+
+	measure CountOfBPO = DISTINCTCOUNT(W_MNJ_BPO_ORDER_DETAILS_F[BPO_NO])
+		formatString: 0
+		lineageTag: 32279a68-a3fe-4584-8b1d-7e7266732e67
+
+	measure Avg_BPO_Qty = ```
+			
+			DIVIDE(
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    [CountOfBPO], 
+			    0  -- Avoids errors if CountOfBPO is zero
+			)
+			```
+		lineageTag: 276032c5-dd50-4d5b-ad58-184290169e55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avg_Cat_CM =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[CM]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[CM]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Filters based on slicer selection
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[CM])
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[CM]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[CM]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Ensures denominator follows slicer selection
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Prevents division errors when denominator is 0
+			)
+		lineageTag: dd8e6571-9ac3-4539-966a-5a2667b3bc33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avg_Cat_FOB =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[FOB]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[FOB]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Filters based on slicer selection
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] * RELATED(W_MNJ_POC_COLOR_WASH_D[FOB])
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[FOB]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[FOB]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Ensures denominator follows slicer selection
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Prevents division errors when denominator is 0
+			)
+		lineageTag: 868a422d-22fc-4fc5-aa90-f2d7d6b61a4b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avg_Cat_Wash =
+			
+			DIVIDE(
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Filters based on slicer selection
+			        ),
+			        RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) * W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    SUMX(
+			        FILTER(
+			            W_MNJ_BPO_ORDER_DETAILS_F,
+			            NOT(ISBLANK(RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]))) &&
+			            RELATED(W_MNJ_POC_COLOR_WASH_D[WASH_COST]) <> 0 &&
+			            W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup] IN VALUES(W_MNJ_BPO_ORDER_DETAILS_F[END_USER_Lookup]) -- Ensures denominator follows slicer selection
+			        ),
+			        W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]
+			    ),
+			    0  -- Prevents division errors when denominator is 0
+			)
+		lineageTag: d7d851cf-bed6-47f6-be53-414b106b5677
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShortPOMark = ```
+			VAR ShortshipQtyValue = SUMX( FILTER( W_MNJ_BPO_ORDER_DETAILS_F, DATEDIFF(W_MNJ_BPO_ORDER_DETAILS_F[SHIPMENT_DATE], TODAY(), DAY) > 5 ), W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY] )
+			RETURN IF( ISBLANK(ShortshipQtyValue), "Nill", IF( ShortshipQtyValue = 0, "Full", IF( ShortshipQtyValue > 0, "Short", "Excess" ) ) )
+			
+			```
+		lineageTag: 46003231-2aee-4197-a584-4d6dd31eefdf
+
+	measure ShortPOCount_Numeric = ```
+			
+			SWITCH(
+			    [ShortPOMark], 
+			    "Short", 1,
+			    "Excess", 2,
+			    "Full", 3,
+			    "Nill", 4,
+			    BLANK()
+			)
+			```
+		formatString: 0
+		lineageTag: c7c61d33-bc74-4372-926f-686dbce20453
+
+	measure ShortCount_Nill = ```
+			
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F, 
+			    IF([ShortPOMark] = "Nill", 1, 0)
+			)
+			
+			Count_Full = 
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F, 
+			    IF([ShortPOMark] = "Full", 1, 0)
+			)
+			
+			Count_Short = 
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F, 
+			    IF([ShortPOMark] = "Short", 1, 0)
+			)
+			
+			Count_Excess = 
+			SUMX(
+			    W_MNJ_BPO_ORDER_DETAILS_F, 
+			    IF([ShortPOMark] = "Excess", 1, 0)
+			)
+			```
+		lineageTag: c29b0709-72ab-4baf-992d-b1d9acb4b745
+
+	measure ShortShipValue = ```
+			
+			SUMX(
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F, 
+			        DATEDIFF(W_MNJ_BPO_ORDER_DETAILS_F[USHIPMENT_DATE], TODAY(), DAY) > 5
+			    ), 
+			    -(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY] - W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]) 
+			    * W_MNJ_BPO_ORDER_DETAILS_F[FOB]
+			)
+			```
+		lineageTag: 5ada093a-d42f-435c-9235-85622db4404c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Balance Qty%' =
+			
+			DIVIDE(
+			    [Balance_Shipment],
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0bb674f0-0b39-4873-aa67-6d549b6f9449
+
+	measure BuyerWiseQty =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    ALLEXCEPT(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[Buyer_Name_Short],
+			        'Calendar'[Year]
+			    )
+			)
+		formatString: 0
+		lineageTag: a7cf6ff4-46ec-45cf-a4d5-aa0446796cfa
+
+	measure Buyerwise_Qty% =
+			
+			DIVIDE(
+			    [TotalQuantity],
+			    [TotalQuantity_ByYearOnly]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8c733b66-07b0-4c12-907b-6ff28261bf2f
+
+	measure TotalQuantity_ByYearOnly =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			    REMOVEFILTERS(W_MNJ_POC_H_D[AltBuyer Name Short])
+			)
+		formatString: 0
+		lineageTag: 683293e0-57a6-4609-ab3e-b84d037102eb
+
+	measure TotalShipQty_ByYearOnly =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY]),
+			    REMOVEFILTERS(W_MNJ_POC_H_D[AltBuyer Name Short])
+			)
+		formatString: 0
+		lineageTag: 43b35c27-c6c3-4114-86d7-9865c027ed5e
+
+	measure Buyerwise_ShipQty% =
+			
+			DIVIDE(
+			    [TotalShipQuantity],
+			    [TotalShipQty_ByYearOnly]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5c358308-8153-4a46-85bc-122b0925128c
+
+	measure TotalShipQuantity = SUM(W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])
+		formatString: 0
+		lineageTag: 71ee1d09-b521-4247-9023-9daa5ab25127
+
+	measure TotalFOBValue_ByYearOnly =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    REMOVEFILTERS(W_MNJ_POC_H_D[AltBuyer Name Short])
+			)
+		lineageTag: a3130956-b469-4df0-8ed9-216cc1d66035
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalFOBValue = SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE])
+		lineageTag: b1ccca67-448d-4da2-808c-615ae6f44582
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Buyerwise_FOBValue% =
+			
+			DIVIDE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    [TotalFOBValue_ByYearOnly]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b18362dd-bf49-4133-81f4-c7d06536a410
+
+	measure Buyerwise_FOBValue =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    ALLEXCEPT(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        'Calendar'[Year],
+			        W_MNJ_POC_H_D[AltBuyer Name Short]
+			    )
+			)
+		lineageTag: eb8d7c5f-b23b-4b55-8d5b-efc8f91734e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AverageW.FOBPOShipQty' = ```
+			
+			DIVIDE(
+			    SUMX(  
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY] * RELATED(W_MNJ_POC_COLOR_WASH_D[FOB])
+			    ),
+			    SUMX(W_MNJ_BPO_ORDER_DETAILS_F, W_MNJ_BPO_ORDER_DETAILS_F[SHIP_QTY])
+			)
+			```
+		lineageTag: 0b764819-0016-47e6-8b70-68b6299900e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalFOBQtyValue_ByYearOnly =
+			
+			CALCULATE(
+			    SUM(W_MNJ_BPO_ORDER_DETAILS_F[FOB_shipVALUE]),
+			    REMOVEFILTERS(W_MNJ_POC_H_D[AltBuyer Name Short])
+			)
+		lineageTag: eb437f8f-474f-4ed4-81fd-03fe277eb1c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MeasureTable
+		dataType: string
+		lineageTag: a15c6013-fc3a-4354-8477-e9a4295e448c
+		summarizeBy: none
+		sourceColumn: MeasureTable
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrowthTGASeason = ```
+			
+			VAR ValidData = 
+			    FILTER(
+			        W_MNJ_BPO_ORDER_DETAILS_F,
+			        NOT(ISBLANK(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])) // Excludes blank YeargrTGA rows
+			    )
+			
+			VAR CurrentYear = 
+			    SELECTEDVALUE(W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA])
+			
+			VAR CurrentQty =
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			        FILTER(
+			            ValidData,
+			            W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA] = CurrentYear
+			        )
+			    )
+			
+			VAR PreviousQty =
+			    CALCULATE(
+			        SUM(W_MNJ_BPO_ORDER_DETAILS_F[QUANTITY]),
+			        FILTER(
+			            ValidData,
+			            W_MNJ_BPO_ORDER_DETAILS_F[YeargrTGA] = CurrentYear - 1
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(PreviousQty)) && PreviousQty <> 0,
+			    DIVIDE(CurrentQty - PreviousQty, PreviousQty, 0),
+			    BLANK()
+			)
+			```
+		lineageTag: 7718d5f2-a76f-43c8-bfc3-8006c148c2b9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition MeasureTable = m
+		mode: import
+		source =
+				let
+				    Source = ""
+				in
+				    Source
+
+	annotation PBI_ResultType = Text
+

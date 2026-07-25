@@ -1,0 +1,275 @@
+table W_MNJ_POC_COLOR_WASH_D
+	lineageTag: 6c35ca1d-644a-47b1-9c73-6c0a1c6f4f0a
+
+	column ROW_WID
+		dataType: double
+		lineageTag: 4ff664b7-34e7-423d-98e3-3e2d9826bc0e
+		summarizeBy: none
+		sourceColumn: ROW_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INTEGRATION_ID
+		dataType: string
+		lineageTag: b5c2ef23-b6d6-435c-80e3-cc9315e08580
+		summarizeBy: none
+		sourceColumn: INTEGRATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATASOURCE_NUM_ID
+		dataType: double
+		lineageTag: 27b3dafe-61d9-44f7-86aa-ccd4f0a0679a
+		summarizeBy: count
+		sourceColumn: DATASOURCE_NUM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ETL_PROC_WID
+		dataType: double
+		lineageTag: 949c8e62-b50e-4e1d-bdad-e8c35c8ee9f6
+		summarizeBy: count
+		sourceColumn: ETL_PROC_WID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SYSTEM_ID
+		dataType: double
+		lineageTag: bca2cfb9-48c8-4d37-8f40-1123efb7cd16
+		summarizeBy: count
+		sourceColumn: SYSTEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column POC_ID
+		dataType: double
+		lineageTag: 79b977a8-8187-4017-82df-ddadb818ec6a
+		summarizeBy: count
+		sourceColumn: POC_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COLOR
+		dataType: string
+		lineageTag: bebc50d3-9154-4d69-b15f-cecbb93e1a30
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column WASH
+		dataType: string
+		lineageTag: 6ddf59e3-ff1a-48d7-901d-a9ee3e6d6898
+		summarizeBy: none
+		sourceColumn: WASH
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_BY_ID
+		dataType: string
+		lineageTag: 608fca6a-9bc8-4bdf-8972-0381d0c7f205
+		summarizeBy: none
+		sourceColumn: CREATED_BY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANGED_BY_ID
+		dataType: string
+		lineageTag: 7617331c-5245-4231-b4f2-80bf4ea97dc6
+		summarizeBy: none
+		sourceColumn: CHANGED_BY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c7dd234a-2d22-4312-90cb-3731fcdf3f3e
+		summarizeBy: none
+		sourceColumn: CREATED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: f5686700-6217-4459-89d5-bc6c9e1a112b
+			defaultHierarchy: LocalDateTable_a8a88d6e-3e33-420e-9e93-f2a62722f57e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ede05672-a149-46c8-993f-d44b9b46fdce
+		summarizeBy: none
+		sourceColumn: CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 58b5b91c-59e5-420c-b973-0b187c3aa6a8
+			defaultHierarchy: LocalDateTable_a9907b3f-55a2-49c3-ad94-cd98b25dd5c1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX1_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0870b398-e874-4a5b-8ce3-ef5694af2c64
+		summarizeBy: none
+		sourceColumn: AUX1_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 724663af-ddeb-4227-9013-0b0844d2c9af
+			defaultHierarchy: LocalDateTable_6437691a-e800-434e-894d-2733348a7f31.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX2_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a94802c6-0338-44d7-ad9a-69acac3349ba
+		summarizeBy: none
+		sourceColumn: AUX2_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: 26c556f3-240c-459b-aa3c-33cea5d48441
+			defaultHierarchy: LocalDateTable_4a7781e9-d626-40df-a768-fd7deb0b37ec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX3_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b4f5a136-5d03-4c44-a8df-4d5662fd52bb
+		summarizeBy: none
+		sourceColumn: AUX3_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: ec075760-f967-4a80-bdba-7d73603f8769
+			defaultHierarchy: LocalDateTable_0de56c94-0a2e-42f9-a0b2-5dc06ed2df83.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AUX4_CHANGED_ON_DT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 315b768a-fcbc-4683-9bca-4eb0dcfbb220
+		summarizeBy: none
+		sourceColumn: AUX4_CHANGED_ON_DT
+
+		variation Variation
+			isDefault
+			relationship: d9953e55-a794-4d1f-acf8-245438876372
+			defaultHierarchy: LocalDateTable_8409b21f-bb23-4ffa-a7fe-d9a9874435ba.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_INSERT_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 06bbed18-6aa1-4a2b-b3ba-5910824e207e
+		summarizeBy: none
+		sourceColumn: W_INSERT_DATE
+
+		variation Variation
+			isDefault
+			relationship: e1aa927d-7d3a-473a-b015-d6e44b664812
+			defaultHierarchy: LocalDateTable_8046ad68-6947-4fc3-9fbc-fcc61552273e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column W_UPDATE_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: de5ec2b9-a12a-47fa-b35b-2f2acbd20614
+		summarizeBy: none
+		sourceColumn: W_UPDATE_DATE
+
+		variation Variation
+			isDefault
+			relationship: a6d33d3a-667a-4828-882a-950341d4b88c
+			defaultHierarchy: LocalDateTable_12196786-06fd-49f2-8368-4949bd3ac2aa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELETE_FLG
+		dataType: string
+		lineageTag: a228ea48-c887-4067-802e-ba55be2752ad
+		summarizeBy: none
+		sourceColumn: DELETE_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column TENANT_ID
+		dataType: string
+		lineageTag: 18319aa9-d28e-48ee-afb6-71dd6cd33edf
+		summarizeBy: none
+		sourceColumn: TENANT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOB
+		dataType: double
+		lineageTag: 60f5e6af-508b-4437-9521-85204997205e
+		summarizeBy: sum
+		sourceColumn: FOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CM
+		dataType: double
+		lineageTag: 6fbe5c9f-970d-4d7c-a824-fd7bfc4d956a
+		summarizeBy: sum
+		sourceColumn: CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WASH_COST
+		dataType: double
+		lineageTag: c6188732-76ac-4fac-a8b9-1de2539e2526
+		summarizeBy: sum
+		sourceColumn: WASH_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SAM
+		dataType: double
+		lineageTag: 9492116c-341f-446c-86ee-d019b2b4aa1a
+		summarizeBy: sum
+		sourceColumn: SAM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition W_MNJ_POC_COLOR_WASH_D = m
+		mode: import
+		source =
+				let
+				    Source = Oracle.Database("192.168.200.141:1521/biprod2", [HierarchicalNavigation=true]),
+				    DEV_DW = Source{[Schema="DEV_DW"]}[Data],
+				    W_MNJ_POC_COLOR_WASH_D1 = DEV_DW{[Name="W_MNJ_POC_COLOR_WASH_D"]}[Data]
+				in
+				    W_MNJ_POC_COLOR_WASH_D1
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

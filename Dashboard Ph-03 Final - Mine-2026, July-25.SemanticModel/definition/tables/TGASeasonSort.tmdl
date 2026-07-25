@@ -1,0 +1,61 @@
+table TGASeasonSort
+	lineageTag: f0ef1ca2-30ab-4dcb-bdb6-692280da017c
+
+	column SEASON
+		dataType: string
+		lineageTag: e8298318-0e1a-488e-a632-130cc09636ab
+		summarizeBy: none
+		sourceColumn: SEASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season_Sort
+		dataType: string
+		lineageTag: eee2debd-ce43-4388-b1e8-c9db41585278
+		summarizeBy: none
+		sourceColumn: Season_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TGASeasonSort = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(
+				        {
+				            {"Winter 16", "01.Winter 16"},
+				            {"Summer-17", "02.Summer-17"},
+				            {"Winter 17", "03.Winter 17"},
+				            {"Summer 18", "04.Summer 18"},
+				            {"Winter 18", "05.Winter 18"},
+				            {"Summer 19", "06.Summer 19"},
+				            {"Winter 19", "07.Winter 19"},
+				            {"Summer-20", "08.Summer-20"},
+				            {"Winter 20", "09.Winter 20"},
+				            {"SUMMER-21", "10.SUMMER-21"},
+				            {"Winter 21", "11.Winter 21"},
+				            {"Summer 22", "12.Summer 22"},
+				            {"Winter 22", "13.Winter 22"},
+				            {"Summer 23", "14.Summer 23"},
+				            {"Winter 23", "15.Winter 23"},
+				            {"Summer 24", "16.Summer 24"},
+				            {"Winter 24", "17.Winter 24"},
+				            {"Summer 25", "18.Summer 25"},
+				            {"Winter 25", "19.Winter 25"},
+				            {"Summer 26", "20.Summer 26"},
+				            {"Winter 26", "21.Winter 26"},
+				            {"Summer 27", "22.Summer 27"},
+				            {"Winter 27", "23.Winter 27"},
+				            {"Summer 28", "24.Summer 28"},
+				            {"Winter 28", "25.Winter 28"}
+				        },
+				        {"SEASON", "Season_Sort"}
+				    ),
+				    #"Sorted Rows" = Table.Sort(Source,{{"Season_Sort", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

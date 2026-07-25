@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "0a4c9f4b0a57de23c02b",
+  "displayName": "TGA Order ",
+  "displayOption": "FitToPage",
+  "height": 1100,
+  "width": 2000,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3d8bd2ede0023c08357c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_CUSTOMER_D"
+              }
+            },
+            "Property": "Buyer Name short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_CUSTOMER_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Buyer Name short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TAUS'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "b5e04fe1c55c913b4e95",
+    "type": "Default",
+    "parameters": []
+  },
+  "visibility": "HiddenInViewMode"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "e4241500dd5e7dc00c3b",
+  "position": {
+    "x": 586.27945205479443,
+    "y": 133.21120797011204,
+    "z": 3000,
+    "height": 464,
+    "width": 1414.9432478759177,
+    "tabOrder": 10000
+  },
+  "visualGroup": {
+    "displayName": "Yearly FOB",
+    "groupMode": "ScaleMode"
+  }
+}

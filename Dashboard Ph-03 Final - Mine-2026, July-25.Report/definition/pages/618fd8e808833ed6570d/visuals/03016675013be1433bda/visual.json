@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "03016675013be1433bda",
+  "position": {
+    "x": 0,
+    "y": 587.00696055684455,
+    "z": 5000,
+    "height": 452.43619489559165,
+    "width": 986.07888631090486,
+    "tabOrder": 12000
+  },
+  "visualGroup": {
+    "displayName": "TUSA OTS",
+    "groupMode": "ScaleMode",
+    "objects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "isHidden": true
+}

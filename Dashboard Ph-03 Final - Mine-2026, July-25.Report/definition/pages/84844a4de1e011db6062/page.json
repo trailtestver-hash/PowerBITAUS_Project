@@ -1,0 +1,447 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "84844a4de1e011db6062",
+  "displayName": "%All Shipment Details",
+  "displayOption": "FitToPage",
+  "height": 1100,
+  "width": 2000,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "671bc3fc540b8198610e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_OPERATING_UNIT_D"
+              }
+            },
+            "Property": "ORG_SHORT_NAME"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_OPERATING_UNIT_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "ORG_SHORT_NAME"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL Unit1'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL Unit1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "0ba85eb83c8b25d0ed6e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_CUSTOMER_D"
+              }
+            },
+            "Property": "Unit_Look_Cus"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_CUSTOMER_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Unit_Look_Cus"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "c843083374550db075d4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "Unit_Look_POC"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_POC_H_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Unit_Look_POC"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "dfb4c77617b30d792873",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "Short/Excess_Qty"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "bac5ba56eae347d3c497",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "CountOfStyle"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "49998d0fd8aeb0705d0a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "Avg_Syle_Qty"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "2d6ea140c6c771f22994",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "AltBuyer Name Short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_POC_H_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "AltBuyer Name Short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TAUS'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a24d7055cdc795be15d7",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "a088f02e0a853baaa61b",
+        "boundFilter": "dfb4c77617b30d792873",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "Short/Excess_Qty"
+          }
+        }
+      },
+      {
+        "name": "21c39e96423b3b307c2e",
+        "boundFilter": "bac5ba56eae347d3c497",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "CountOfStyle"
+          }
+        }
+      },
+      {
+        "name": "b9e7645bbcd5a320811d",
+        "boundFilter": "49998d0fd8aeb0705d0a",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "Avg_Syle_Qty"
+          }
+        }
+      },
+      {
+        "name": "0a965169c723af501c1a",
+        "boundFilter": "2d6ea140c6c771f22994",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "AltBuyer Name Short"
+          }
+        }
+      }
+    ],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'background from GPD.JPG'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "background_from_GPD1446587474360289.JPG"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "65D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "55fffbd53d0d4194405d",
+      "target": "71c24350e07cd0184b76",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b716b3e85dd78a1136e5",
+      "target": "bc215409d341b71c79a7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e69ccc48973ebdc07c4a",
+      "target": "bc215409d341b71c79a7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8d45360f609ba39bcb05",
+      "target": "bc215409d341b71c79a7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8c94b16668ba3ba0adc0",
+      "target": "bc215409d341b71c79a7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8c94b16668ba3ba0adc0",
+      "target": "71c24350e07cd0184b76",
+      "type": "DataFilter"
+    },
+    {
+      "source": "374e105ccda13c51606d",
+      "target": "bc215409d341b71c79a7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "374e105ccda13c51606d",
+      "target": "8c94b16668ba3ba0adc0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8c94b16668ba3ba0adc0",
+      "target": "117ae21608a5820d0a08",
+      "type": "DataFilter"
+    }
+  ]
+}

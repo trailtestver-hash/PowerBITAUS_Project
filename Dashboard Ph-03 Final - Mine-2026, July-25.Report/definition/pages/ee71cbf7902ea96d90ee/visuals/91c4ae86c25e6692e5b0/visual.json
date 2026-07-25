@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "91c4ae86c25e6692e5b0",
+  "position": {
+    "x": 817.790530846485,
+    "y": 622.66857962697281,
+    "z": 5000,
+    "height": 479.19655667144912,
+    "width": 1182.2094691535151,
+    "tabOrder": 11000
+  },
+  "visualGroup": {
+    "displayName": "Yearly SAM effi",
+    "groupMode": "ScaleMode"
+  }
+}

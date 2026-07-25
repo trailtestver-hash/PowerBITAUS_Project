@@ -1,0 +1,629 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ade23083ebca57998582",
+  "displayName": "#Costing Details",
+  "displayOption": "FitToPage",
+  "height": 1100,
+  "width": 2000,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "44374af0668da6184d55",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.Wash_BPOorder"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "cfd27772b8d75272ae46",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.ActualSAM"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "5695c06cba360a015d72",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.ActualEFFICIENCY"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "a5e143ccbcde6a975b64",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "8ab1ba7cc7049e030445",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "COSTING_SAM"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "746c283232e1e678e9e2",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "ACTUAL_SAM"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "2b016686722511bb2a12",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "COSTING_EFFICIENCY"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "8d670ca2500300a2310b",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "ACTUAL_EFFICIENCY"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "d1d2dedf7410d829ad0d",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.Wash_Test"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "a6f51fbea7c341d6ca16",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.CMBPOorder"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "8a2b93eb1e8b054981bc",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.FOBPOorder"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "cea56b8794d85c565d91",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_OPERATING_UNIT_D"
+              }
+            },
+            "Property": "ORG_SHORT_NAME"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_OPERATING_UNIT_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "ORG_SHORT_NAME"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL Unit1'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL Unit1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "fb33f3f28c0eb04c6100",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_CUSTOMER_D"
+              }
+            },
+            "Property": "Unit_Look_Cus"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_CUSTOMER_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Unit_Look_Cus"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "5e333fe19c6821d36c66",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_POC_H_D"
+              }
+            },
+            "Property": "Unit_Look_POC"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "W_MNJ_POC_H_D",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Unit_Look_POC"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CAL'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'CGL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "5ae59e488ed894a8d2d9",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "feff5f746e7a82bc9cdd",
+        "boundFilter": "8a2b93eb1e8b054981bc",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.FOBPOorder"
+          }
+        }
+      },
+      {
+        "name": "77f46989d862c02da080",
+        "boundFilter": "a6f51fbea7c341d6ca16",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.CMBPOorder"
+          }
+        }
+      },
+      {
+        "name": "3f03a17e5ac36100edb1",
+        "boundFilter": "d1d2dedf7410d829ad0d",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.Wash_Test"
+          }
+        }
+      },
+      {
+        "name": "27a7bb14ba33b101d648",
+        "boundFilter": "8d670ca2500300a2310b",
+        "asAggregation": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "ACTUAL_EFFICIENCY"
+          }
+        }
+      },
+      {
+        "name": "605e4552230c6c9c734d",
+        "boundFilter": "2b016686722511bb2a12",
+        "asAggregation": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "COSTING_EFFICIENCY"
+          }
+        }
+      },
+      {
+        "name": "49167b5e08dcc839d094",
+        "boundFilter": "746c283232e1e678e9e2",
+        "asAggregation": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "ACTUAL_SAM"
+          }
+        }
+      },
+      {
+        "name": "0dcce4df1d408c9c7200",
+        "boundFilter": "8ab1ba7cc7049e030445",
+        "asAggregation": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+              }
+            },
+            "Property": "COSTING_SAM"
+          }
+        }
+      },
+      {
+        "name": "1e09b796606945d92dc0",
+        "boundFilter": "a5e143ccbcde6a975b64",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        }
+      },
+      {
+        "name": "ae6d2de5d6196a217035",
+        "boundFilter": "5695c06cba360a015d72",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.ActualEFFICIENCY"
+          }
+        }
+      },
+      {
+        "name": "ddd22c3f82a039d4d105",
+        "boundFilter": "cfd27772b8d75272ae46",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.ActualSAM"
+          }
+        }
+      },
+      {
+        "name": "b2fdd3208bb001769241",
+        "boundFilter": "44374af0668da6184d55",
+        "fieldExpr": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureTable"
+              }
+            },
+            "Property": "AverageW.Wash_BPOorder"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'background from GPD.JPG'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "background_from_GPD6361205065259766.JPG"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "65D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "92d87ad718b6eec03060",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44ca59ac939d61797b46",
+      "target": "4e9e11d5a86e3ab404c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44ca59ac939d61797b46",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4e9e11d5a86e3ab404c2",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1133d17dd082a030dd01",
+      "target": "4e9e11d5a86e3ab404c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1133d17dd082a030dd01",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "89f9003c24c6e6d31241",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "45713d3949dd0c454d1e",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3e012bb1d98b7051139a",
+      "target": "7eadf8ba209151e8995e",
+      "type": "DataFilter"
+    }
+  ]
+}

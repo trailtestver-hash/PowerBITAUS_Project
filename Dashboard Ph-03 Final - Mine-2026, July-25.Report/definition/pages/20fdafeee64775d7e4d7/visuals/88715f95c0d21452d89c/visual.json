@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "88715f95c0d21452d89c",
+  "position": {
+    "x": 1103.6088474970898,
+    "y": 433.06169965075668,
+    "z": 11500,
+    "height": 239.81373690337603,
+    "width": 293.36437718277068,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_CUT_TO_SHIPMENT_F"
+                    }
+                  },
+                  "Property": "StyleStatus"
+                }
+              },
+              "queryRef": "W_MNJ_CUT_TO_SHIPMENT_F.StyleStatus1",
+              "nativeQueryRef": "StyleStatus"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_CUT_TO_SHIPMENT_F"
+                        }
+                      },
+                      "Property": "StyleStatus"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "W_MNJ_CUT_TO_SHIPMENT_F.StyleStatus",
+              "nativeQueryRef": "Count of StyleStatus"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Count of Style Close'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

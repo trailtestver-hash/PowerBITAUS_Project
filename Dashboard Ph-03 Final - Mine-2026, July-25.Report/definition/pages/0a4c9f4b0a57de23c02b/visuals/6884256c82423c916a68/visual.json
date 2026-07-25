@@ -1,0 +1,392 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6884256c82423c916a68",
+  "position": {
+    "x": 49.684848708896325,
+    "y": 182.17777859928651,
+    "z": 0,
+    "height": 917.986728526275,
+    "width": 1876.1945250549898,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_CUSTOMER_D"
+                    }
+                  },
+                  "Property": "Buyer Name short"
+                }
+              },
+              "queryRef": "W_MNJ_CUSTOMER_D.Buyer Name short",
+              "nativeQueryRef": "Buyer Name short"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "Dept_TGA"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.Dept_TGA",
+              "nativeQueryRef": "Dept_TGA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "STYLE_Lookup"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup",
+              "nativeQueryRef": "STYLE_Lookup"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "StyleNewRepeatTGA"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.StyleNewRepeatTGA",
+              "nativeQueryRef": "StyleNewRepeatTGA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "BPO_NO"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.BPO_NO",
+              "nativeQueryRef": "BPO_NO"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "QUANTITY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)",
+              "nativeQueryRef": "Sum of QUANTITY"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                        }
+                      },
+                      "Property": "SHIP_QTY"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)",
+              "nativeQueryRef": "Sum of SHIP_QTY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShipmentBalance"
+                }
+              },
+              "queryRef": "MeasureTable.ShipmentBalance",
+              "nativeQueryRef": "ShipmentBalance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShortShipbeforeToday"
+                }
+              },
+              "queryRef": "MeasureTable.ShortShipbeforeToday",
+              "nativeQueryRef": "ShortShipbeforeToday"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                    }
+                  },
+                  "Property": "SHIPMENT_DATE"
+                }
+              },
+              "queryRef": "W_MNJ_BPO_ORDER_DETAILS_F.SHIPMENT_DATE",
+              "nativeQueryRef": "SHIPMENT_DATE",
+              "format": "d MMMM, yyyy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Conditional_FOB_By_BPO"
+                }
+              },
+              "queryRef": "MeasureTable.Conditional_FOB_By_BPO",
+              "nativeQueryRef": "Conditional_FOB_By_BPO"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "ShorshipValueToday"
+                }
+              },
+              "queryRef": "MeasureTable.ShorshipValueToday",
+              "nativeQueryRef": "ShorshipValueToday",
+              "format": "0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "W_MNJ_BPO_ORDER_DETAILS_F"
+                  }
+                },
+                "Property": "STYLE_Lookup"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.00001201313351D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_CUSTOMER_D.Buyer Name short"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "134.00001832550169D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.StyleNewRepeatTGA"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.49998041100596D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.QUANTITY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "142.5D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(W_MNJ_BPO_ORDER_DETAILS_F.SHIP_QTY)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.50000328853184D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShipmentBalance"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "134.50004811327238D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MeasureTable.ShortShipbeforeToday"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "134.50002145769258D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.BPO_NO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "216.80972317736322D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "W_MNJ_BPO_ORDER_DETAILS_F.STYLE_Lookup"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FlashyRows'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

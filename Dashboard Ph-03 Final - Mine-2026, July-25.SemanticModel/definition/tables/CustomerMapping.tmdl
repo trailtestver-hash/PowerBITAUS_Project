@@ -1,0 +1,51 @@
+table CustomerMapping
+	lineageTag: 8c8efd4a-6cb2-4caf-b060-fc95986fd265
+
+	column OriginalName
+		lineageTag: edc178b3-82fd-4e5e-a979-c79cbbde7c5e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OriginalName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayName
+		lineageTag: d4af81c3-5fcf-4175-b051-06e3211c101a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DisplayName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CustomerMapping = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "OriginalName", STRING,
+				    "DisplayName", STRING,
+				    {
+				        {"ITX TRADING S.A.", "Zara"},
+				        {"GU Co., Ltd", "GU"},
+				        {"M&J (HK) LIMITED", "M&J"},
+				        {"BRIARA TRADING COMPANY", "B.R.A"},
+				        {"KONTOOR ASIA TRADING LIMITED", "KONT"},
+				        {"Target Australia PTY Ltd.", "TAUS"},
+				        {"Target Stores", "TUSA"},
+				        {"The Gap, Inc.", "GAP"},
+				        {"Lee Wrangler Asia Limited (Kontoor brands)", "Lee"},
+				        {"Matsbro (HK) LIMITED", "MTB.HK"},
+				        {"DESIGN SOURCING INTERNATIONAL CORP", "D.S.I"},
+				        {"H&M Hennes & Mauritz GBC AB", "H&M"},
+				        {"Silver Moon Jeans", "Silv.M"},
+				        {"WHO SAYS ? INC", "W.S"},
+				        {"JeansBlue", "J.B"},
+				        {"EMEA Aspire Trading FZE", "EMEA"},
+				        {"FOREVER 21, INC", "FOREVER"},
+				        {"LEVI STRAUSS & CO.", "Levi's"},
+				        {"VF Sourcing ASIA S.A.R.L.", "VF"}
+				    }
+				)
+
+	annotation PBI_Id = f454ddac12334638bdfda35284bd2f4b
+

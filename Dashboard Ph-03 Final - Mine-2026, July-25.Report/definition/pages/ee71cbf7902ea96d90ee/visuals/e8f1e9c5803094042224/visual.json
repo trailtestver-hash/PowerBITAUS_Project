@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "e8f1e9c5803094042224",
+  "position": {
+    "x": 0,
+    "y": 622.478386167147,
+    "z": 4000,
+    "height": 478.38616714697412,
+    "width": 818.44380403458217,
+    "tabOrder": 8000
+  },
+  "visualGroup": {
+    "displayName": "Weg. avg SAM Effi",
+    "groupMode": "ScaleMode"
+  }
+}
