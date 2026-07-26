@@ -1,5 +1,6 @@
 table 'TAUS Summary'
 	lineageTag: 5205912b-4b76-4a44-888f-d8d50c3bf29a
+	description: "TAUS season-wise order and shipment summary for Target Australia PTY Ltd."
 
 	column Buyer_Name_Short
 		lineageTag: bd03022f-bc92-49d9-9b7a-6cc631b8f432
