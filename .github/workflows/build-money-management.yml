@@ -1,0 +1,41 @@
+name: Build Money Management APK
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'money-management-android/**'
+      - '.github/workflows/build-money-management.yml'
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build debug APK
+        working-directory: money-management-android
+        run: gradle --no-daemon :app:assembleDebug
+
+      - name: Rename APK
+        run: cp money-management-android/app/build/outputs/apk/debug/app-debug.apk Money_Management_1_2.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Money-Management-1.2-APK
+          path: Money_Management_1_2.apk
+          if-no-files-found: error
