@@ -46,8 +46,12 @@ function renameCurrentProfile(){
   if(!profile){notice('Profile পাওয়া যায়নি');return}
   profile.name=name;
   persistState(state);
-  const option=$('profileSelect')?.querySelector(`option[value="${CSS.escape(state.active)}"]`);
-  if(option)option.textContent=name;
+  const select=$('profileSelect');
+  if(select){
+    Array.from(select.options).forEach(option=>{
+      if(option.value===state.active)option.textContent=name;
+    });
+  }
   notice('Profile-এর নাম পরিবর্তন হয়েছে');
   setTimeout(()=>location.reload(),450);
 }
@@ -66,6 +70,7 @@ function syncDriveControls(){
 function start(){
   const cancel=$('cancelQuick');
   if(cancel){cancel.textContent='×';cancel.setAttribute('aria-label','Input মুছুন')}
+  if($('clearAll'))$('clearAll').textContent='সব local data মুছুন';
 
   $('renameProfile')?.addEventListener('click',renameCurrentProfile);
   $('currentProfileName')?.addEventListener('keydown',event=>{
