@@ -3,56 +3,56 @@
 'use strict';
 
 const RAW_BASE='https://raw.githubusercontent.com/trailtestver-hash/PowerBITAUS_Project/money-management-loans/money-management-android/app/src/main/assets/';
+const LAYERS=[
+  {name:'v20',css:'v20.css',js:'v20.js'},
+  {name:'v21',css:'v21.css',js:'v21.js'},
+  {name:'v22',css:'v22.css',js:'v22.js'}
+];
 const $=id=>document.getElementById(id);
 
 function syncDriveControls(){
   const badge=$('nativeBackupStatus');
   const connected=Boolean(badge?.classList.contains('connected'))||/সংযুক্ত$/.test(badge?.textContent||'');
-  const connect=$('connectDrive');
-  const backup=$('driveBackup');
-  const advanced=$('driveAdvanced');
+  const connect=$('connectDrive'),backup=$('driveBackup'),advanced=$('driveAdvanced');
   if(connect)connect.hidden=connected;
   if(backup)backup.hidden=!connected;
   if(advanced&&!connected)advanced.open=false;
 }
 
-async function loadText(name,cacheKey){
-  let text='';
+async function fetchCached(path,key){
   try{
-    const response=await fetch(RAW_BASE+name+'?refresh='+Date.now(),{cache:'no-store'});
+    const response=await fetch(RAW_BASE+path+'?refresh='+Date.now(),{cache:'no-store'});
     if(!response.ok)throw new Error('HTTP '+response.status);
-    text=await response.text();
-    localStorage.setItem(cacheKey,text);
+    const text=await response.text();
+    localStorage.setItem(key,text);
+    return text;
   }catch(error){
-    text=localStorage.getItem(cacheKey)||'';
+    return localStorage.getItem(key)||'';
   }
-  return text;
 }
 
-function injectCss(text,id){
-  if(!text||document.getElementById(id))return;
+function injectCss(name,code){
+  if(!code||document.getElementById('money-'+name+'-style'))return;
   const style=document.createElement('style');
-  style.id=id;
-  style.textContent=text;
+  style.id='money-'+name+'-style';
+  style.textContent=code;
   document.head.appendChild(style);
 }
 
-function runCode(text,flag,label){
-  if(!text||window[flag])return;
+function runJs(name,code){
+  const flag='__moneyManagement'+name.toUpperCase()+'Loaded';
+  if(!code||window[flag])return;
   window[flag]=true;
-  try{(0,eval)(text)}catch(error){window[flag]=false;console.error(label+' load failed',error)}
+  try{(0,eval)(code)}catch(error){window[flag]=false;console.error('Money Management '+name+' load failed',error)}
 }
 
-async function loadFeatureLayers(){
-  const v20Css=await loadText('v20.css','mm_v20_css_cache');
-  injectCss(v20Css,'moneyManagementV20Css');
-  const v20Js=await loadText('v20.js','mm_v20_feature_cache');
-  runCode(v20Js,'__moneyManagementV20Loaded','Money Management 2.0');
-
-  const v21Css=await loadText('v21.css','mm_v21_css_cache');
-  injectCss(v21Css,'moneyManagementV21Css');
-  const v21Js=await loadText('v21.js','mm_v21_feature_cache');
-  runCode(v21Js,'__moneyManagementV21Loaded','Money Management 2.1');
+async function loadLayers(){
+  for(const layer of LAYERS){
+    const css=await fetchCached(layer.css,'mm_'+layer.name+'_css_cache');
+    injectCss(layer.name,css);
+    const js=await fetchCached(layer.js,'mm_'+layer.name+'_js_cache');
+    runJs(layer.name,js);
+  }
 }
 
 function start(){
@@ -62,7 +62,7 @@ function start(){
   if(badge)new MutationObserver(syncDriveControls).observe(badge,{childList:true,subtree:true,attributes:true,characterData:true});
   syncDriveControls();
   setTimeout(syncDriveControls,500);
-  loadFeatureLayers();
+  loadLayers();
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
