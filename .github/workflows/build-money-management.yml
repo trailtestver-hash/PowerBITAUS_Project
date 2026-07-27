@@ -31,6 +31,7 @@ jobs:
           node --check money-management-android/app/src/main/assets/app.js
           node --check money-management-android/app/src/main/assets/v19.js
           node --check money-management-android/app/src/main/assets/v20.js
+          node --check money-management-android/app/src/main/assets/v21.js
 
       - name: Restore stable signing key
         working-directory: money-management-android
@@ -41,11 +42,11 @@ jobs:
         run: gradle --no-daemon :app:assembleRelease
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_0_History_Charts_Profile.apk
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_1_Hotfix.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-2.0-History-Charts-Profile-APK
-          path: Money_Management_2_0_History_Charts_Profile.apk
+          name: Money-Management-2.1-Hotfix-APK
+          path: Money_Management_2_1_Hotfix.apk
           if-no-files-found: error
