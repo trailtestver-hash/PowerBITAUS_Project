@@ -35,11 +35,11 @@ jobs:
         run: gradle --no-daemon :app:assembleRelease
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_1_6_Stable_Auto_Update.apk
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_1_7_Backup_Categories.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-1.6-Stable-Auto-Update-APK
-          path: Money_Management_1_6_Stable_Auto_Update.apk
+          name: Money-Management-1.7-Backup-Categories-APK
+          path: Money_Management_1_7_Backup_Categories.apk
           if-no-files-found: error
