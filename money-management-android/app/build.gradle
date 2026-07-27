@@ -10,8 +10,8 @@ android {
         applicationId 'com.moneymanagement.app'
         minSdk 24
         targetSdk 35
-        versionCode 4
-        versionName '1.4.0-loans'
+        versionCode 5
+        versionName '1.5.0-live-loans'
     }
 
     buildTypes {
