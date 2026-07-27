@@ -27,7 +27,9 @@ jobs:
           gradle-version: '8.9'
 
       - name: Check JavaScript syntax
-        run: node --check money-management-android/app/src/main/assets/app.js
+        run: |
+          node --check money-management-android/app/src/main/assets/app.js
+          node --check money-management-android/app/src/main/assets/v19.js
 
       - name: Restore stable signing key
         working-directory: money-management-android
@@ -38,11 +40,11 @@ jobs:
         run: gradle --no-daemon :app:assembleRelease
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_1_8_Drive_Category_Icons.apk
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_1_9_UI_Profile_Drive.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-1.8-Drive-Category-Icons-APK
-          path: Money_Management_1_8_Drive_Category_Icons.apk
+          name: Money-Management-1.9-UI-Profile-Drive-APK
+          path: Money_Management_1_9_UI_Profile_Drive.apk
           if-no-files-found: error
