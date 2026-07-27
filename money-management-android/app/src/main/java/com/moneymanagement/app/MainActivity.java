@@ -2,6 +2,7 @@ package com.moneymanagement.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -36,23 +36,21 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends Activity {
     private static final int FILE_CHOOSER_REQUEST = 1001;
-    private static final int BACKUP_EXPORT_REQUEST = 2001;
     private static final int BACKUP_IMPORT_REQUEST = 2002;
+    private static final int DRIVE_CONNECT_REQUEST = 2003;
 
     private static final String RAW_BASE =
             "https://raw.githubusercontent.com/trailtestver-hash/PowerBITAUS_Project/" +
             "money-management-loans/money-management-android/app/src/main/assets/";
     private static final String APP_ORIGIN = "https://money-management.local/";
     private static final String CACHE_FILE = "money-management-live.html";
-    private static final String BACKUP_PREFS = "money_management_backup";
-    private static final String BACKUP_KEY = "state_json";
     private static final String LEGACY_URL =
             "https://jewels-money-management.truongnguyetanh22964.chatgpt.site/";
 
     private WebView webView;
     private TextView loadingView;
     private ValueCallback<Uri[]> fileCallback;
-    private String pendingExportText;
+    private String pendingDriveText;
 
     private interface TextLoader {
         String load(String relativePath) throws Exception;
@@ -85,7 +83,12 @@ public class MainActivity extends Activity {
         setContentView(root);
 
         configureWebView();
+        BackupAlarmReceiver.scheduleFromPreferences(this);
         loadLatestVersion();
+    }
+
+    private SharedPreferences backupPreferences() {
+        return getSharedPreferences(BackupAlarmReceiver.BACKUP_PREFS, MODE_PRIVATE);
     }
 
     private void configureWebView() {
@@ -101,7 +104,7 @@ public class MainActivity extends Activity {
         settings.setUseWideViewPort(true);
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setUserAgentString(
-                settings.getUserAgentString() + " MoneyManagementStable/1.7");
+                settings.getUserAgentString() + " MoneyManagementStable/1.8");
 
         webView.addJavascriptInterface(new BackupBridge(), "MoneyBackup");
 
@@ -111,6 +114,7 @@ public class MainActivity extends Activity {
                 super.onPageFinished(view, url);
                 webView.setVisibility(View.VISIBLE);
                 loadingView.setVisibility(View.GONE);
+                pushDriveStatus();
             }
         });
 
@@ -140,32 +144,90 @@ public class MainActivity extends Activity {
     private class BackupBridge {
         @JavascriptInterface
         public void saveBackup(String json) {
-            if (json == null || json.trim().isEmpty()) {
-                return;
-            }
-            getSharedPreferences(BACKUP_PREFS, MODE_PRIVATE)
-                    .edit()
-                    .putString(BACKUP_KEY, json)
-                    .apply();
+            saveNativeState(json);
         }
 
         @JavascriptInterface
         public String getBackup() {
-            return getSharedPreferences(BACKUP_PREFS, MODE_PRIVATE)
-                    .getString(BACKUP_KEY, "");
+            return backupPreferences().getString(
+                    BackupAlarmReceiver.BACKUP_KEY,
+                    "");
         }
 
         @JavascriptInterface
-        public void exportBackup(String json) {
-            pendingExportText = json;
+        public String getDriveStatus() {
+            return buildDriveStatus().toString();
+        }
+
+        @JavascriptInterface
+        public void connectDrive(String json) {
+            saveNativeState(json);
+            pendingDriveText = json;
+            runOnUiThread(MainActivity.this::launchDriveFilePicker);
+        }
+
+        @JavascriptInterface
+        public void backupNow(String json) {
+            saveNativeState(json);
+            pendingDriveText = json;
             runOnUiThread(() -> {
-                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("application/json");
-                intent.putExtra(
-                        Intent.EXTRA_TITLE,
-                        "Money_Management_Backup.json");
-                startActivityForResult(intent, BACKUP_EXPORT_REQUEST);
+                String uri = backupPreferences().getString(
+                        BackupAlarmReceiver.DRIVE_URI_KEY,
+                        "");
+                if (uri.isEmpty()) {
+                    launchDriveFilePicker();
+                    return;
+                }
+                new Thread(() -> {
+                    boolean success = BackupAlarmReceiver.writeNow(
+                            MainActivity.this);
+                    runOnUiThread(() -> {
+                        notifyBackupResult(
+                                success,
+                                success
+                                        ? "Google Drive backup সম্পন্ন হয়েছে"
+                                        : "Drive backup করা যায়নি");
+                        pushDriveStatus();
+                    });
+                }).start();
+            });
+        }
+
+        @JavascriptInterface
+        public void setAutoBackupMinutes(int requestedMinutes) {
+            int minutes = normaliseInterval(requestedMinutes);
+            backupPreferences().edit()
+                    .putInt(BackupAlarmReceiver.AUTO_MINUTES_KEY, minutes)
+                    .apply();
+            BackupAlarmReceiver.schedule(MainActivity.this, minutes);
+            runOnUiThread(() -> {
+                if (minutes > 0 && backupPreferences().getString(
+                        BackupAlarmReceiver.DRIVE_URI_KEY,
+                        "").isEmpty()) {
+                    pendingDriveText = backupPreferences().getString(
+                            BackupAlarmReceiver.BACKUP_KEY,
+                            "");
+                    launchDriveFilePicker();
+                } else {
+                    pushDriveStatus();
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void disconnectDrive() {
+            backupPreferences().edit()
+                    .remove(BackupAlarmReceiver.DRIVE_URI_KEY)
+                    .remove(BackupAlarmReceiver.LAST_BACKUP_KEY)
+                    .putInt(BackupAlarmReceiver.AUTO_MINUTES_KEY, 0)
+                    .apply();
+            BackupAlarmReceiver.cancel(MainActivity.this);
+            runOnUiThread(() -> {
+                Toast.makeText(
+                        MainActivity.this,
+                        "Google Drive backup disconnect হয়েছে",
+                        Toast.LENGTH_SHORT).show();
+                pushDriveStatus();
             });
         }
 
@@ -175,6 +237,8 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("application/json");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                        Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                 startActivityForResult(intent, BACKUP_IMPORT_REQUEST);
             });
         }
@@ -194,6 +258,116 @@ public class MainActivity extends Activity {
                 }
             });
         }
+    }
+
+    private int normaliseInterval(int value) {
+        int[] allowed = {0, 15, 30, 60, 180, 360, 720, 1440};
+        for (int item : allowed) {
+            if (item == value) {
+                return item;
+            }
+        }
+        return 0;
+    }
+
+    private void saveNativeState(String json) {
+        if (json == null || json.trim().isEmpty()) {
+            return;
+        }
+        backupPreferences().edit()
+                .putString(BackupAlarmReceiver.BACKUP_KEY, json)
+                .apply();
+    }
+
+    private void launchDriveFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/json");
+        intent.putExtra(Intent.EXTRA_TITLE, "Money_Management_Cloud_Backup.json");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION |
+                Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        startActivityForResult(intent, DRIVE_CONNECT_REQUEST);
+    }
+
+    private JSONObject buildDriveStatus() {
+        SharedPreferences preferences = backupPreferences();
+        JSONObject status = new JSONObject();
+        try {
+            String uri = preferences.getString(
+                    BackupAlarmReceiver.DRIVE_URI_KEY,
+                    "");
+            status.put("connected", !uri.isEmpty());
+            status.put("intervalMinutes", preferences.getInt(
+                    BackupAlarmReceiver.AUTO_MINUTES_KEY,
+                    0));
+            status.put("lastBackupAt", preferences.getLong(
+                    BackupAlarmReceiver.LAST_BACKUP_KEY,
+                    0L));
+        } catch (Exception ignored) {
+            // The object still contains safe default values when possible.
+        }
+        return status;
+    }
+
+    private void pushDriveStatus() {
+        if (webView == null) {
+            return;
+        }
+        String script = "window.receiveDriveStatus&&window.receiveDriveStatus(" +
+                buildDriveStatus().toString() + ");";
+        webView.evaluateJavascript(script, null);
+    }
+
+    private void notifyBackupResult(boolean success, String message) {
+        if (webView == null) {
+            return;
+        }
+        String script = "window.onDriveBackupResult&&window.onDriveBackupResult(" +
+                success + "," + JSONObject.quote(message) + ");";
+        webView.evaluateJavascript(script, null);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private void connectDriveResult(Intent data) {
+        Uri uri = data == null ? null : data.getData();
+        if (uri == null) {
+            pendingDriveText = null;
+            return;
+        }
+
+        int flags = data.getFlags() &
+                (Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        try {
+            getContentResolver().takePersistableUriPermission(uri, flags);
+        } catch (Exception ignored) {
+            // Some document providers persist permission automatically.
+        }
+
+        backupPreferences().edit()
+                .putString(BackupAlarmReceiver.DRIVE_URI_KEY, uri.toString())
+                .apply();
+        if (pendingDriveText != null && !pendingDriveText.trim().isEmpty()) {
+            saveNativeState(pendingDriveText);
+        }
+        pendingDriveText = null;
+
+        new Thread(() -> {
+            boolean success = BackupAlarmReceiver.writeNow(this);
+            int minutes = backupPreferences().getInt(
+                    BackupAlarmReceiver.AUTO_MINUTES_KEY,
+                    0);
+            BackupAlarmReceiver.schedule(this, minutes);
+            runOnUiThread(() -> {
+                notifyBackupResult(
+                        success,
+                        success
+                                ? "Google Drive সংযুক্ত এবং backup হয়েছে"
+                                : "Drive file সংযুক্ত হয়েছে, কিন্তু backup ব্যর্থ");
+                pushDriveStatus();
+            });
+        }).start();
     }
 
     private void loadLatestVersion() {
@@ -287,7 +461,7 @@ public class MainActivity extends Activity {
         connection.setRequestProperty("Cache-Control", "no-cache");
         connection.setRequestProperty(
                 "User-Agent",
-                "MoneyManagementAndroid/1.7");
+                "MoneyManagementAndroid/1.8");
 
         int status = connection.getResponseCode();
         if (status < 200 || status >= 300) {
@@ -352,44 +526,23 @@ public class MainActivity extends Activity {
                 safe + "</small></body></html>";
     }
 
-    private void writeExport(Uri uri) {
-        if (uri == null || pendingExportText == null) {
-            return;
-        }
-        try (OutputStream output =
-                     getContentResolver().openOutputStream(uri)) {
-            if (output == null) {
-                throw new IOException("Output stream unavailable");
-            }
-            output.write(
-                    pendingExportText.getBytes(StandardCharsets.UTF_8));
-            output.flush();
-            Toast.makeText(
-                    this,
-                    "Google Drive/ফাইলে Backup save হয়েছে",
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException error) {
-            Toast.makeText(
-                    this,
-                    "Backup save করা যায়নি",
-                    Toast.LENGTH_LONG).show();
-        } finally {
-            pendingExportText = null;
-        }
-    }
-
-    private void readImport(Uri uri) {
+    private void readImport(Uri uri, int flags) {
         if (uri == null) {
             return;
         }
-        try (InputStream input =
-                     getContentResolver().openInputStream(uri)) {
+        try {
+            getContentResolver().takePersistableUriPermission(
+                    uri,
+                    flags & Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } catch (Exception ignored) {
+            // Persisting permission is optional for a one-time restore.
+        }
+        try (InputStream input = getContentResolver().openInputStream(uri)) {
             if (input == null) {
                 throw new IOException("Input stream unavailable");
             }
             String text = readStream(input);
-            String script =
-                    "window.receiveImportedBackup(" +
+            String script = "window.receiveImportedBackup(" +
                     JSONObject.quote(text) +
                     ");";
             webView.evaluateJavascript(script, null);
@@ -424,11 +577,12 @@ public class MainActivity extends Activity {
             return;
         }
 
-        if (requestCode == BACKUP_EXPORT_REQUEST) {
+        if (requestCode == DRIVE_CONNECT_REQUEST) {
             if (resultCode == RESULT_OK && data != null) {
-                writeExport(data.getData());
+                connectDriveResult(data);
             } else {
-                pendingExportText = null;
+                pendingDriveText = null;
+                pushDriveStatus();
             }
             return;
         }
@@ -436,7 +590,7 @@ public class MainActivity extends Activity {
         if (requestCode == BACKUP_IMPORT_REQUEST &&
                 resultCode == RESULT_OK &&
                 data != null) {
-            readImport(data.getData());
+            readImport(data.getData(), data.getFlags());
         }
     }
 
