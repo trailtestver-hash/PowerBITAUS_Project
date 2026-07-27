@@ -1,44 +1,57 @@
 (function(){
 'use strict';
 
-function parseMoney(text){
-  const value=Number(String(text||'').replace(/[^0-9.-]/g,''));
-  return Number.isFinite(value)?value:0;
-}
+const KEY='mm_standalone_v1';
 
 function money(value){
   return '৳'+Number(value||0).toLocaleString('en-US',{maximumFractionDigits:2});
 }
 
+function remaining(loan){
+  const paid=(Array.isArray(loan.payments)?loan.payments:[])
+    .reduce((sum,payment)=>sum+Number(payment.amount||0),0);
+  return Math.max(0,Number(loan.principal||0)-paid);
+}
+
+function today(){
+  const date=new Date();
+  date.setMinutes(date.getMinutes()-date.getTimezoneOffset());
+  return date.toISOString().slice(0,10);
+}
+
 function refreshUnpaidLoanSummary(){
   const summary=document.getElementById('loanSummary');
-  const list=document.getElementById('loanList');
-  if(!summary||!list)return;
+  if(!summary)return;
 
-  const unpaid=[...list.querySelectorAll('.loan-card')].filter(card=>!card.querySelector('.status.paid'));
-  let receivable=0;
-  let payable=0;
-  let overdue=0;
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(error){state={}}
+  const activeProfile=state.active;
+  const loans=(Array.isArray(state.loans)?state.loans:[])
+    .filter(loan=>loan.profileId===activeProfile)
+    .map(loan=>({loan,balance:remaining(loan)}))
+    .filter(item=>item.balance>0.0001);
 
-  unpaid.forEach(card=>{
-    const remaining=parseMoney(card.querySelector('.loan-money-grid > div:nth-child(3) strong')?.textContent);
-    if(card.querySelector('.loan-icon.given'))receivable+=remaining;
-    if(card.querySelector('.loan-icon.taken'))payable+=remaining;
-    if(card.querySelector('.status.overdue'))overdue+=1;
-  });
+  const receivable=loans
+    .filter(item=>item.loan.kind==='given')
+    .reduce((sum,item)=>sum+item.balance,0);
+  const payable=loans
+    .filter(item=>item.loan.kind==='taken')
+    .reduce((sum,item)=>sum+item.balance,0);
+  const overdue=loans.filter(item=>item.loan.dueDate&&item.loan.dueDate<today()).length;
 
   summary.innerHTML=`
     <div class="loan-summary-card given"><small>পাওনা বাকি</small><strong>${money(receivable)}</strong></div>
     <div class="loan-summary-card taken"><small>দেনা বাকি</small><strong>${money(payable)}</strong></div>
-    <div class="loan-summary-card receivable"><small>চলমান লোন</small><strong>${unpaid.length.toLocaleString('en-US')} টি</strong></div>
+    <div class="loan-summary-card receivable"><small>চলমান লোন</small><strong>${loans.length.toLocaleString('en-US')} টি</strong></div>
     <div class="loan-summary-card payable"><small>সময় পার</small><strong>${overdue.toLocaleString('en-US')} টি</strong></div>`;
 }
 
 function start(){
   refreshUnpaidLoanSummary();
-  const list=document.getElementById('loanList');
-  if(list)new MutationObserver(refreshUnpaidLoanSummary).observe(list,{childList:true,subtree:true,characterData:true});
   document.addEventListener('click',()=>setTimeout(refreshUnpaidLoanSummary,0));
+  document.addEventListener('change',()=>setTimeout(refreshUnpaidLoanSummary,0));
+  window.addEventListener('storage',refreshUnpaidLoanSummary);
+  setInterval(refreshUnpaidLoanSummary,1000);
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);
