@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="appbar">
-  <div class="brand"><div class="logo">M</div><div><h1>Money Management</h1><small>Offline personal expense manager</small></div></div>
+  <div class="brand"><div class="logo">M</div><div><h1>Money Management</h1><small>Personal money & loan manager</small></div></div>
   <select id="profileSelect"></select>
 </header>
 
@@ -36,6 +36,30 @@
     </section>
   </section>
 
+  <section class="page" id="loansPage">
+    <section class="card loan-hero">
+      <div class="title"><div><h2>লোন ব্যবস্থাপনা</h2><small>দেওয়া, নেওয়া ও পরিশোধের পূর্ণ হিসাব</small></div><button class="primary-small" id="openLoanForm">＋ নতুন লোন</button></div>
+      <div class="loan-summary" id="loanSummary"></div>
+    </section>
+    <section class="card loan-entry-card" id="loanEntryCard">
+      <div class="title"><h2>নতুন লোন এন্ট্রি</h2><button class="ghost-small" id="closeLoanForm">বন্ধ</button></div>
+      <div class="loan-kind-toggle" id="loanKindToggle"><button class="active given" data-loan-kind="given">আমি দিয়েছি</button><button class="taken" data-loan-kind="taken">আমি নিয়েছি</button></div>
+      <div class="loan-form-grid">
+        <label>ব্যক্তি / প্রতিষ্ঠান<input id="loanPerson" placeholder="যেমন: Rahim / Bank"></label>
+        <label>মূল টাকা<input id="loanPrincipal" inputmode="decimal" placeholder="৳ 0"></label>
+        <label>শুরুর তারিখ<input id="loanStartDate" type="date"></label>
+        <label>পরিশোধের শেষ তারিখ<input id="loanDueDate" type="date"></label>
+        <label>অ্যাকাউন্ট<select id="loanAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select></label>
+        <label class="wide">বিবরণ / শর্ত<input id="loanNote" placeholder="ঐচ্ছিক"></label>
+      </div>
+      <button class="loan-save" id="saveLoan">লোন সংরক্ষণ করুন</button>
+    </section>
+    <section class="card">
+      <div class="title"><h2>চলমান ও সম্পন্ন লোন</h2><div class="loan-filter" id="loanFilter"><button class="active" data-loan-filter="all">সব</button><button data-loan-filter="active">চলমান</button><button data-loan-filter="paid">পরিশোধিত</button></div></div>
+      <div id="loanList"></div>
+    </section>
+  </section>
+
   <section class="page" id="reportsPage"><section class="card"><div class="title"><h2>রিপোর্ট</h2></div><div class="filters"><label>From<input id="reportFrom" type="date"></label><label>To<input id="reportTo" type="date"></label></div><div class="summary" id="reportSummary"></div><div id="categoryList"></div></section></section>
 
   <section class="page" id="remindersPage"><section class="card"><div class="title"><h2>Payment Reminder</h2></div><div class="form"><input id="reminderTitle" placeholder="নাম"><input id="reminderDate" type="date"><input id="reminderAmount" inputmode="decimal" placeholder="Amount (ঐচ্ছিক)"><button id="addReminder">Reminder যোগ করুন</button></div><div id="reminderList"></div></section></section>
@@ -43,9 +67,12 @@
   <section class="page" id="morePage"><section class="card"><div class="title"><h2>অন্যান্য</h2></div><div class="form"><input id="newProfileName" placeholder="নতুন Profile নাম"><button id="addProfile">Profile তৈরি করুন</button><button id="copyBackup">Backup JSON Copy</button><button class="danger" id="clearAll">সব local data মুছুন</button></div></section></section>
 </main>
 
-<nav class="bottom-nav"><button class="active" data-nav="quick">＋<span>দ্রুত এন্ট্রি</span></button><button data-nav="history">▤<span>১০ দিনের হিসাব</span></button><button data-nav="reports">▥<span>রিপোর্ট</span></button><button data-nav="reminders">◷<span>রিমাইন্ডার</span></button><button data-nav="more">•••<span>অন্যান্য</span></button></nav>
+<nav class="bottom-nav six"><button class="active" data-nav="quick">＋<span>দ্রুত এন্ট্রি</span></button><button data-nav="loans">৳<span>লোন</span></button><button data-nav="history">▤<span>১০ দিনের হিসাব</span></button><button data-nav="reports">▥<span>রিপোর্ট</span></button><button data-nav="reminders">◷<span>রিমাইন্ডার</span></button><button data-nav="more">•••<span>অন্যান্য</span></button></nav>
 
 <div class="backdrop" id="editBackdrop"><div class="modal"><h3>Transaction Edit</h3><div class="edit-grid"><select id="editType"><option value="expense">ব্যয়</option><option value="income">আয়</option></select><input id="editAmount" inputmode="decimal" placeholder="Amount"><input id="editSubject" placeholder="Subject"><input id="editRemarks" placeholder="মন্তব্য"><select id="editAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select><input id="editDate" type="date"><input id="editTime" type="time"></div><div class="modal-actions"><button id="cancelEdit">Cancel</button><button id="saveEdit">Save</button></div></div></div>
+
+<div class="backdrop" id="paymentBackdrop"><div class="modal loan-payment-modal"><h3 id="paymentTitle">লোন পরিশোধ এন্ট্রি</h3><div class="payment-balance" id="paymentBalance"></div><div class="edit-grid"><input id="paymentAmount" inputmode="decimal" placeholder="পরিশোধের Amount"><input id="paymentDate" type="date"><select id="paymentAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select><input id="paymentNote" placeholder="মন্তব্য (ঐচ্ছিক)"></div><div class="modal-actions"><button id="cancelPayment">Cancel</button><button id="savePayment">পরিশোধ Save</button></div></div></div>
+
 <div class="snackbar" id="snackbar"><span>Transaction deleted</span><button id="undoDelete">Undo</button></div>
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
