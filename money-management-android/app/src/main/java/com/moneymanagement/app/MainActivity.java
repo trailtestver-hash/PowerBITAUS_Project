@@ -14,7 +14,7 @@ import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
     private static final int FILE_CHOOSER_REQUEST = 1001;
-    private static final String APP_URL = "https://jewels-money-management.truongnguyetanh22964.chatgpt.site/";
+    private static final String APP_URL = "file:///android_asset/index.html";
 
     private WebView webView;
     private ValueCallback<Uri[]> fileCallback;
