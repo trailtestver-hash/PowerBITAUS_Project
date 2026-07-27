@@ -1,0 +1,40 @@
+name: Deploy Money Management Live Site
+
+on:
+  push:
+    branches: [money-management-loans]
+    paths:
+      - 'money-management-android/app/src/main/assets/**'
+      - '.github/workflows/deploy-money-management-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: money-management-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Money Management site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: money-management-android/app/src/main/assets
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
