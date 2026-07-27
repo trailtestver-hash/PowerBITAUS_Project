@@ -8,16 +8,21 @@ import android.os.Bundle;
 import android.view.Window;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
     private static final int FILE_CHOOSER_REQUEST = 1001;
-    private static final String APP_URL = "file:///android_asset/index.html";
+    private static final String REMOTE_URL = "https://raw.githack.com/trailtestver-hash/PowerBITAUS_Project/money-management-loans/money-management-android/app/src/main/assets/index.html";
+    private static final String LOCAL_URL = "file:///android_asset/index.html";
 
     private WebView webView;
     private ValueCallback<Uri[]> fileCallback;
+    private boolean fallbackLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +45,34 @@ public class MainActivity extends Activity {
         settings.setDisplayZoomControls(false);
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
-        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setUserAgentString(settings.getUserAgentString() + " MoneyManagementLive/1.5");
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient() {
+            private void loadOfflineFallback(WebView view) {
+                if (!fallbackLoaded) {
+                    fallbackLoaded = true;
+                    view.loadUrl(LOCAL_URL);
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                if (request.isForMainFrame()) {
+                    loadOfflineFallback(view);
+                }
+            }
+
+            @Override
+            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                super.onReceivedHttpError(view, request, errorResponse);
+                if (request.isForMainFrame() && errorResponse.getStatusCode() >= 400) {
+                    loadOfflineFallback(view);
+                }
+            }
+        });
+
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(
@@ -63,7 +93,12 @@ public class MainActivity extends Activity {
             }
         });
 
-        webView.loadUrl(APP_URL);
+        loadLatestVersion();
+    }
+
+    private void loadLatestVersion() {
+        fallbackLoaded = false;
+        webView.loadUrl(REMOTE_URL + "?refresh=" + System.currentTimeMillis());
     }
 
     @Override
