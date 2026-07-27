@@ -15,17 +15,20 @@
 
 <main>
   <section class="page active" id="homePage">
-    <section class="card" id="quickSection">
-      <div class="title"><h2>দ্রুত এন্ট্রি</h2><small>Amount দিলেই Auto-save</small></div>
+    <section class="card quick-card" id="quickSection">
+      <div class="title quick-title">
+        <div><h2>দ্রুত এন্ট্রি</h2><small>Amount দিলেই Auto-save হবে</small></div>
+        <div class="quick-title-actions"><span class="autosave-status">✓ Auto-save</span><button id="cancelQuick" class="quick-cancel" type="button">× Input বাতিল</button></div>
+      </div>
       <div class="quick-scroll">
         <div class="quick-grid">
-          <b>ধরন</b><b>Amount</b><b>Subject</b><b>মন্তব্য</b><b>Date</b><b></b>
-          <strong class="expense">ব্যয়</strong><input id="expenseAmount" data-row="expense" inputmode="decimal" placeholder="0"><input id="expenseSubject" data-row="expense" placeholder="ঐচ্ছিক"><input id="expenseRemarks" data-row="expense" placeholder="ঐচ্ছিক"><input id="expenseDate" data-row="expense" type="date"><button data-cancel="expense">×</button>
-          <strong class="income">আয়</strong><input id="incomeAmount" data-row="income" inputmode="decimal" placeholder="0"><input id="incomeSubject" data-row="income" placeholder="ঐচ্ছিক"><input id="incomeRemarks" data-row="income" placeholder="ঐচ্ছিক"><input id="incomeDate" data-row="income" type="date"><button data-cancel="income">×</button>
+          <b>ধরন</b><b>Amount</b><b>Subject</b><b>Category</b><b>মন্তব্য</b><b>Date</b>
+          <strong class="expense">ব্যয়</strong><input id="expenseAmount" data-row="expense" inputmode="decimal" placeholder="0"><input id="expenseSubject" data-row="expense" placeholder="ঐচ্ছিক"><select id="expenseCategory" data-row="expense"></select><input id="expenseRemarks" data-row="expense" placeholder="ঐচ্ছিক"><input id="expenseDate" data-row="expense" type="date">
+          <strong class="income">আয়</strong><input id="incomeAmount" data-row="income" inputmode="decimal" placeholder="0"><input id="incomeSubject" data-row="income" placeholder="ঐচ্ছিক"><select id="incomeCategory" data-row="income"></select><input id="incomeRemarks" data-row="income" placeholder="ঐচ্ছিক"><input id="incomeDate" data-row="income" type="date">
         </div>
       </div>
       <div class="accounts" id="accountButtons"><button class="active" data-account="Cash">Cash</button><button data-account="Bank">Bank</button><button data-account="bKash">bKash</button></div>
-      <p class="hint">Enter চাপলে বা row-এর বাইরে গেলে save হবে। × চাপলে input বাতিল হবে।</p>
+      <p class="hint">Enter চাপলে বা row-এর বাইরে গেলে save হবে। উপরের “× Input বাতিল” চাপলে save হওয়ার আগের লেখা মুছে যাবে।</p>
       <details class="bulk"><summary>একাধিক Subject paste</summary><textarea id="bulkPaste" placeholder="ডিম&#10;মুড়ি&#10;চাল"></textarea><button id="makeDrafts">Row তৈরি করুন</button><div id="draftList"></div></details>
     </section>
 
@@ -60,23 +63,56 @@
     </section>
   </section>
 
-  <section class="page" id="reportsPage"><section class="card"><div class="title"><h2>রিপোর্ট</h2></div><div class="filters"><label>From<input id="reportFrom" type="date"></label><label>To<input id="reportTo" type="date"></label></div><div class="summary" id="reportSummary"></div><div id="categoryList"></div></section></section>
+  <section class="page" id="reportsPage">
+    <section class="card">
+      <div class="title"><h2>রিপোর্ট</h2></div>
+      <div class="filters"><label>From<input id="reportFrom" type="date"></label><label>To<input id="reportTo" type="date"></label></div>
+      <div class="summary" id="reportSummary"></div>
+      <div class="title subsection-title"><h3>Category অনুযায়ী হিসাব</h3></div>
+      <div id="categoryBreakdown"></div>
+    </section>
+  </section>
 
   <section class="page" id="remindersPage"><section class="card"><div class="title"><h2>Payment Reminder</h2></div><div class="form"><input id="reminderTitle" placeholder="নাম"><input id="reminderDate" type="date"><input id="reminderAmount" inputmode="decimal" placeholder="Amount (ঐচ্ছিক)"><button id="addReminder">Reminder যোগ করুন</button></div><div id="reminderList"></div></section></section>
 
-  <section class="page" id="morePage"><section class="card"><div class="title"><h2>অন্যান্য</h2></div><div class="form"><input id="newProfileName" placeholder="নতুন Profile নাম"><button id="addProfile">Profile তৈরি করুন</button><button id="copyBackup">Backup JSON Copy</button><button class="danger" id="clearAll">সব local data মুছুন</button></div></section></section>
+  <section class="page" id="morePage">
+    <section class="card sync-card">
+      <div class="title"><div><h2>Google account ও Backup</h2><small>ফোনে লগইন করা Google Drive account ব্যবহার হবে</small></div><span class="sync-badge" id="nativeBackupStatus">Local backup চালু</span></div>
+      <div class="sync-actions">
+        <button id="driveBackup">Google Drive-এ Backup</button>
+        <button id="driveRestore">Google Drive থেকে Restore</button>
+        <button id="openLegacyWeb">পুরোনো Web App খুলুন</button>
+      </div>
+      <p class="hint">পুরোনো data কেবল তখনই ফিরবে, যদি সেটি Drive/Android backup-এ থাকে অথবা পুরোনো Web App এখনও Chrome-এ data দেখায়।</p>
+    </section>
+
+    <section class="card">
+      <div class="title"><div><h2>Category Management</h2><small>Income ও Expense আলাদা করে Category তৈরি করুন</small></div></div>
+      <div class="category-form">
+        <label>Type<select id="categoryType"><option value="expense">Expense</option><option value="income">Income</option></select></label>
+        <label>Category<input id="categoryName" placeholder="যেমন: Food / Salary"></label>
+        <label>Subcategory<input id="categorySubcategory" placeholder="ঐচ্ছিক"></label>
+        <button id="saveCategory">Category Add</button>
+        <button id="cancelCategoryEdit" class="ghost-button" hidden>Cancel Edit</button>
+      </div>
+      <div id="categoryManageList"></div>
+    </section>
+
+    <section class="card">
+      <div class="title"><h2>Profile ও Data</h2></div>
+      <div class="form"><input id="newProfileName" placeholder="নতুন Profile নাম"><button id="addProfile">Profile তৈরি করুন</button><button id="copyBackup">Backup JSON Copy</button><button class="danger" id="clearAll">সব local data মুছুন</button></div>
+    </section>
+  </section>
 </main>
 
 <nav class="bottom-nav six"><button class="active" data-nav="quick">＋<span>দ্রুত এন্ট্রি</span></button><button data-nav="loans">৳<span>লোন</span></button><button data-nav="history">▤<span>১০ দিনের হিসাব</span></button><button data-nav="reports">▥<span>রিপোর্ট</span></button><button data-nav="reminders">◷<span>রিমাইন্ডার</span></button><button data-nav="more">•••<span>অন্যান্য</span></button></nav>
 
-<div class="backdrop" id="editBackdrop"><div class="modal"><h3>Transaction Edit</h3><div class="edit-grid"><select id="editType"><option value="expense">ব্যয়</option><option value="income">আয়</option></select><input id="editAmount" inputmode="decimal" placeholder="Amount"><input id="editSubject" placeholder="Subject"><input id="editRemarks" placeholder="মন্তব্য"><select id="editAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select><input id="editDate" type="date"><input id="editTime" type="time"></div><div class="modal-actions"><button id="cancelEdit">Cancel</button><button id="saveEdit">Save</button></div></div></div>
+<div class="backdrop" id="editBackdrop"><div class="modal"><h3>Transaction Edit</h3><div class="edit-grid"><select id="editType"><option value="expense">ব্যয়</option><option value="income">আয়</option></select><input id="editAmount" inputmode="decimal" placeholder="Amount"><input id="editSubject" placeholder="Subject"><select id="editCategory"></select><input id="editRemarks" placeholder="মন্তব্য"><select id="editAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select><input id="editDate" type="date"><input id="editTime" type="time"></div><div class="modal-actions"><button id="cancelEdit">Cancel</button><button id="saveEdit">Save</button></div></div></div>
 
 <div class="backdrop" id="paymentBackdrop"><div class="modal loan-payment-modal"><h3 id="paymentTitle">লোন পরিশোধ এন্ট্রি</h3><div class="payment-balance" id="paymentBalance"></div><div class="edit-grid"><input id="paymentAmount" inputmode="decimal" placeholder="পরিশোধের Amount"><input id="paymentDate" type="date"><select id="paymentAccount"><option>Cash</option><option>Bank</option><option>bKash</option></select><input id="paymentNote" placeholder="মন্তব্য (ঐচ্ছিক)"></div><div class="modal-actions"><button id="cancelPayment">Cancel</button><button id="savePayment">পরিশোধ Save</button></div></div></div>
 
 <div class="snackbar" id="snackbar"><span>Transaction deleted</span><button id="undoDelete">Undo</button></div>
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
-<script src="loan-summary-fix.js"></script>
-<script src="restore-backup.js"></script>
 </body>
 </html>
