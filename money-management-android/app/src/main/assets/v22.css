@@ -1,0 +1,68 @@
+/* /money-management-android/app/src/main/assets/v22.css */
+
+/* Quick entry: smaller category icon and narrower subject so category remains visible. */
+.quick-grid{min-width:720px!important;grid-template-columns:82px 72px 170px 132px 150px 114px!important}
+.quick-grid .subject-with-icon{gap:3px!important;padding:5px!important}
+.quick-grid .subject-with-icon .category-logo{width:20px!important;height:20px!important;flex:0 0 20px!important;border-radius:5px!important;font-size:11px!important}
+.quick-grid #expenseSubject,.quick-grid #incomeSubject{font-size:15px!important}
+.quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:15px!important}
+.quick-grid textarea.quick-remarks{width:100%;height:52px;min-height:52px;max-height:125px;resize:vertical;border:0;outline:0;padding:7px 6px;font:inherit;line-height:1.35;background:transparent}
+
+/* Larger readable history details, but a smaller category logo. */
+.tx-table{font-size:11px!important;min-width:610px!important}
+.tx-table th{font-size:10px!important;padding:4px 5px!important}
+.tx-table td{font-size:11px!important;line-height:1.28!important;padding:4px 5px!important;height:31px!important}
+.subject-category-cell{min-width:128px!important}
+.subject-category-cell .category-logo{width:18px!important;height:18px!important;flex-basis:18px!important;font-size:10px!important;border-radius:5px!important}
+.subject-category-cell strong{font-size:11px!important;max-width:108px!important}
+.subject-category-cell small{font-size:8px!important;max-width:108px!important}
+.tx-table td:nth-child(5){white-space:pre-wrap;min-width:115px;max-width:180px;cursor:pointer}
+.tx-table td:nth-child(5):not(:empty)::after{content:'  ↗';color:#0f766e;font-weight:900}
+
+/* Sticky bulk toolbar additions. */
+.bulk-selection-toolbar.show{max-height:65vh;overflow:auto}
+.bulk-date-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:7px;padding-top:7px;border-top:1px dashed #9dcfc5}
+.bulk-date-actions label{font-size:9px;color:#64748b;font-weight:800}
+.bulk-date-actions input{display:block;width:100%;min-height:38px;margin-top:3px;border:1px solid #a9d3cb;border-radius:8px;background:#fff;padding:6px;font-size:10px}
+.bulk-date-actions button{align-self:end;min-height:38px;border:0;border-radius:8px;padding:7px 6px;font-size:10px;font-weight:900}
+.bulk-copy-date{background:#e7f4ff;color:#155e9b}.bulk-move-date{background:#0f766e;color:#fff}
+.bulk-new-category{margin-top:7px;border-top:1px dashed #9dcfc5;padding-top:7px}
+.bulk-new-category summary{cursor:pointer;color:#075e55;font-size:10px;font-weight:900}
+.bulk-new-category-grid{display:grid;grid-template-columns:92px 52px 1fr 1fr auto;gap:5px;margin-top:7px;align-items:end}
+.bulk-new-category-grid label{font-size:8px;color:#64748b;font-weight:800}
+.bulk-new-category-grid input,.bulk-new-category-grid select{display:block;width:100%;min-height:36px;margin-top:3px;border:1px solid #a9d3cb;border-radius:8px;background:#fff;padding:6px;font-size:10px}
+.bulk-new-category-grid button{min-height:36px;border:0;border-radius:8px;background:#0f766e;color:#fff;padding:6px 9px;font-size:10px;font-weight:900;white-space:nowrap}
+
+/* Draft paste date control and date per row. */
+.bulk-date-default{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0;color:#64748b;font-size:10px;font-weight:800}
+.bulk-date-default input{border:1px solid #cbdedb;border-radius:8px;padding:7px;background:#fff}
+.draft-row{grid-template-columns:minmax(135px,1.4fr) 72px 72px minmax(120px,1fr) 118px 34px!important}
+.draft-row [data-f="date"]{font-size:9px!important}
+
+/* Loan filter requested order. */
+.loan-filter{display:flex;flex-wrap:wrap;gap:5px}
+
+/* Pie values remain fully on-screen instead of scrolling to the side. */
+.pie-layout{grid-template-columns:118px minmax(0,1fr)!important;align-items:start!important}
+.pie-legend{max-height:none!important;overflow:visible!important;min-width:0}
+.pie-legend-row{grid-template-columns:10px minmax(0,1fr) auto!important;overflow-wrap:anywhere}
+.pie-legend-row strong{white-space:nowrap;font-size:9px}
+
+/* Notes editor. */
+.notes-backdrop{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;background:#10272baa}
+.notes-backdrop.show{display:flex}
+.notes-sheet{width:100%;max-height:88vh;background:#fff;border-radius:20px 20px 0 0;padding:14px;box-shadow:0 -10px 35px #0003}
+.notes-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.notes-sheet-head h3{margin:0;font-size:17px}.notes-sheet-head button{border:0;border-radius:9px;background:#edf7f5;color:#0f766e;padding:7px 10px;font-weight:900}
+.notes-sheet textarea{width:100%;min-height:220px;max-height:58vh;resize:vertical;border:1px solid #b9d7d2;border-radius:12px;padding:12px;font-size:15px;line-height:1.55;background:#fbfefd}
+.notes-sheet-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:7px;margin-top:9px}.notes-sheet-actions button{border:0;border-radius:10px;padding:11px;font-weight:900}.notes-cancel{background:#edf2f2;color:#475569}.notes-save{background:#0f766e;color:#fff}
+
+@media(max-width:520px){
+  .quick-grid{min-width:670px!important;grid-template-columns:76px 66px 158px 122px 140px 108px!important}
+  .quick-grid>*{padding:6px 4px!important}
+  .bulk-date-actions{grid-template-columns:1fr 1fr}.bulk-date-actions label{grid-column:1/-1}
+  .bulk-new-category-grid{grid-template-columns:1fr 64px}.bulk-new-category-grid label:nth-child(3),.bulk-new-category-grid label:nth-child(4){grid-column:1/-1}.bulk-new-category-grid button{grid-column:1/-1}
+  .draft-row{grid-template-columns:minmax(125px,1.3fr) 68px 68px 110px 112px 32px!important}
+  .pie-layout{grid-template-columns:96px minmax(0,1fr)!important;gap:8px!important}.pie-donut{width:94px!important;height:94px!important}.pie-donut::after{inset:22px!important}
+  .pie-legend-row{font-size:8px!important}.pie-legend-row strong{font-size:8px!important}
+}
