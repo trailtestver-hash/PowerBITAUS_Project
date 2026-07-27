@@ -31,11 +31,11 @@ jobs:
         run: gradle --no-daemon :app:assembleDebug
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/debug/app-debug.apk Money_Management_1_3_Classic.apk
+        run: cp money-management-android/app/build/outputs/apk/debug/app-debug.apk Money_Management_1_4_Loans.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-1.3-Classic-APK
-          path: Money_Management_1_3_Classic.apk
+          name: Money-Management-1.4-Loans-APK
+          path: Money_Management_1_4_Loans.apk
           if-no-files-found: error
