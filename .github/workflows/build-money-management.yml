@@ -35,6 +35,7 @@ jobs:
           node --check money-management-android/app/src/main/assets/v22.js
           node --check money-management-android/app/src/main/assets/v23.js
           node --check money-management-android/app/src/main/assets/v24.js
+          node --check money-management-android/app/src/main/assets/v25.js
 
       - name: Restore stable signing key
         working-directory: money-management-android
@@ -45,11 +46,11 @@ jobs:
         run: gradle --no-daemon :app:assembleRelease
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_4_Quick_Remarks_Backup.apk
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_5_Search_Pie_Drive_Label.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-2.4-Quick-Remarks-Backup-APK
-          path: Money_Management_2_4_Quick_Remarks_Backup.apk
+          name: Money-Management-2.5-Search-Pie-Drive-Label-APK
+          path: Money_Management_2_5_Search_Pie_Drive_Label.apk
           if-no-files-found: error
