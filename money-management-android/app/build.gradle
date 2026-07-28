@@ -19,8 +19,8 @@ android {
         applicationId 'com.moneymanagement.app'
         minSdk 24
         targetSdk 35
-        versionCode 16
-        versionName '2.6.0-sticky-phonetic-loan-timeline'
+        versionCode 17
+        versionName '2.7.0-private-loan-details-persistent-history'
     }
 
     buildTypes {
