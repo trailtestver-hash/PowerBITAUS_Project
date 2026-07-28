@@ -26,8 +26,9 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Check JavaScript syntax
+      - name: Check bundled files and JavaScript syntax
         run: |
+          test -f money-management-android/app/src/main/assets/index-private.html
           node --check money-management-android/app/src/main/assets/app.js
           node --check money-management-android/app/src/main/assets/v19.js
           node --check money-management-android/app/src/main/assets/v20.js
@@ -37,6 +38,7 @@ jobs:
           node --check money-management-android/app/src/main/assets/v24.js
           node --check money-management-android/app/src/main/assets/v25.js
           node --check money-management-android/app/src/main/assets/v26.js
+          node --check money-management-android/app/src/main/assets/v27.js
 
       - name: Restore stable signing key
         working-directory: money-management-android
@@ -47,11 +49,11 @@ jobs:
         run: gradle --no-daemon :app:assembleRelease
 
       - name: Rename APK
-        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_6_Sticky_Phonetic_Loan_Timeline.apk
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_7_Private_Loan_Details.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Money-Management-2.6-Sticky-Phonetic-Loan-Timeline-APK
-          path: Money_Management_2_6_Sticky_Phonetic_Loan_Timeline.apk
+          name: Money-Management-2.7-Private-Loan-Details-APK
+          path: Money_Management_2_7_Private_Loan_Details.apk
           if-no-files-found: error
