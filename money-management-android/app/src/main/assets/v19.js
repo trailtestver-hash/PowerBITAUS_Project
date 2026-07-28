@@ -9,7 +9,8 @@ const LAYERS=[
   {name:'v22',css:'v22.css',js:'v22.js'},
   {name:'v23',css:'v23.css',js:'v23.js'},
   {name:'v24',css:'v24.css',js:'v24.js'},
-  {name:'v25',css:'v25.css',js:'v25.js'}
+  {name:'v25',css:'v25.css',js:'v25.js'},
+  {name:'v26',css:'v26.css',js:'v26.js'}
 ];
 const $=id=>document.getElementById(id);
 
