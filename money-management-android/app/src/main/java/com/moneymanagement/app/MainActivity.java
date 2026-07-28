@@ -22,14 +22,9 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,14 +33,7 @@ public class MainActivity extends Activity {
     private static final int FILE_CHOOSER_REQUEST = 1001;
     private static final int BACKUP_IMPORT_REQUEST = 2002;
     private static final int DRIVE_CONNECT_REQUEST = 2003;
-
-    private static final String RAW_BASE =
-            "https://raw.githubusercontent.com/trailtestver-hash/PowerBITAUS_Project/" +
-            "money-management-loans/money-management-android/app/src/main/assets/";
     private static final String APP_ORIGIN = "https://money-management.local/";
-    private static final String CACHE_FILE = "money-management-live.html";
-    private static final String LEGACY_URL =
-            "https://jewels-money-management.truongnguyetanh22964.chatgpt.site/";
 
     private WebView webView;
     private TextView loadingView;
@@ -72,7 +60,7 @@ public class MainActivity extends Activity {
                 FrameLayout.LayoutParams.MATCH_PARENT));
 
         loadingView = new TextView(this);
-        loadingView.setText("Money Management\nসর্বশেষ সংস্করণ লোড হচ্ছে…");
+        loadingView.setText("Money Management\nPrivate version লোড হচ্ছে…");
         loadingView.setTextColor(Color.rgb(15, 118, 110));
         loadingView.setTextSize(18);
         loadingView.setGravity(Gravity.CENTER);
@@ -84,7 +72,7 @@ public class MainActivity extends Activity {
 
         configureWebView();
         BackupAlarmReceiver.scheduleFromPreferences(this);
-        loadLatestVersion();
+        loadBundledVersion();
     }
 
     private SharedPreferences backupPreferences() {
@@ -102,12 +90,11 @@ public class MainActivity extends Activity {
         settings.setDisplayZoomControls(false);
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         settings.setUserAgentString(
-                settings.getUserAgentString() + " MoneyManagementStable/1.8");
+                settings.getUserAgentString() + " MoneyManagementPrivate/2.7");
 
         webView.addJavascriptInterface(new BackupBridge(), "MoneyBackup");
-
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -117,7 +104,6 @@ public class MainActivity extends Activity {
                 pushDriveStatus();
             }
         });
-
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(
@@ -245,18 +231,10 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void openLegacyWeb() {
-            runOnUiThread(() -> {
-                try {
-                    startActivity(new Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(LEGACY_URL)));
-                } catch (Exception error) {
-                    Toast.makeText(
-                            MainActivity.this,
-                            "পুরোনো Web App খোলা যায়নি",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
+            runOnUiThread(() -> Toast.makeText(
+                    MainActivity.this,
+                    "Private build-এ public web link বন্ধ",
+                    Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -305,7 +283,7 @@ public class MainActivity extends Activity {
                     BackupAlarmReceiver.LAST_BACKUP_KEY,
                     0L));
         } catch (Exception ignored) {
-            // The object still contains safe default values when possible.
+            // Safe defaults remain available.
         }
         return status;
     }
@@ -326,7 +304,6 @@ public class MainActivity extends Activity {
         String script = "window.onDriveBackupResult&&window.onDriveBackupResult(" +
                 success + "," + JSONObject.quote(message) + ");";
         webView.evaluateJavascript(script, null);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     private void connectDriveResult(Intent data) {
@@ -370,23 +347,14 @@ public class MainActivity extends Activity {
         }).start();
     }
 
-    private void loadLatestVersion() {
+    private void loadBundledVersion() {
         new Thread(() -> {
             String page;
             try {
-                page = buildRemotePage();
-                writeCache(page);
-            } catch (Exception remoteError) {
-                page = readCache();
-                if (page == null) {
-                    try {
-                        page = buildBundledPage();
-                    } catch (Exception localError) {
-                        page = errorPage(localError.getMessage());
-                    }
-                }
+                page = buildBundledPage();
+            } catch (Exception error) {
+                page = errorPage(error.getMessage());
             }
-
             final String finalPage = page;
             runOnUiThread(() -> webView.loadDataWithBaseURL(
                     APP_ORIGIN,
@@ -397,15 +365,8 @@ public class MainActivity extends Activity {
         }).start();
     }
 
-    private String buildRemotePage() throws Exception {
-        final long refresh = System.currentTimeMillis();
-        String html = fetchText(RAW_BASE + "index.html?refresh=" + refresh);
-        return inlineAssets(html, relativePath ->
-                fetchText(RAW_BASE + relativePath + "?refresh=" + refresh));
-    }
-
     private String buildBundledPage() throws Exception {
-        String html = readAsset("index.html");
+        String html = readAsset("index-private.html");
         return inlineAssets(html, this::readAsset);
     }
 
@@ -417,12 +378,6 @@ public class MainActivity extends Activity {
         StringBuffer cssOutput = new StringBuffer();
         while (cssMatcher.find()) {
             String path = cssMatcher.group(1);
-            if (path.startsWith("http://") || path.startsWith("https://")) {
-                cssMatcher.appendReplacement(
-                        cssOutput,
-                        Matcher.quoteReplacement(cssMatcher.group()));
-                continue;
-            }
             String css = loader.load(path).replace("</style>", "<\\/style>");
             cssMatcher.appendReplacement(
                     cssOutput,
@@ -437,12 +392,6 @@ public class MainActivity extends Activity {
         StringBuffer scriptOutput = new StringBuffer();
         while (scriptMatcher.find()) {
             String path = scriptMatcher.group(1);
-            if (path.startsWith("http://") || path.startsWith("https://")) {
-                scriptMatcher.appendReplacement(
-                        scriptOutput,
-                        Matcher.quoteReplacement(scriptMatcher.group()));
-                continue;
-            }
             String script = loader.load(path).replace("</script>", "<\\/script>");
             scriptMatcher.appendReplacement(
                     scriptOutput,
@@ -450,30 +399,6 @@ public class MainActivity extends Activity {
         }
         scriptMatcher.appendTail(scriptOutput);
         return scriptOutput.toString();
-    }
-
-    private String fetchText(String urlText) throws IOException {
-        HttpURLConnection connection =
-                (HttpURLConnection) new URL(urlText).openConnection();
-        connection.setConnectTimeout(7000);
-        connection.setReadTimeout(7000);
-        connection.setUseCaches(false);
-        connection.setRequestProperty("Cache-Control", "no-cache");
-        connection.setRequestProperty(
-                "User-Agent",
-                "MoneyManagementAndroid/1.8");
-
-        int status = connection.getResponseCode();
-        if (status < 200 || status >= 300) {
-            connection.disconnect();
-            throw new IOException("HTTP " + status);
-        }
-
-        try (InputStream input = connection.getInputStream()) {
-            return readStream(input);
-        } finally {
-            connection.disconnect();
-        }
     }
 
     private String readAsset(String name) throws IOException {
@@ -494,27 +419,6 @@ public class MainActivity extends Activity {
         return output.toString();
     }
 
-    private void writeCache(String page) {
-        File target = new File(getFilesDir(), CACHE_FILE);
-        try (FileOutputStream output = new FileOutputStream(target)) {
-            output.write(page.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException ignored) {
-            // Cache failure must not prevent the app from opening.
-        }
-    }
-
-    private String readCache() {
-        File target = new File(getFilesDir(), CACHE_FILE);
-        if (!target.exists()) {
-            return null;
-        }
-        try (FileInputStream input = new FileInputStream(target)) {
-            return readStream(input);
-        } catch (IOException ignored) {
-            return null;
-        }
-    }
-
     private String errorPage(String message) {
         String safe = message == null
                 ? "Unknown error"
@@ -522,7 +426,7 @@ public class MainActivity extends Activity {
         return "<!doctype html><html><meta charset='utf-8'><meta name='viewport' " +
                 "content='width=device-width,initial-scale=1'><body style='font-family:sans-serif;" +
                 "padding:24px;background:#f1fbf9;color:#17313a'><h2>Money Management</h2>" +
-                "<p>অ্যাপটি লোড করা যায়নি। Internet চালু করে আবার খুলুন।</p><small>" +
+                "<p>Private app files লোড করা যায়নি। APK আবার Update করুন।</p><small>" +
                 safe + "</small></body></html>";
     }
 
