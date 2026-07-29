@@ -19,8 +19,8 @@ android {
         applicationId 'com.moneymanagement.app'
         minSdk 24
         targetSdk 35
-        versionCode 17
-        versionName '2.7.0-private-loan-details-persistent-history'
+        versionCode 31
+        versionName '2.8.3-local-loader-startup-fix'
     }
 
     buildTypes {
