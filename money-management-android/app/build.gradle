@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.moneymanagement.app'
+    compileSdk 35
+
+    signingConfigs {
+        stable {
+            storeFile file('../signing/money-management.jks')
+            storePassword 'MoneyManagement2026!'
+            keyAlias 'money-management'
+            keyPassword 'MoneyManagement2026!'
+        }
+    }
+
+    defaultConfig {
+        applicationId 'com.moneymanagement.app'
+        minSdk 24
+        targetSdk 35
+        versionCode 31
+        versionName '2.8.3-local-loader-startup-fix'
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.stable
+        }
+        release {
+            signingConfig signingConfigs.stable
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}

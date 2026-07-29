@@ -1,0 +1,79 @@
+/* /money-management-android/app/src/main/assets/v23.css */
+
+/* Quick Entry: only Auto-saved on left and a small cross on right. */
+#quickSection .quick-title.v23-compact-title{min-height:34px!important;padding:0 0 7px!important;display:flex!important;align-items:center!important}
+#quickSection .quick-title.v23-compact-title>div:first-child{display:none!important}
+#quickSection .quick-title.v23-compact-title .quick-title-actions{width:100%!important;max-width:none!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important}
+#quickSection .autosave-status{order:1;margin:0!important;padding:5px 9px!important;border-radius:999px!important;font-size:10px!important;line-height:1!important;background:#e8f8f3!important}
+#quickSection .quick-cancel{order:2;position:static!important;transform:none!important;width:30px!important;height:30px!important;min-width:30px!important;border-radius:50%!important;font-size:19px!important;line-height:1!important;padding:0!important}
+#quickSection>.hint{display:none!important}
+
+/* Save horizontal space in quick entry. No category icon inside Subject. */
+.quick-grid{min-width:620px!important;grid-template-columns:72px 60px 126px 108px 142px 105px!important}
+.quick-grid .subject-with-icon{gap:0!important;padding:4px!important}
+.quick-grid .subject-with-icon>.category-logo{display:none!important}
+.quick-grid #expenseSubject,.quick-grid #incomeSubject{font-size:14px!important;padding:4px!important}
+.quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:14px!important;padding:4px!important}
+.quick-grid>*{min-height:54px!important}
+
+/* Compact history columns, larger Subject text, much smaller category logo. */
+.tx-table{min-width:520px!important;font-size:10px!important}
+.tx-table th{padding:3px!important;font-size:9px!important}
+.tx-table td{padding:3px!important;height:28px!important;font-size:10px!important;line-height:1.16!important}
+.tx-table th:first-child,.tx-table td:first-child{width:57px!important;min-width:57px!important}
+.tx-table th:nth-child(2),.tx-table td:nth-child(2){width:125px!important;min-width:125px!important}
+.tx-table th:nth-child(3),.tx-table td:nth-child(3),.tx-table th:nth-child(4),.tx-table td:nth-child(4){width:58px!important;min-width:58px!important}
+.subject-category-cell{min-width:118px!important;gap:3px!important}
+.subject-category-cell .category-logo{width:13px!important;height:13px!important;flex:0 0 13px!important;font-size:7px!important;border-radius:4px!important;border-width:1px!important}
+.subject-category-cell strong{font-size:12px!important;line-height:1.05!important;max-width:98px!important}
+.subject-category-cell small{font-size:7px!important;line-height:1.05!important;max-width:98px!important}
+
+/* Compact ten-day controls and save space. */
+#historySection>.title{margin-bottom:5px!important}
+#historySection>.title h2{font-size:17px!important}
+#historySection>.title small{font-size:8px!important}
+.history-tools{gap:5px!important;margin-bottom:6px!important}
+.history-tools>button,.history-tools .jump{min-height:34px!important;padding:6px 8px!important;font-size:10px!important;border-radius:9px!important}
+.history-expand-tools{gap:5px!important;margin-top:0!important}
+.history-expand-tools button{min-height:32px!important;padding:5px 7px!important;font-size:9px!important;border-radius:9px!important}
+.day-card{margin:6px 0!important}
+.day-head{min-height:45px!important;padding:6px 8px!important}
+.day-head>button{min-height:32px!important;font-size:12px!important;padding:4px!important}
+.day-total{font-size:9px!important;padding:4px 6px!important}
+.day-actions button{font-size:9px!important;padding:7px 9px!important}
+
+/* Today's balance counts. */
+.today-limit-foot span:last-child{font-weight:800;white-space:nowrap}
+
+/* Pie legend: value and percentage stay beside each label. */
+.pie-layout{grid-template-columns:116px auto!important;justify-content:start!important;gap:10px!important}
+.pie-legend{width:auto!important;max-width:100%!important}
+.pie-legend-row.v23-pie-row{display:flex!important;align-items:center!important;gap:5px!important;width:max-content!important;max-width:100%!important;grid-template-columns:none!important}
+.pie-legend-row.v23-pie-row>span:nth-child(2){flex:0 1 auto!important;max-width:150px!important;overflow-wrap:anywhere}
+.pie-legend-row.v23-pie-row strong{margin-left:4px!important;white-space:nowrap!important;font-size:9px!important}
+
+/* Paid loan long-press editor. */
+.paid-loan-editable{box-shadow:inset 0 0 0 1px #9ed5ca}
+.loan-edit-backdrop{position:fixed;inset:0;z-index:135;display:none;align-items:flex-end;background:#10272baa}
+.loan-edit-backdrop.show{display:flex}
+.loan-edit-sheet{width:100%;max-height:90vh;overflow:auto;background:#fff;border-radius:20px 20px 0 0;padding:14px;box-shadow:0 -12px 38px #0003}
+.loan-edit-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.loan-edit-head h3{margin:0;font-size:16px}.loan-edit-head button{border:0;border-radius:9px;background:#edf7f5;color:#0f766e;padding:7px 10px;font-weight:900}
+.loan-edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.loan-edit-grid label{font-size:9px;color:#64748b;font-weight:800}
+.loan-edit-grid input,.loan-edit-grid select,.loan-edit-grid textarea{display:block;width:100%;margin-top:4px;border:1px solid #bfd9d4;border-radius:9px;padding:9px;background:#fff;font:inherit;color:#17313a}
+.loan-edit-note{grid-column:1/-1}.loan-edit-grid textarea{min-height:92px;resize:vertical;line-height:1.45}
+.loan-edit-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:7px;margin-top:10px}.loan-edit-actions button{border:0;border-radius:10px;padding:10px;font-weight:900}.loan-edit-actions button:first-child{background:#edf2f2;color:#475569}.loan-edit-actions button:last-child{background:#0f766e;color:#fff}
+
+@media(max-width:520px){
+  .quick-grid{min-width:570px!important;grid-template-columns:66px 54px 116px 99px 132px 100px!important}
+  .quick-grid>*{padding:5px 3px!important;min-height:50px!important}
+  .accounts button{padding:9px 6px!important;font-size:15px!important}
+  .history-tools{display:grid!important;grid-template-columns:1fr 1fr!important}
+  .history-tools .jump{grid-column:1/-1!important;order:-1!important}
+  .pie-layout{grid-template-columns:96px auto!important;gap:7px!important}
+  .pie-donut{width:92px!important;height:92px!important}.pie-donut::after{inset:22px!important}
+  .pie-legend-row.v23-pie-row>span:nth-child(2){max-width:112px!important}
+  .loan-edit-grid{grid-template-columns:1fr}
+  .loan-edit-note{grid-column:auto}
+}

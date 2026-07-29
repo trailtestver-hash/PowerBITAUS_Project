@@ -1,0 +1,93 @@
+/* /money-management-android/app/src/main/assets/v25.css */
+
+/* Quick Entry: large Amount, compact Subject, Search between status and cross. */
+#quickSection .quick-title-actions{display:grid!important;grid-template-columns:auto minmax(120px,1fr) auto!important;align-items:center!important;gap:6px!important}
+#quickSection #quickSearch{width:100%;height:28px;min-width:0;border:1px solid #b8d8d2;border-radius:999px;background:#f8fcfb;padding:4px 10px;font-size:10px;color:#17313a;outline:0}
+#quickSection #quickSearch:focus{border-color:#0f766e;box-shadow:0 0 0 2px #0f766e18}
+#quickSection .autosave-status{white-space:nowrap!important}
+.quick-grid{min-width:585px!important;grid-template-columns:62px 112px 84px 92px 116px 98px!important}
+.quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:28px!important;font-weight:950!important;letter-spacing:-.5px!important;padding:3px 5px!important}
+.quick-grid #expenseSubject,.quick-grid #incomeSubject{font-size:13px!important;padding:3px!important}
+
+/* History: Expense immediately after Subject, compact columns but readable values. */
+.tx-table{min-width:505px!important}
+.tx-table th:first-child,.tx-table td:first-child{width:52px!important;min-width:52px!important}
+.tx-table th:nth-child(2),.tx-table td:nth-child(2){width:118px!important;min-width:118px!important}
+.tx-table th:nth-child(3),.tx-table td:nth-child(3),
+.tx-table th:nth-child(4),.tx-table td:nth-child(4){width:62px!important;min-width:62px!important;font-size:13px!important;font-weight:950!important;white-space:nowrap}
+.subject-category-cell strong{font-size:14px!important;max-width:100px!important}
+.subject-category-cell small{max-width:100px!important}
+
+/* Frozen multi-selection panel: three compact lines when collapsed. */
+.bulk-selection-toolbar.v25-compact-bulk.show{top:54px!important;padding:5px!important;margin:3px 0!important;max-height:36vh!important;border-radius:9px!important;overflow:auto!important}
+.v25-compact-bulk .bulk-selection-top{display:grid!important;grid-template-columns:1fr auto auto!important;align-items:center!important;gap:4px!important;margin:0 0 4px!important}
+.v25-compact-bulk .bulk-selection-top strong{font-size:9px!important}
+.v25-compact-bulk .bulk-selection-top button{min-height:27px!important;padding:4px 7px!important;font-size:8px!important;border-radius:7px!important}
+.v25-compact-bulk #deleteBulkTransactions{display:block!important;background:#fff0ef!important;color:#b42318!important}
+.v25-compact-bulk .bulk-category-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:4px!important;margin:0!important}
+.v25-compact-bulk .bulk-category-grid label{font-size:7px!important;line-height:1.05!important}
+.v25-compact-bulk .bulk-category-grid select{min-height:29px!important;margin-top:2px!important;padding:3px 5px!important;font-size:8px!important;border-radius:7px!important}
+.v25-compact-bulk .bulk-date-actions{display:grid!important;grid-template-columns:minmax(105px,1.2fr) .8fr .8fr!important;gap:4px!important;margin:4px 0 0!important;padding:4px 0 0!important}
+.v25-compact-bulk .bulk-date-actions label{font-size:7px!important;line-height:1!important}
+.v25-compact-bulk .bulk-date-actions input,.v25-compact-bulk .bulk-date-actions button{min-height:29px!important;height:29px!important;padding:3px 5px!important;font-size:8px!important;border-radius:7px!important}
+.v25-compact-bulk .bulk-action-buttons[hidden]{display:none!important}
+.v25-compact-bulk .bulk-new-category{margin:4px 0 0!important;padding:3px 0 0!important}
+.v25-compact-bulk .bulk-new-category summary{font-size:8px!important;line-height:1.2!important}
+.v25-compact-bulk .bulk-new-category-grid{margin-top:4px!important;gap:3px!important}
+.v25-compact-bulk .bulk-new-category-grid input,.v25-compact-bulk .bulk-new-category-grid select,.v25-compact-bulk .bulk-new-category-grid button{min-height:28px!important;padding:3px 5px!important;font-size:8px!important}
+
+/* Previous, jump date and next ten days stay on one line. */
+.history-tools.v25-one-line-tools{display:grid!important;grid-template-columns:1fr 1.15fr 1fr!important;gap:4px!important;align-items:stretch!important;margin-bottom:4px!important}
+.history-tools.v25-one-line-tools>button,.history-tools.v25-one-line-tools .jump{grid-column:auto!important;order:initial!important;min-height:31px!important;height:31px!important;padding:4px 5px!important;font-size:8px!important;border-radius:8px!important;white-space:nowrap!important}
+.history-expand-tools{margin:0 0 5px!important;gap:4px!important}
+.history-expand-tools button{min-height:28px!important;padding:3px 6px!important;font-size:8px!important;border-radius:8px!important}
+
+/* Search filter hidden rows/cards. */
+#historyList .day-card[hidden],#historyList .tx-row[hidden]{display:none!important}
+
+/* Loan new-entry due date is removed. */
+#loanDueDate[hidden],#loanDueDate[hidden]+*{display:none!important}
+
+/* Drive account label, intentionally user-entered because SAF does not expose Gmail. */
+.drive-account-label-box{margin:8px 0;padding:9px;border:1px solid #d2e6e2;border-radius:11px;background:#f8fcfb}
+.drive-account-label-box>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.drive-account-label-box small{font-size:8px;color:#64748b}.drive-account-label-box strong{font-size:10px;color:#075e55;text-align:right;overflow-wrap:anywhere}
+.drive-account-label-edit{display:grid;grid-template-columns:1fr auto;gap:5px}
+.drive-account-label-edit input{min-width:0;border:1px solid #bfd9d4;border-radius:8px;padding:7px;font-size:10px;background:#fff}
+.drive-account-label-edit button{border:0;border-radius:8px;background:#0f766e;color:#fff;padding:7px 10px;font-size:9px;font-weight:900}
+.drive-label-note{display:block;margin-top:5px;line-height:1.35}
+
+/* Pie chart fits the screen and remains interactive. */
+.report-chart-grid,.chart-card,#expensePieChart,.pie-layout{min-width:0!important;max-width:100%!important}
+.chart-card{overflow:hidden!important}
+#expensePieChart .pie-layout{display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;gap:7px!important;align-items:start!important;width:100%!important}
+#expensePieChart .pie-donut{width:90px!important;height:90px!important;cursor:pointer;touch-action:manipulation}
+#expensePieChart .pie-donut::after{inset:22px!important}
+#expensePieChart .pie-legend{min-width:0!important;width:100%!important;overflow:visible!important;max-height:none!important;gap:4px!important}
+#expensePieChart .pie-legend-row{display:grid!important;grid-template-columns:9px minmax(0,1fr) auto!important;gap:4px!important;width:100%!important;min-width:0!important;cursor:pointer;border-radius:6px;padding:2px!important}
+#expensePieChart .pie-legend-row:active{background:#e6f5f2}
+#expensePieChart .pie-legend-row>span:nth-child(2){min-width:0!important;max-width:none!important;overflow-wrap:anywhere;font-size:8px!important}
+#expensePieChart .pie-legend-row strong{font-size:8px!important;margin:0!important;white-space:nowrap!important}
+
+/* Pie category details and inline category changes. */
+.pie-details-backdrop{position:fixed;inset:0;z-index:155;display:none;align-items:flex-end;background:#10272baa}
+.pie-details-backdrop.show{display:flex}
+.pie-details-sheet{width:100%;max-height:88vh;overflow:auto;background:#fff;border-radius:19px 19px 0 0;padding:12px;box-shadow:0 -12px 36px #0003}
+.pie-details-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.pie-details-head h3{margin:0;font-size:15px}.pie-details-head small{font-size:9px;color:#64748b}.pie-details-head button{border:0;border-radius:8px;background:#edf7f5;color:#0f766e;padding:6px 9px;font-weight:900}
+#pieDetailsList{display:grid;gap:5px}
+.pie-detail-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;border:1px solid #d8e7e4;border-radius:10px;padding:7px;background:#fbfefd}
+.pie-detail-row strong{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pie-detail-row small{display:block;font-size:8px;color:#64748b}.pie-detail-row>b{font-size:11px;color:#b42318;white-space:nowrap}
+.pie-detail-row select{grid-column:1/-1;width:100%;border:1px solid #bfd9d4;border-radius:8px;background:#fff;padding:6px;font-size:9px}
+
+@media(max-width:520px){
+  #quickSection .quick-title-actions{grid-template-columns:auto minmax(105px,1fr) auto!important;gap:4px!important}
+  #quickSection #quickSearch{height:26px;font-size:9px;padding:3px 8px}
+  .quick-grid{min-width:550px!important;grid-template-columns:58px 108px 80px 86px 112px 94px!important}
+  .quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:27px!important}
+  .bulk-selection-toolbar.v25-compact-bulk.show{top:52px!important;max-height:33vh!important}
+  .history-tools.v25-one-line-tools{grid-template-columns:1fr 1.12fr 1fr!important}
+  .history-tools.v25-one-line-tools>button,.history-tools.v25-one-line-tools .jump{font-size:7.5px!important;padding:3px!important}
+  #expensePieChart .pie-layout{grid-template-columns:84px minmax(0,1fr)!important;gap:5px!important}
+  #expensePieChart .pie-donut{width:82px!important;height:82px!important}#expensePieChart .pie-donut::after{inset:20px!important}
+}

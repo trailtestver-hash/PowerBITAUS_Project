@@ -1,0 +1,27 @@
+/* /money-management-android/app/src/main/assets/v21.css */
+.bulk-selection-toolbar.show{
+  position:sticky;
+  top:66px;
+  z-index:55;
+  box-shadow:0 10px 24px #0f766e38;
+  backdrop-filter:blur(8px);
+}
+.bulk-action-buttons{
+  grid-template-columns:1fr!important;
+}
+#applyBulkCategories[hidden]{display:none!important}
+.bulk-category-grid select{min-height:42px;font-size:11px!important}
+.bulk-selection-toolbar .selection-help{margin-top:7px}
+.drive-account-privacy{
+  margin:7px 0 9px;
+  padding:8px 9px;
+  border-radius:9px;
+  background:#f5f8f8;
+  color:#64748b;
+  font-size:9px;
+  line-height:1.45;
+}
+@media(max-width:520px){
+  .bulk-selection-toolbar.show{top:62px;margin-left:-2px;margin-right:-2px}
+  .bulk-selection-toolbar{max-height:48vh;overflow:auto}
+}

@@ -1,0 +1,34 @@
+/* /money-management-android/app/src/main/assets/v27.css */
+
+/* Persistent history mode buttons remain visibly selected. */
+.history-expand-tools button.active{background:#0f766e!important;color:#fff!important;border-color:#0f766e!important;box-shadow:0 2px 8px #0f766e33!important}
+
+/* Old paid-loan edit sheet is replaced by the full details timeline. */
+#loanEditBackdrop{display:none!important}
+#openLegacyWeb{display:none!important}
+
+.v27-loan-details-backdrop,.v27-loan-correction-backdrop{position:fixed;inset:0;z-index:170;display:none;align-items:flex-end;background:#0b252bb5}
+.v27-loan-details-backdrop.show,.v27-loan-correction-backdrop.show{display:flex}
+.v27-loan-details-sheet,.v27-loan-correction-sheet{width:100%;max-height:92vh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:14px;box-shadow:0 -14px 40px #0003}
+.v27-loan-details-head,.v27-loan-correction-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.v27-loan-details-head h3,.v27-loan-correction-head h3{margin:0;font-size:18px;color:#17313a}.v27-loan-details-head small{display:block;color:#64748b;font-size:10px;margin-top:2px}
+.v27-loan-details-head button,.v27-loan-correction-head button{border:0;border-radius:10px;background:#eaf7f4;color:#0f766e;padding:7px 10px;font-weight:900}
+.v27-loan-details-summary{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.v27-loan-details-summary>div{border:1px solid #d5e6e3;border-radius:11px;background:#f8fcfb;padding:8px}.v27-loan-details-summary small{display:block;color:#64748b;font-size:9px}.v27-loan-details-summary strong{display:block;margin-top:3px;font-size:13px;color:#17313a}
+.v27-loan-timeline-heading{display:flex;align-items:end;justify-content:space-between;gap:8px;padding:4px 1px 7px;border-bottom:1px solid #d7e7e4}.v27-loan-timeline-heading strong{font-size:13px}.v27-loan-timeline-heading small{font-size:8px;color:#64748b}
+.v27-loan-timeline-list{display:grid;gap:6px;padding-top:7px}
+.v27-loan-timeline-row{display:grid;grid-template-columns:82px minmax(0,1fr) auto auto;align-items:center;gap:7px;border:1px solid #d7e7e4;border-radius:11px;padding:8px;background:#fff}
+.v27-loan-timeline-row.principal{background:#eef9f7;border-color:#a9d7cf}.v27-loan-timeline-row.payment{background:#fbfefd}
+.v27-loan-timeline-date{font-size:9px;font-weight:900;color:#475569;white-space:nowrap}.v27-loan-timeline-main{min-width:0}.v27-loan-timeline-main strong{display:block;font-size:12px;color:#17313a}.v27-loan-timeline-main small{display:block;font-size:8px;color:#64748b;white-space:normal;overflow-wrap:anywhere;margin-top:2px}.v27-loan-timeline-row>b{font-size:12px;color:#0f766e;white-space:nowrap}.v27-loan-timeline-row>button{border:0;border-radius:8px;background:#e8f5f2;color:#0f766e;padding:6px 8px;font-size:9px;font-weight:900}
+.v27-loan-no-payment{padding:18px;text-align:center;color:#64748b;font-size:10px}
+.v27-loan-identity-fields,.v27-loan-correction-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.v27-loan-identity-fields{margin-bottom:8px}.v27-loan-identity-fields label,.v27-loan-correction-grid label{font-size:9px;color:#64748b;font-weight:900}.v27-loan-identity-fields input,.v27-loan-identity-fields select,.v27-loan-correction-grid input,.v27-loan-correction-grid select,.v27-loan-correction-grid textarea{display:block;width:100%;margin-top:4px;border:1px solid #bfd9d4;border-radius:9px;background:#fff;padding:9px;color:#17313a;font:inherit}.v27-loan-correction-grid .wide{grid-column:1/-1}.v27-loan-correction-grid textarea{min-height:112px;resize:vertical;line-height:1.45}
+.v27-loan-correction-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:7px;margin-top:10px}.v27-loan-correction-actions button{border:0;border-radius:10px;padding:10px;font-weight:900}.v27-loan-correction-actions button:first-child{background:#edf2f2;color:#475569}.v27-loan-correction-actions button:last-child{background:#0f766e;color:#fff}
+.loan-history-toggle{font-weight:900!important}
+
+@media(max-width:520px){
+  .v27-loan-details-sheet,.v27-loan-correction-sheet{padding:11px}
+  .v27-loan-timeline-row{grid-template-columns:69px minmax(0,1fr) auto;gap:5px;padding:7px}
+  .v27-loan-timeline-row>button{grid-column:2/-1;justify-self:end;padding:5px 8px}
+  .v27-loan-timeline-date{font-size:8px}.v27-loan-timeline-main strong{font-size:11px}.v27-loan-timeline-row>b{font-size:11px}
+  .v27-loan-identity-fields,.v27-loan-correction-grid{grid-template-columns:1fr}.v27-loan-correction-grid .wide{grid-column:auto}
+}

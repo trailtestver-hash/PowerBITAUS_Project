@@ -1,0 +1,81 @@
+/* /money-management-android/app/src/main/assets/v24.css */
+
+/* Quick Entry: reduce blank space, keep small utility text, and enlarge Amount. */
+#quickSection{padding:9px 9px 11px!important}
+#quickSection .quick-title.v24-tight-title{min-height:25px!important;margin:0!important;padding:0 0 3px!important}
+#quickSection .quick-title.v24-tight-title .quick-title-actions{min-height:25px!important}
+#quickSection .autosave-status{font-size:8px!important;padding:4px 7px!important}
+#quickSection .quick-cancel{width:25px!important;height:25px!important;min-width:25px!important;font-size:16px!important;border-width:1px!important}
+#quickSection .quick-scroll{margin-top:-2px!important}
+.quick-grid{min-width:600px!important;grid-template-columns:68px 86px 118px 96px 122px 102px!important}
+.quick-grid>*{min-height:46px!important;padding:4px 3px!important}
+.quick-grid>b{font-size:9px!important;line-height:1!important}
+.quick-grid>strong{font-size:12px!important}
+.quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:19px!important;font-weight:900!important;padding:4px 6px!important}
+.quick-grid #expenseSubject,.quick-grid #incomeSubject{font-size:14px!important;padding:4px!important}
+.quick-grid #expenseCategory,.quick-grid #incomeCategory,
+.quick-grid #expenseRemarks,.quick-grid #incomeRemarks,
+.quick-grid #expenseDate,.quick-grid #incomeDate,
+.quick-grid textarea.quick-remarks{font-size:10px!important;padding:4px!important}
+.quick-grid textarea.quick-remarks{height:46px!important;min-height:46px!important}
+.accounts{margin-top:4px!important}
+.accounts button{min-height:39px!important;padding:7px 5px!important;font-size:14px!important}
+
+/* History: larger dates, totals and detail text; only category logos remain tiny. */
+.day-head{min-height:52px!important;padding:7px 8px!important}
+.day-head>button{font-size:15px!important;font-weight:950!important;min-height:37px!important}
+.day-total{font-size:11px!important;font-weight:950!important;padding:5px 7px!important}
+.tx-table{min-width:515px!important;font-size:12px!important}
+.tx-table th{font-size:11px!important;padding:4px 3px!important}
+.tx-table td{font-size:12px!important;line-height:1.2!important;padding:4px 3px!important;height:32px!important}
+.tx-table th:first-child,.tx-table td:first-child{width:55px!important;min-width:55px!important;font-size:11px!important}
+.tx-table th:nth-child(2),.tx-table td:nth-child(2){width:118px!important;min-width:118px!important}
+.tx-table th:nth-child(3),.tx-table td:nth-child(3),
+.tx-table th:nth-child(4),.tx-table td:nth-child(4){width:64px!important;min-width:64px!important;font-size:13px!important;font-weight:950!important}
+.subject-category-cell{min-width:112px!important;gap:3px!important}
+.subject-category-cell .category-logo{width:10px!important;height:10px!important;flex:0 0 10px!important;font-size:6px!important;border-radius:3px!important}
+.subject-category-cell strong{font-size:14px!important;line-height:1.05!important;max-width:99px!important}
+.subject-category-cell small{font-size:8px!important;line-height:1.05!important;max-width:99px!important}
+.tx-table td:nth-child(5){font-size:12px!important;min-width:100px!important}
+
+/* Smaller frozen multiple-selection panel. */
+.bulk-selection-toolbar.show{top:58px!important;padding:6px!important;margin:4px 0!important;max-height:43vh!important;border-radius:10px!important}
+.bulk-selection-top{margin-bottom:4px!important}
+.bulk-selection-top strong{font-size:10px!important}
+.bulk-selection-top button{padding:4px 7px!important;font-size:9px!important}
+.bulk-category-grid{gap:4px!important}
+.bulk-category-grid label{font-size:8px!important}
+.bulk-category-grid select{min-height:34px!important;margin-top:2px!important;padding:5px!important;font-size:9px!important}
+.bulk-date-actions{gap:4px!important;margin-top:4px!important;padding-top:4px!important}
+.bulk-date-actions label{font-size:8px!important}
+.bulk-date-actions input,.bulk-date-actions button{min-height:32px!important;padding:5px!important;font-size:9px!important}
+.bulk-action-buttons{margin-top:4px!important;gap:4px!important}
+.bulk-action-buttons button{padding:6px!important;font-size:9px!important}
+.bulk-new-category{margin-top:4px!important;padding-top:4px!important}
+.bulk-new-category summary{font-size:9px!important}
+.bulk-selection-toolbar .selection-help{display:none!important}
+
+/* Remarks editor for double-tap or press-and-hold. */
+.v24-remarks-backdrop{position:fixed;inset:0;z-index:145;display:none;align-items:flex-end;background:#10272baa}
+.v24-remarks-backdrop.show{display:flex}
+.v24-remarks-sheet{width:100%;max-height:88vh;background:#fff;border-radius:19px 19px 0 0;padding:13px;box-shadow:0 -10px 34px #0003}
+.v24-remarks-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.v24-remarks-head h3{margin:0;font-size:16px}.v24-remarks-head button{border:0;border-radius:8px;background:#edf7f5;color:#0f766e;padding:6px 9px;font-weight:900}
+.v24-remarks-sheet textarea{width:100%;min-height:220px;max-height:58vh;resize:vertical;border:1px solid #b9d7d2;border-radius:11px;padding:11px;font-size:15px;line-height:1.55;background:#fbfefd}
+.v24-remarks-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:6px;margin-top:8px}.v24-remarks-actions button{border:0;border-radius:9px;padding:10px;font-weight:900}.v24-remarks-actions button:first-child{background:#edf2f2;color:#475569}.v24-remarks-actions button:last-child{background:#0f766e;color:#fff}
+
+/* Immediate visual feedback after tapping the cloud button. */
+.backup-pending{animation:v24CloudPulse .75s ease-in-out infinite alternate}
+@keyframes v24CloudPulse{from{opacity:.55;transform:scale(.96)}to{opacity:1;transform:scale(1.03)}}
+
+@media(max-width:520px){
+  #quickSection{padding:7px 7px 10px!important}
+  .quick-grid{min-width:560px!important;grid-template-columns:62px 84px 108px 88px 114px 96px!important}
+  .quick-grid>*{min-height:43px!important;padding:3px 2px!important}
+  .quick-grid #expenseAmount,.quick-grid #incomeAmount{font-size:18px!important}
+  .quick-grid #expenseSubject,.quick-grid #incomeSubject{font-size:13px!important}
+  .accounts button{min-height:37px!important;font-size:13px!important}
+  .day-head>button{font-size:14px!important}.day-total{font-size:10px!important}
+  .tx-table td{font-size:11px!important}.subject-category-cell strong{font-size:13px!important}
+  .bulk-selection-toolbar.show{top:56px!important;max-height:40vh!important}
+}

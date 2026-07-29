@@ -1,0 +1,59 @@
+name: Build Money Management APK
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'money-management-android/**'
+      - '.github/workflows/build-money-management.yml'
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Check bundled files and JavaScript syntax
+        run: |
+          test -f money-management-android/app/src/main/assets/index-private.html
+          node --check money-management-android/app/src/main/assets/app.js
+          node --check money-management-android/app/src/main/assets/v19.js
+          node --check money-management-android/app/src/main/assets/v20.js
+          node --check money-management-android/app/src/main/assets/v21.js
+          node --check money-management-android/app/src/main/assets/v22.js
+          node --check money-management-android/app/src/main/assets/v23.js
+          node --check money-management-android/app/src/main/assets/v24.js
+          node --check money-management-android/app/src/main/assets/v25.js
+          node --check money-management-android/app/src/main/assets/v26.js
+          node --check money-management-android/app/src/main/assets/v27.js
+
+      - name: Restore stable signing key
+        working-directory: money-management-android
+        run: base64 --decode signing/money-management.jks.b64 > signing/money-management.jks
+
+      - name: Build signed release APK
+        working-directory: money-management-android
+        run: gradle --no-daemon :app:assembleRelease
+
+      - name: Rename APK
+        run: cp money-management-android/app/build/outputs/apk/release/app-release.apk Money_Management_2_7_Private_Loan_Details.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Money-Management-2.7-Private-Loan-Details-APK
+          path: Money_Management_2_7_Private_Loan_Details.apk
+          if-no-files-found: error
