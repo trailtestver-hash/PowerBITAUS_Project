@@ -55,10 +55,10 @@ jobs:
         with:
           channel: stable
           cache: true
-      - name: Create Android platform and get packages
+      - name: Create mobile platforms and get packages
         working-directory: msq_flutter_build_src
         run: |
-          flutter create --platforms=android --org org.safeerulquran --project-name mini_safeerul_quran .
+          flutter create --platforms=android,ios --org org.safeerulquran --project-name mini_safeerul_quran .
           flutter pub get
           dart run flutter_launcher_icons
           sed -i 's/android:label="mini_safeerul_quran"/android:label="Mini Safeerul Qur’an"/' android/app/src/main/AndroidManifest.xml
