@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble source diagnostic
+      - name: Restore source archive
         shell: bash
         run: |
           cat \
@@ -26,20 +26,24 @@ jobs:
             flutter_src/part_04.b64 flutter_src/suffix_04.b64 \
             flutter_src/part_05.b64 flutter_src/suffix_05.b64 \
             > source.b64
-          test "$(wc -c < source.b64)" -eq 63128
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('source.b64')
+          s = p.read_text()
+          s = s[:63080] + s[63128:]
+          s = s[:61299] + '0fbCdPng2fbBMH/uczj5Csw+37GMn+0TIPquxT1HsAw776AE' + s[61299:]
+          s = s[:59889] + s[60000:]
+          s = s[:57451] + s[57452:]
+          s = s[:56139] + 'blpB50r+Txb/3xb+p+DeWlHnSv5PFv/fFv6n4d1lSZkiy9/e+9zf1/q5LyDzp38ni3/vi31T82xUfoJP+nSz+vS/+TcW/+5LyOOnfyd7f+97f1Pt' + s[56139:]
+          s = s[:54682] + 'm' + s[54683:]
+          s = s[:11998] + s[11999:]
+          s = s[:1930] + 'R' + s[1930:]
+          assert len(s) == 63128
+          p.write_text(s)
+          PY
+          echo 'dcebeddadad8edff87911234bc2dfe7d421f71f5a14ca8260c21e1fdccc59694  source.b64' | sha256sum -c -
           base64 --decode source.b64 > source.zip
-          sha256sum source.b64 source.zip
-      - uses: actions/upload-artifact@v4
-        with:
-          name: msq-source-diagnostic
-          path: |
-            source.b64
-            source.zip
-          retention-days: 1
-          if-no-files-found: error
-      - name: Restore source archive
-        shell: bash
-        run: |
+          echo 'da4425e09675b6025af8a9d81161002d50ff2115cdb9b6aa8c4961a05e9a394f  source.zip' | sha256sum -c -
           unzip -t source.zip | tail -2
           unzip -q source.zip
           test -f msq_flutter_build_src/pubspec.yaml
