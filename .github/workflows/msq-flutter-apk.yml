@@ -59,6 +59,7 @@ jobs:
         working-directory: msq_flutter_build_src
         run: |
           flutter create --platforms=android,ios --org org.safeerulquran --project-name mini_safeerul_quran .
+          rm -f test/widget_test.dart
           flutter pub get
           dart run flutter_launcher_icons
           sed -i 's/android:label="mini_safeerul_quran"/android:label="Mini Safeerul Qur’an"/' android/app/src/main/AndroidManifest.xml
