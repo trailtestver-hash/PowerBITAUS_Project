@@ -15,15 +15,7 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-      - name: Restore source archive
+      - name: Assemble source diagnostic
         shell: bash
         run: |
           cat \
@@ -36,10 +28,29 @@ jobs:
             > source.b64
           test "$(wc -c < source.b64)" -eq 63128
           base64 --decode source.b64 > source.zip
-          sha256sum source.zip
+          sha256sum source.b64 source.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: msq-source-diagnostic
+          path: |
+            source.b64
+            source.zip
+          retention-days: 1
+          if-no-files-found: error
+      - name: Restore source archive
+        shell: bash
+        run: |
           unzip -t source.zip | tail -2
           unzip -q source.zip
           test -f msq_flutter_build_src/pubspec.yaml
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
       - name: Create Android platform and get packages
         working-directory: msq_flutter_build_src
         run: |
