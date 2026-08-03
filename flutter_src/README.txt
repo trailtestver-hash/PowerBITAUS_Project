@@ -1,0 +1,1 @@
+Temporary CI source archive with simulated placeholder content only. The private authorised Mini Safeerul Qur’an data is injected locally after APK build. Do not merge this branch.
