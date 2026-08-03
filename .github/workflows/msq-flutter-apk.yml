@@ -26,7 +26,11 @@ jobs:
       - name: Restore source archive
         shell: bash
         run: |
+          echo 'Base64 chunk sizes:'
+          wc -c flutter_src/part_*.b64
+          echo 'Expected total: 63128 bytes'
           cat flutter_src/part_*.b64 | base64 --decode > source.zip
+          stat -c 'Decoded ZIP bytes: %s' source.zip
           unzip -q source.zip
           test -f msq_flutter_build_src/pubspec.yaml
       - name: Create Android platform and get packages
