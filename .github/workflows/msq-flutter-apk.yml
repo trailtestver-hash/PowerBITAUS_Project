@@ -1,0 +1,63 @@
+name: Build Mini Safeerul Quran Flutter APK
+
+on:
+  pull_request:
+    paths:
+      - 'flutter_src/**'
+      - '.github/workflows/msq-flutter-apk.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Restore source archive
+        shell: bash
+        run: |
+          cat flutter_src/part_*.b64 | base64 --decode > source.zip
+          unzip -q source.zip
+          test -f msq_flutter_build_src/pubspec.yaml
+      - name: Create Android platform and get packages
+        working-directory: msq_flutter_build_src
+        run: |
+          flutter create --platforms=android --org org.safeerulquran --project-name mini_safeerul_quran .
+          flutter pub get
+          dart run flutter_launcher_icons
+          sed -i 's/android:label="mini_safeerul_quran"/android:label="Mini Safeerul Qur’an"/' android/app/src/main/AndroidManifest.xml
+      - name: Analyze and test
+        working-directory: msq_flutter_build_src
+        run: |
+          flutter analyze
+          flutter test
+      - name: Build signed debug APK
+        working-directory: msq_flutter_build_src
+        run: flutter build apk --debug
+      - name: Verify APK
+        shell: bash
+        run: |
+          APK=msq_flutter_build_src/build/app/outputs/flutter-apk/app-debug.apk
+          test -f "$APK"
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
+          ZIPALIGN=$(find "$ANDROID_HOME/build-tools" -type f -name zipalign | sort -V | tail -1)
+          "$APKSIGNER" verify --verbose "$APK"
+          "$ZIPALIGN" -c -P 16 -v 4 "$APK"
+          unzip -t "$APK" | tail -2
+          sha256sum "$APK"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: msq-flutter-debug-apk
+          path: msq_flutter_build_src/build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 1
+          if-no-files-found: error
