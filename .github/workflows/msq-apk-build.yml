@@ -1,4 +1,4 @@
-name: Build Mini Safeerul Quran APK
+name: Build Mini Safeerul Quran Installable APK
 
 on:
   pull_request:
@@ -28,14 +28,26 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Build release APK
+      - name: Build standard debug-signed APK
         working-directory: msq_android
-        run: gradle --no-daemon :app:assembleRelease
+        run: gradle --no-daemon :app:assembleDebug
 
-      - name: Upload unsigned APK
+      - name: Verify APK package and signatures
+        shell: bash
+        run: |
+          APK="msq_android/app/build/outputs/apk/debug/app-debug.apk"
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
+          AAPT=$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)
+          test -f "$APK"
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          "$AAPT" dump badging "$APK" | head -20
+          unzip -t "$APK" | tail -2
+          sha256sum "$APK"
+
+      - name: Upload installable APK
         uses: actions/upload-artifact@v4
         with:
-          name: msq-unsigned-apk
-          path: msq_android/app/build/outputs/apk/release/app-release-unsigned.apk
+          name: msq-installable-debug-apk
+          path: msq_android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 1
