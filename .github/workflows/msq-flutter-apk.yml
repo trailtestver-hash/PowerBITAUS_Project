@@ -46,6 +46,17 @@ jobs:
           echo 'da4425e09675b6025af8a9d81161002d50ff2115cdb9b6aa8c4961a05e9a394f  source.zip' | sha256sum -c -
           unzip -t source.zip | tail -2
           unzip -q source.zip
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('msq_flutter_build_src/assets/data/msq_data.json')
+          data = json.loads(p.read_text())
+          for word in data['words']:
+              word['lesson'] = ((int(word['id']) - 1) // 10) + 1
+              word['appearances'] = int(word.get('count', 0))
+              word['cumulativeCoverage'] = float(word.get('coverage', 0))
+          p.write_text(json.dumps(data, ensure_ascii=False))
+          PY
           test -f msq_flutter_build_src/pubspec.yaml
       - uses: actions/setup-java@v4
         with:
