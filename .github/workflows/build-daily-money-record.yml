@@ -34,14 +34,17 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Reconstruct clean source
+      - name: Reconstruct and verify clean source
         run: |
+          set -euo pipefail
           mkdir -p daily-money-record-clean-src
           cat daily-money-record-clean/source.b64.part00 \
               daily-money-record-clean/source.b64.part01 \
               daily-money-record-clean/source.b64.part02 \
               daily-money-record-clean/source.b64.part03 \
               | base64 -d > /tmp/DailyMoneyRecord_Clean_Source.zip
+          echo "80d75485fc7e9a5569fa87bb4615bfd604557f7662ee08d12b2e7aa93b96b74c  /tmp/DailyMoneyRecord_Clean_Source.zip" | sha256sum -c -
+          unzip -t /tmp/DailyMoneyRecord_Clean_Source.zip
           unzip -q /tmp/DailyMoneyRecord_Clean_Source.zip -d daily-money-record-clean-src
 
       - name: Build debug APK with Android Gradle Plugin
