@@ -1,0 +1,147 @@
+# /.github/workflows/build-daily-money-record-parity-test2.yml
+name: Build Daily Money Record Parity Test2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'daily-money-record-clean/source2.part*'
+      - 'daily-money-record-clean/parity-overlay.part*'
+      - '.github/workflows/build-daily-money-record-parity-test2.yml'
+  workflow_dispatch:
+
+jobs:
+  build-parity-test2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 35 tools
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" >/dev/null
+
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Reconstruct clean source
+        run: |
+          set -euo pipefail
+          mkdir -p daily-money-record-clean-src
+          cat daily-money-record-clean/source2.part00 \
+              daily-money-record-clean/source2.part01 \
+              daily-money-record-clean/source2.part02 \
+              daily-money-record-clean/source2.part03 \
+              daily-money-record-clean/source2.part04 \
+              daily-money-record-clean/source2.part05 \
+              daily-money-record-clean/source2.part06 \
+              daily-money-record-clean/source2.part07 \
+              | base64 -d > /tmp/DailyMoneyRecord_Clean_Source.zip
+          echo "80d75485fc7e9a5569fa87bb4615bfd604557f7662ee08d12b2e7aa93b96b74c  /tmp/DailyMoneyRecord_Clean_Source.zip" | sha256sum -c -
+          unzip -t /tmp/DailyMoneyRecord_Clean_Source.zip
+          unzip -q /tmp/DailyMoneyRecord_Clean_Source.zip -d daily-money-record-clean-src
+
+      - name: Reconstruct parity overlay and stable test key
+        run: |
+          set -euo pipefail
+          cat daily-money-record-clean/parity-overlay.part00 \
+              daily-money-record-clean/parity-overlay.part01 \
+              daily-money-record-clean/parity-overlay.part02 \
+              | base64 -d > /tmp/parity-overlay.zip
+          echo "b61d526dc0eba0963d87cc2c200d83895bc189565133a2ef5b7c72ccd3c2e93f  /tmp/parity-overlay.zip" | sha256sum -c -
+          unzip -t /tmp/parity-overlay.zip
+          rm -rf /tmp/parity2 && mkdir -p /tmp/parity2
+          unzip -q /tmp/parity-overlay.zip -d /tmp/parity2
+          cp /tmp/parity2/parity-v2.js daily-money-record-clean-src/app/src/main/assets/parity-v2.js
+          cp /tmp/parity2/parity-v2.css daily-money-record-clean-src/app/src/main/assets/parity-v2.css
+          mkdir -p daily-money-record-clean-src/test-signing
+          cp /tmp/parity2/dmr-test2.jks daily-money-record-clean-src/test-signing/dmr-test2.jks
+          node --check daily-money-record-clean-src/app/src/main/assets/app.js
+          node --check daily-money-record-clean-src/app/src/main/assets/parity-v2.js
+
+      - name: Apply Test2 identity, stable signing and parity assets
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('daily-money-record-clean-src')
+          gradle = root/'app/build.gradle'
+          s = gradle.read_text()
+          s = re.sub(r"applicationId\s+['\"][^'\"]+['\"]", "applicationId 'com.jewel.dailymoneyrecord.test2'", s, count=1)
+          s = re.sub(r"versionCode\s+\d+", "versionCode 102", s, count=1)
+          s = re.sub(r"versionName\s+['\"][^'\"]+['\"]", "versionName '1.0.2-parity-test2'", s, count=1)
+          if 'signingConfigs {' not in s:
+              marker = 'android {'
+              signing = """android {\n    signingConfigs {\n        parityTest2 {\n            storeFile file('../test-signing/dmr-test2.jks')\n            storePassword 'test2pass'\n            keyAlias 'dmrtest2'\n            keyPassword 'test2pass'\n        }\n    }"""
+              s = s.replace(marker, signing, 1)
+          # Make debug use deterministic test signing key.
+          if 'buildTypes {' in s:
+              if re.search(r'buildTypes\s*\{\s*debug\s*\{', s):
+                  s = re.sub(r'(buildTypes\s*\{\s*debug\s*\{)', r"\1\n            signingConfig signingConfigs.parityTest2", s, count=1)
+              else:
+                  s = s.replace('buildTypes {', "buildTypes {\n        debug {\n            signingConfig signingConfigs.parityTest2\n        }", 1)
+          else:
+              # Insert before closing android block is hard to infer; this clean source is expected to have buildTypes.
+              raise SystemExit('buildTypes block missing')
+          gradle.write_text(s)
+
+          idx = root/'app/src/main/assets/index.html'
+          html = idx.read_text()
+          if 'parity-v2.css' not in html:
+              html = html.replace('</head>', '  <link rel="stylesheet" href="parity-v2.css">\n</head>')
+          if 'parity-v2.js' not in html:
+              html = html.replace('</body>', '  <script src="parity-v2.js"></script>\n</body>')
+          idx.write_text(html)
+          PY
+          grep -F "applicationId 'com.jewel.dailymoneyrecord.test2'" daily-money-record-clean-src/app/build.gradle
+          grep -F "versionCode 102" daily-money-record-clean-src/app/build.gradle
+          grep -F "versionName '1.0.2-parity-test2'" daily-money-record-clean-src/app/build.gradle
+          grep -F "signingConfig signingConfigs.parityTest2" daily-money-record-clean-src/app/build.gradle
+          grep -F 'parity-v2.css' daily-money-record-clean-src/app/src/main/assets/index.html
+          grep -F 'parity-v2.js' daily-money-record-clean-src/app/src/main/assets/index.html
+
+      - name: Build real Android APK
+        working-directory: daily-money-record-clean-src
+        run: gradle --no-daemon --stacktrace :app:assembleDebug
+
+      - name: Verify package, version, signer and alignment
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="daily-money-record-clean-src/app/build/outputs/apk/debug/app-debug.apk"
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          ZIPALIGN="$ANDROID_HOME/build-tools/35.0.0/zipalign"
+          REPORT="Daily_Money_Record_Parity_Test2_Verification.txt"
+          test -s "$APK"
+          "$AAPT" dump badging "$APK" | tee "$REPORT"
+          grep -q "package: name='com.jewel.dailymoneyrecord.test2' versionCode='102' versionName='1.0.2-parity-test2'" "$REPORT"
+          grep -q "application-label:'Daily Money Record'" "$REPORT"
+          "$APKSIGNER" verify --verbose --print-certs "$APK" | tee -a "$REPORT"
+          grep -qi "3a6eca3bdbab8647174a3e18f61f2c2b4ab0b554b5645423547595411734f384" "$REPORT"
+          "$ZIPALIGN" -c -v 4 "$APK" | tee -a "$REPORT"
+          sha256sum "$APK" | tee -a "$REPORT"
+          cp "$APK" Daily_Money_Record_1_0_2_Parity_Test2_v102.apk
+
+      - name: Upload verified parity APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Daily-Money-Record-Parity-Test2-v102
+          path: |
+            Daily_Money_Record_1_0_2_Parity_Test2_v102.apk
+            Daily_Money_Record_Parity_Test2_Verification.txt
+          if-no-files-found: error
+          retention-days: 14
