@@ -37,8 +37,6 @@ jobs:
       - name: Reconstruct and verify clean source
         run: |
           set -euo pipefail
-          wc -c daily-money-record-clean/source2.part*
-          sha256sum daily-money-record-clean/source2.part*
           mkdir -p daily-money-record-clean-src
           cat daily-money-record-clean/source2.part00 \
               daily-money-record-clean/source2.part01 \
@@ -53,6 +51,17 @@ jobs:
           unzip -t /tmp/DailyMoneyRecord_Clean_Source.zip
           unzip -q /tmp/DailyMoneyRecord_Clean_Source.zip -d daily-money-record-clean-src
 
+      - name: Apply fresh diagnostic package
+        run: |
+          set -euo pipefail
+          FILE="daily-money-record-clean-src/app/build.gradle"
+          sed -i "s/applicationId 'com.jewel.dailymoneyrecord'/applicationId 'com.jewel.dailymoneyrecord.test1'/" "$FILE"
+          sed -i "s/versionCode 1/versionCode 101/" "$FILE"
+          sed -i "s/versionName '1.0.0-clean-beta1'/versionName '1.0.0-diagnostic-test1'/" "$FILE"
+          grep -F "applicationId 'com.jewel.dailymoneyrecord.test1'" "$FILE"
+          grep -F "versionCode 101" "$FILE"
+          grep -F "versionName '1.0.0-diagnostic-test1'" "$FILE"
+
       - name: Build debug APK with Android Gradle Plugin
         working-directory: daily-money-record-clean-src
         run: gradle --no-daemon --stacktrace :app:assembleDebug
@@ -66,20 +75,22 @@ jobs:
           APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
           ZIPALIGN="$ANDROID_HOME/build-tools/35.0.0/zipalign"
           test -s "$APK"
-          "$AAPT" dump badging "$APK" | tee Daily_Money_Record_Verification.txt
-          grep -q "package: name='com.jewel.dailymoneyrecord'" Daily_Money_Record_Verification.txt
-          grep -q "application-label:'Daily Money Record'" Daily_Money_Record_Verification.txt
-          "$APKSIGNER" verify --verbose --print-certs "$APK" | tee -a Daily_Money_Record_Verification.txt
-          "$ZIPALIGN" -c -v 4 "$APK" | tee -a Daily_Money_Record_Verification.txt
-          sha256sum "$APK" | tee -a Daily_Money_Record_Verification.txt
-          cp "$APK" Daily_Money_Record_1_0_0_Clean_GitHub1.apk
+          "$AAPT" dump badging "$APK" | tee Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          grep -q "package: name='com.jewel.dailymoneyrecord.test1'" Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          grep -q "versionCode='101'" Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          grep -q "versionName='1.0.0-diagnostic-test1'" Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          grep -q "application-label:'Daily Money Record'" Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          "$APKSIGNER" verify --verbose --print-certs "$APK" | tee -a Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          "$ZIPALIGN" -c -v 4 "$APK" | tee -a Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          sha256sum "$APK" | tee -a Daily_Money_Record_Diagnostic_Test1_Verification.txt
+          cp "$APK" Daily_Money_Record_Diagnostic_Test1.apk
 
       - name: Upload verified APK
         uses: actions/upload-artifact@v4
         with:
-          name: Daily-Money-Record-Clean-GitHub1
+          name: Daily-Money-Record-Diagnostic-Test1
           path: |
-            Daily_Money_Record_1_0_0_Clean_GitHub1.apk
-            Daily_Money_Record_Verification.txt
+            Daily_Money_Record_Diagnostic_Test1.apk
+            Daily_Money_Record_Diagnostic_Test1_Verification.txt
           if-no-files-found: error
           retention-days: 14
