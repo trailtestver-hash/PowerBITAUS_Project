@@ -37,21 +37,17 @@ jobs:
       - name: Reconstruct and verify clean source
         run: |
           set -euo pipefail
-          wc -c daily-money-record-clean/source.b64.part*
-          sha256sum daily-money-record-clean/source.b64.part*
-          test "$(wc -c < daily-money-record-clean/source.b64.part00)" -eq 16000
-          test "$(wc -c < daily-money-record-clean/source.b64.part01)" -eq 16000
-          test "$(wc -c < daily-money-record-clean/source.b64.part02)" -eq 16000
-          test "$(wc -c < daily-money-record-clean/source.b64.part03)" -eq 15552
-          echo "027925f1b73ec36337bd3de798f9b89a25578841757a9dd347678d96929b6601  daily-money-record-clean/source.b64.part00" | sha256sum -c -
-          echo "656411c877ca5e328dd18246b5822144a8f420616c1d556632bff7bc3c54e4df  daily-money-record-clean/source.b64.part01" | sha256sum -c -
-          echo "4fcd1d539dbb896dfe053ab85ef73732c21b47135f2824b21505d312bcc3093a  daily-money-record-clean/source.b64.part02" | sha256sum -c -
-          echo "6d8bb01fb02b1fa4f5b0a3ea91c1b0fcea7848283b6235bcebe1c52e3f7b48e0  daily-money-record-clean/source.b64.part03" | sha256sum -c -
+          wc -c daily-money-record-clean/source2.part*
+          sha256sum daily-money-record-clean/source2.part*
           mkdir -p daily-money-record-clean-src
-          cat daily-money-record-clean/source.b64.part00 \
-              daily-money-record-clean/source.b64.part01 \
-              daily-money-record-clean/source.b64.part02 \
-              daily-money-record-clean/source.b64.part03 \
+          cat daily-money-record-clean/source2.part00 \
+              daily-money-record-clean/source2.part01 \
+              daily-money-record-clean/source2.part02 \
+              daily-money-record-clean/source2.part03 \
+              daily-money-record-clean/source2.part04 \
+              daily-money-record-clean/source2.part05 \
+              daily-money-record-clean/source2.part06 \
+              daily-money-record-clean/source2.part07 \
               | base64 -d > /tmp/DailyMoneyRecord_Clean_Source.zip
           echo "80d75485fc7e9a5569fa87bb4615bfd604557f7662ee08d12b2e7aa93b96b74c  /tmp/DailyMoneyRecord_Clean_Source.zip" | sha256sum -c -
           unzip -t /tmp/DailyMoneyRecord_Clean_Source.zip
